@@ -1,0 +1,8 @@
+
+.quotes li {
+    list-style: none;
+}
+
+.quotes {
+    border: 1px solid black;
+}
