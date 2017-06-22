@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html ng-app="chasingProgress">
-    <head>
-        <meta charset="utf-8">
-        <title>Chasing Progress</title>
-        <link rel="stylesheet" href="/styles/styles.css">
-    </head>
-    <body ng-controller="mainCtrl">
 
-        <!-- <div class="container">
-            <ul class="quotes" ng-repeat="quote in quotes">
-                <li><h4><i>{{quote.quote}}</i></h4></li>
-                <br>
-                <li id="quoteAuthor">- {{quote.author}}</li>
-                <br><br>
-            </ul>
-        </div> -->
+<head>
+    <meta charset="utf-8">
+    <title>Chasing Progress</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
 
 
-        <div ui-view></div>
+    <div ui-view></div>
 
 
 
@@ -26,9 +20,11 @@
     <script src="/node_modules/angular/angular.js" charset="utf-8"></script>
     <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/js/app.js" charset="utf-8"></script>
-    <script src="/js/mainCtrl.js" charset="utf-8"></script>
     <script src="/js/components/home/homeCtrl.js" charset="utf-8"></script>
     <script src="/js/components/todo/todoCtrl.js" charset="utf-8"></script>
+    <script src="/js/components/goals/goalsCtrl.js" charset="utf-8"></script>
+    <script src="/js/components/calendar/calendarCtrl.js" charset="utf-8"></script>
 
-    </body>
+</body>
+
 </html>

@@ -2,7 +2,7 @@ angular.module('chasingProgress')
     .controller('homeCtrl', function($scope, $sce) {
 
 
-        $scope.quotes = [
+        var quotes = [
             {
                 quote:"You have to learn the rules of the game. And then you have to play better than anyone else.",
                 author:"Albert Einstein"
@@ -173,6 +173,15 @@ angular.module('chasingProgress')
 
 
         ];
+
+
+        var getDailyQuote = function() {
+            console.log((Math.random() * quotes.length).toFixed(), quotes.length);
+            $scope.dailyQuote = quotes[(Math.random() * quotes.length).toFixed()]
+            console.log($scope.dailyQuote);
+        }();
+
+
         var dailyVideo;
         var getOneVideo = function() {
 

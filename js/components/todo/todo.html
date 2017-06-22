@@ -1,5 +1,39 @@
 <div class="todoContainer">
-    <h2>To Do</h2>
+
+    <div class="container">
+        <div class="row">
+            <div class="well">
+                <h2>Add</h2>
+                <form action="">
+                    <input class="form-control" type="text" ng-model="addTodoInput">
+                    <button ng-click="addTodo()" type="button" name="button">Add todo</button>
+                </form>
+
+
+            </div>
+            <h2>Tasks To complete</h2>
+            <div class="unfinished">
+                <ul ng-repeat="task in todoList">
+                    <li>{{task.task}}</li>
+                    <li>created: {{task.createdAt}}</li>
+                    <button ng-click="markComplete(task, $index)">Mark as complete</button>
+                </ul>
+            </div>
+
+            <h2>Completed</h2>
+            <div class="finished">
+                <ul ng-repeat="completedTask in completedList">
+                    <li>{{completedTask.task}}</li>
+                    <li>{{completedTask.createdAt}}</li>
+                    <li>{{completedTask.completedAt}}</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+
 
 
 </div>

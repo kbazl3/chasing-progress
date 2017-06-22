@@ -5,22 +5,33 @@ Develop Your Life
 
 What do I want out of a motivational tool?
 
-Random videos:
+
+Home page -
+    weather
+    video/quote
+        -be able to reflect on video/quote journal style
+    today is {{day}}
+    random question:
+        what are you going to do today?
+        what are you going to achieve?
+        how are you going to get better?
+        etc...
+
+Calendar -
+    be able to set reminders for bills, meetups etc
+    be able to add events
 
 
+To do -
+    have subjects/categories? ie: errands, purchases
+    to buy list
+    have it add automatic "to dos" every 24 hours/daily todo
+        - code, read, exercise, contact
+    have it check if you completed automatic to do
 
 
-
-random songs:
-
-
-
-
-
-Pomodoro?
-To do list
-to buy list
 vision board
-contact someone
-area to write down ideas/journal
+    -static page with no js?
+
+area to write down ideas/journal/blog
 goals and steps to achieiveing them/gamify chasing goals/
