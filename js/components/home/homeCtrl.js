@@ -135,6 +135,25 @@ angular.module('chasingProgress')
                 author:"Ann Landers"
             }
         ];
+        var chosenQuotes = [1, 2, 3];
+        var randomNumber;
+
+        var getDailyQuote = function() {
+            if (chosenQuotes.includes(randomNumber)) {
+                getRandomNumber();
+            } else {
+                chosenQuotes.push(randomNumber);
+                $scope.dailyQuote = quotes[randomNumber];
+            }
+        };
+
+        var getRandomNumber = function() {
+            randomNumber = parseInt((Math.random() * quotes.length).toFixed());
+            getDailyQuote();
+        };
+
+        getRandomNumber();
+
 
         var embeddedHtml = [
             {
@@ -173,15 +192,6 @@ angular.module('chasingProgress')
 
 
         ];
-
-
-        var getDailyQuote = function() {
-            console.log((Math.random() * quotes.length).toFixed(), quotes.length);
-            $scope.dailyQuote = quotes[(Math.random() * quotes.length).toFixed()]
-            console.log($scope.dailyQuote);
-        }();
-
-
         var dailyVideo;
         var getOneVideo = function() {
 
