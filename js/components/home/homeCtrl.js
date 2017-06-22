@@ -1,5 +1,5 @@
 angular.module('chasingProgress')
-    .controller('mainCtrl', function($scope, $sce) {
+    .controller('homeCtrl', function($scope, $sce) {
 
 
         $scope.quotes = [

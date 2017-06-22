@@ -1,8 +1,22 @@
-
+.home-container {
+    background-image: url('https://source.unsplash.com/collection/437316/daily');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
 .quotes li {
     list-style: none;
 }
 
 .quotes {
     border: 1px solid black;
+}
+
+.todoContainer {
+    height: 100vh;
+}
+
+.todoContainer h2 {
+    text-align: center;
+    font-size: 3em;
 }
