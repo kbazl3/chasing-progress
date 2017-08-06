@@ -18,11 +18,12 @@ Home page -
         etc...
 
 Calendar -
+    daily schedule
     be able to set reminders for bills, meetups etc
     be able to add events
 
 
-To do -
+To dr -
     have subjects/categories? ie: errands, purchases
     to buy list
     have it add automatic "to dos" every 24 hours/daily todo
@@ -32,6 +33,10 @@ To do -
 
 vision board
     -static page with no js?
+    goals and steps to achieiveing them/gamify chasing goals/
+
+goals
+    journal/blog
+    progress bar
 
 area to write down ideas/journal/blog
-goals and steps to achieiveing them/gamify chasing goals/

@@ -166,16 +166,16 @@ angular.module('chasingProgress')
                 video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/lsSC2vx7zFQ" frameborder="0" allowfullscreen></iframe>'
             },
             {
-                video: ''
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/UhD3_dxKNd8" frameborder="0" allowfullscreen></iframe>'
             },
             {
-                video: ''
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/hbkZrOU1Zag" frameborder="0" allowfullscreen></iframe>'
             },
             {
-                video: ''
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/g-jwWYX7Jlo" frameborder="0" allowfullscreen></iframe>'
             },
             {
-                video: ''
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/MBRqu0YOH14" frameborder="0" allowfullscreen></iframe>'
             },
             {
                 video: ''
@@ -195,7 +195,7 @@ angular.module('chasingProgress')
         var dailyVideo;
         var getOneVideo = function() {
 
-            dailyVideo = embeddedHtml[1].video;
+            dailyVideo = embeddedHtml[6].video;
             console.log(dailyVideo);
         };
         getOneVideo();

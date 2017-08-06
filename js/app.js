@@ -31,5 +31,5 @@ angular.module('chasingProgress', ['ui.router'])
                 url: '/visionBoard',
                 templateUrl: '/js/components/visionBoard/visionBoard.html',
                 controller: 'visionBoardCtrl'
-            })
+            });
     });

@@ -15,7 +15,8 @@
 
 .quotes-container p {
     font-size: 2em;
-    text-shadow: 2px 0 0 #FFDF00, -2px 0 0 #FFDF00, 0 2px 0 #FFDF00, 0 -2px 0 #FFDF00, 1px 1px #FFDF00, -1px -1px 0 #FFDF00, 1px -1px 0 #FFDF00, -1px 1px 0 #FFDF00;
+    /*text-shadow: 2px 0 0 #FFDF00, -2px 0 0 #FFDF00, 0 2px 0 #FFDF00, 0 -2px 0 #FFDF00, 1px 1px #FFDF00, -1px -1px 0 #FFDF00, 1px -1px 0 #FFDF00, -1px 1px 0 #FFDF00;
+    background-color: gray;*/
 }
 
 .todoContainer {
@@ -33,4 +34,8 @@
     font-size: 150px;
     font-family: 'Lato';
     text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+.unfinished-tasks, .finished-tasks {
+    height: 400px;
 }

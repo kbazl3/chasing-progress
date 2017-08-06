@@ -1,5 +1,31 @@
 angular.module('chasingProgress')
-    .controller('todoCtrl', function($scope) {
+    .controller('todoCtrl', function($scope, $interval) {
+
+        var d = new Date().getHours();
+        console.log(new Date().getMinutes());
+
+        $interval(function() {
+            if(new Date().getHours() === 02) {
+                $scope.todoList.push(
+                    {
+                        task: "25 pushups - 25 situps - 60 second plank"
+                    },
+                    {
+                        task: "cold shower"
+                    },
+                    {
+                        task: "aloe vera"
+                    },
+                    {
+                        task: "read 30 mins"
+                    },
+                    {
+                        task: "code 1 hour"
+                    }
+                );
+                //If I don't finish a daily task ^^ this will duplicate it.
+            }
+        }, 5000);
 
         $scope.todoList = [];
         $scope.completedList = [];
@@ -17,7 +43,7 @@ angular.module('chasingProgress')
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
             {
-                person: "Brooke",
+                person: "Breer",
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
             {
@@ -73,17 +99,39 @@ angular.module('chasingProgress')
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
             {
-                person: "Obama",
+                person: "Choice",
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
             {
                 person: "Obama",
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
-        ]
+        ];
+
+        var chosenContacts = [1, 2, 3];
+        var randomNumber;
+
+        var getDailyContact = function() {
+            if (chosenContacts.includes(randomNumber)) {
+                getRandomNumber();
+            } else {
+                chosenContacts.push(randomNumber);
+                $scope.todoList.push({
+                    task: "Contact " + peopleToContact[randomNumber].person,
+                    picture: peopleToContact[randomNumber].picture
+                });
+            }
+        };
+
+        var getRandomNumber = function() {
+            randomNumber = parseInt((Math.random() * peopleToContact.length).toFixed());
+            getDailyContact();
+        };
+
+        getRandomNumber();
+
 
         $scope.addTodo = function() {
-            console.log($scope.addTodoInput);
             $scope.todoList.push({
                 task: $scope.addTodoInput,
                 createdAt: new Date()
