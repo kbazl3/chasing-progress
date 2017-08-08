@@ -147,12 +147,12 @@ angular.module('chasingProgress')
             }
         };
 
-        var getRandomNumber = function() {
-            randomNumber = parseInt((Math.random() * quotes.length).toFixed());
+        var getRandomNumber = function(ary) {
+            randomNumber = parseInt((Math.random() * ary.length).toFixed());
             getDailyQuote();
         };
 
-        getRandomNumber();
+        getRandomNumber(quotes);
 
 
         var embeddedHtml = [
@@ -178,10 +178,10 @@ angular.module('chasingProgress')
                 video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/MBRqu0YOH14" frameborder="0" allowfullscreen></iframe>'
             },
             {
-                video: ''
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/e_eJRDl2J6Y" frameborder="0" allowfullscreen></iframe>'
             },
             {
-                video: ''
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/67Vp7fTgQ3g" frameborder="0" allowfullscreen></iframe>'
             },
             {
                 video: ''
@@ -194,9 +194,11 @@ angular.module('chasingProgress')
         ];
         var dailyVideo;
         var getOneVideo = function() {
-
-            dailyVideo = embeddedHtml[6].video;
-            console.log(dailyVideo);
+            // dailyVideo = embeddedHtml[(Math.random() * embeddedHtml.length).toFixed(0)].video;
+            var x = getRandomNumber(embeddedHtml);
+            console.log(getRandomNumber(embeddedHtml));
+            dailyVideo = embeddedHtml[x].video;
+            console.log((Math.random() * embeddedHtml.length).toFixed(0));
         };
         getOneVideo();
         $scope.video = $sce.trustAsHtml(dailyVideo);
