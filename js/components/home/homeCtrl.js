@@ -188,7 +188,7 @@ angular.module('chasingProgress')
             },
             {
                 video: ''
-            },
+            }
 
 
         ];
