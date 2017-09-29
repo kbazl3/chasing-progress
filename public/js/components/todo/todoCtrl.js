@@ -1,36 +1,29 @@
 angular.module('chasingProgress')
-    .controller('todoCtrl', function($scope, $interval) {
+    .controller('todoCtrl', function($scope, $interval, todoSvc) {
 
         var d = new Date().getHours();
         console.log(new Date().getMinutes());
 
         $interval(function() {
-            if(new Date().getHours() === 02) {
-                $scope.todoList.push(
-                    {
-                        task: "25 pushups - 25 situps - 60 second plank"
-                    },
-                    {
-                        task: "cold shower"
-                    },
-                    {
-                        task: "aloe vera"
-                    },
-                    {
-                        task: "read 30 mins"
-                    },
-                    {
-                        task: "code 1 hour"
-                    }
-                );
+            if (new Date().getHours() === 02) {
+                $scope.todoList.push({
+                    task: "25 pushups - 25 situps - 60 second plank"
+                }, {
+                    task: "cold shower"
+                }, {
+                    task: "aloe vera"
+                }, {
+                    task: "read 30 mins"
+                }, {
+                    task: "code 1 hour"
+                });
                 //If I don't finish a daily task ^^ this will duplicate it.
             }
         }, 5000);
 
         $scope.todoList = [];
         $scope.completedList = [];
-        var peopleToContact = [
-            {
+        var peopleToContact = [{
                 person: "Obama",
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
@@ -126,24 +119,38 @@ angular.module('chasingProgress')
         var getRandomNumber = function() {
             randomNumber = parseInt((Math.random() * peopleToContact.length).toFixed());
             getDailyContact();
+            return randomNumber;
         };
 
         getRandomNumber();
-
-
-        $scope.addTodo = function() {
-            $scope.todoList.push({
-                task: $scope.addTodoInput,
-                createdAt: new Date()
-            });
-
-            $scope.addTodoInput = "";
-        };
 
         $scope.markComplete = function(completedTask, index) {
             completedTask.completedAt = new Date();
             $scope.completedList.push(completedTask);
             $scope.todoList.splice(index, 1);
         };
+
+
+        todoSvc.getTasks()
+            .then(function(response) {
+                $scope.todoList = response.data;
+            });
+
+        $scope.addTask = function(task) {
+            todoSvc.addTask(task)
+                .then(function(response) {
+                    console.log(response);
+                });
+        };
+
+        $scope.deleteTask = function(task) {
+            console.log(task._id);
+            todoSvc.deleteTask(task._id)
+                .then(function(response) {
+                    console.log(response);
+                });
+        };
+
+
 
     });

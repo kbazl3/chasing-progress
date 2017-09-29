@@ -1,0 +1,108 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+.home-container {
+    background-image: url('https://source.unsplash.com/collection/437316/daily');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    margin-top: 0;
+    position: relative;
+}
+.quotes li {
+    list-style: none;
+}
+
+.quotes {
+    border: 1px solid black;
+}
+
+.quotes-container {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 80%;
+    margin: 180px auto 0 auto;
+     border-radius: 30px/10px;
+}
+
+.quotes-container p {
+    font-size: 2em;
+    color: white;
+}
+
+.video-container {
+    height: 600px;
+    width: 100%;
+    background-image: url("../images/footer_lodyas.png");
+    background-size: cover;
+    position: relative;
+}
+
+#video {
+    width: 36.7%;
+    margin: 20px auto 0 auto;
+}
+
+.todoContainer {
+    height: 100vh;
+    margin-left: auto;
+}
+
+.todoContainer h2 {
+    text-align: center;
+    font-size: 3em;
+}
+
+.home-container h2 {
+    text-align: center;
+    font-size: 150px;
+    font-family: 'Lato';
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+.unfinished-tasks, .finished-tasks {
+    height: 400px;
+}

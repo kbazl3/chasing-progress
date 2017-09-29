@@ -1,8 +1,11 @@
+/*jshint esversion: 6 */
+
+
 angular.module('chasingProgress')
     .controller('homeCtrl', function($scope, $sce) {
 
 
-        var quotes = [
+        const quotes = [
             {
                 quote:"You have to learn the rules of the game. And then you have to play better than anyone else.",
                 author:"Albert Einstein"
@@ -135,27 +138,7 @@ angular.module('chasingProgress')
                 author:"Ann Landers"
             }
         ];
-        var chosenQuotes = [1, 2, 3];
-        var randomNumber;
-
-        var getDailyQuote = function() {
-            if (chosenQuotes.includes(randomNumber)) {
-                getRandomNumber();
-            } else {
-                chosenQuotes.push(randomNumber);
-                $scope.dailyQuote = quotes[randomNumber];
-            }
-        };
-
-        var getRandomNumber = function(ary) {
-            randomNumber = parseInt((Math.random() * ary.length).toFixed());
-            getDailyQuote();
-        };
-
-        getRandomNumber(quotes);
-
-
-        var embeddedHtml = [
+        const embeddedHtml = [
             {
                 video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/5mvV6ZlZf8U" frameborder="0" allowfullscreen></iframe>'
             },
@@ -182,25 +165,33 @@ angular.module('chasingProgress')
             },
             {
                 video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/67Vp7fTgQ3g" frameborder="0" allowfullscreen></iframe>'
-            },
-            {
-                video: ''
-            },
-            {
-                video: ''
             }
-
-
         ];
-        var dailyVideo;
-        var getOneVideo = function() {
-            // dailyVideo = embeddedHtml[(Math.random() * embeddedHtml.length).toFixed(0)].video;
-            var x = getRandomNumber(embeddedHtml);
-            console.log(getRandomNumber(embeddedHtml));
-            dailyVideo = embeddedHtml[x].video;
-            console.log((Math.random() * embeddedHtml.length).toFixed(0));
+
+
+        var chosenQuotes = [1, 2, 3];
+        let randomNumber;
+        let dailyVideo;
+        let getRandomNumber = function(ary) {
+            randomNumber = parseInt((Math.random() * ary.length).toFixed());
+            return randomNumber;
         };
-        getOneVideo();
+
+
+        const getDailyQuote = function() {
+            var x = getRandomNumber(quotes);
+             $scope.dailyQuote = quotes[x];
+        };
+        getDailyQuote();
+
+
+
+
+        var getDailyVideo = function() {
+            var x = getRandomNumber(embeddedHtml);
+            dailyVideo = embeddedHtml[x].video;
+        };
+        getDailyVideo();
         $scope.video = $sce.trustAsHtml(dailyVideo);
 
 

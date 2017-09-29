@@ -7,7 +7,7 @@ What do I want out of a motivational tool?
 
 
 Home page -
-    weather
+    weather - 5 day forecast?
     video/quote
         -be able to reflect on video/quote journal style
     today is {{day}}
@@ -16,6 +16,7 @@ Home page -
         what are you going to achieve?
         how are you going to get better?
         etc...
+    Ethereum price?
 
 Calendar -
     daily schedule

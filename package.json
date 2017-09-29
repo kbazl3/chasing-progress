@@ -1,17 +1,30 @@
 {
-  "name": "chasingProgress",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "angular": "^1.6.4",
-    "angular-ui-router": "^1.0.3",
-    "bootstrap": "^3.3.7"
-  }
+    "name": "chasingProgress",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "angular": "^1.6.4",
+        "angular-ui-router": "^1.0.3",
+        "body-parser": "^1.18.2",
+        "bootstrap": "^3.3.7",
+        "cors": "^2.8.4",
+        "express": "^4.16.0",
+        "mongoose": "^4.11.13"
+    },
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kbazl3/chasing-progress.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kbazl3/chasing-progress/issues"
+    },
+    "homepage": "https://github.com/kbazl3/chasing-progress#readme",
+    "description": ""
 }

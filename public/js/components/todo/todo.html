@@ -7,8 +7,8 @@
             <div class="well">
                 <h2>Add</h2>
                 <form action="">
-                    <input class="form-control" type="text" ng-model="addTodoInput">
-                    <button ng-click="addTodo()" type="button" name="button">Add todo</button>
+                    <input class="form-control" type="text" ng-model="addTaskInput">
+                    <button ng-click="addTask(addTaskInput)" type="button" name="button">Add todo</button>
                 </form>
 
 
@@ -19,6 +19,7 @@
                     <li>{{task.task}}</li>
                     <li>created: {{task.createdAt | date:'medium'}}</li>
                     <button ng-click="markComplete(task, $index)">Mark as complete</button>
+                    <button ng-click="deleteTask(task, $index)">Mark as complete</button>
                 </ul>
             </div>
 
