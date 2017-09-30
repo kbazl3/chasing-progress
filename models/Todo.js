@@ -6,7 +6,12 @@ var todoSchema = new Schema({
     dateCreated: {
         type: Date,
         default: new Date()
-    }
+    },
+    completed: {
+        type: Boolean,
+        default: false
+    },
+    completedAt: Date
 });
 
 module.exports = mongoose.model("Todo", todoSchema);

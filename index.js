@@ -19,6 +19,7 @@ mongoose.Promise = global.Promise;
 app.post('/api/todoList', todoCtrl.addTask);
 app.get('/api/todoList', todoCtrl.getTasks);
 app.delete('/api/todoList', todoCtrl.deleteTask);
+app.put('/api/todoList/:id', todoCtrl.updateTask);
 
 // app.post('/api/food/reviews', foodCtrl.addReview);
 

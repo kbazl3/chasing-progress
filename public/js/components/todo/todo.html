@@ -3,39 +3,58 @@
 <div class="todoContainer">
 
     <div class="container">
-        <div class="row">
+
+            <div class="well">
+                <h3 class="text-center">{{dailyContact.person}}</h3>
+                <div class="row">
+                    <div class="image-container">
+                        <img class="img-circle img-responsive" ng-src="{{dailyContact.picture}}" alt="">
+                    </div>
+                </div>
+                <!-- <div class="container">
+                    <div class="col-md-4" style="padding-left: 0px;  padding-right: 0px;">
+                        <img src="images/food1.jpg" class="img-responsive">
+                    </div>
+                </div> -->
+            </div>
+
             <div class="well">
                 <h2>Add</h2>
                 <form action="">
                     <input class="form-control" type="text" ng-model="addTaskInput">
-                    <button ng-click="addTask(addTaskInput)" type="button" name="button">Add todo</button>
+                    <button class="btn" ng-click="addTask(addTaskInput)" type="button" name="button">Add todo</button>
                 </form>
-
-
             </div>
-            <h2>Tasks To complete</h2>
+
+            <h2>Get This Shit Done</h2>
             <div class="unfinished-tasks well">
                 <ul ng-repeat="task in todoList">
                     <li>{{task.task}}</li>
-                    <li>created: {{task.createdAt | date:'medium'}}</li>
-                    <button ng-click="markComplete(task, $index)">Mark as complete</button>
-                    <button ng-click="deleteTask(task, $index)">Mark as complete</button>
+                    <li>created: {{task.dateCreated | date:'medium'}}</li>
+                    <li>Completed: {{task.completed}}</li>
+                    <button class="btn btn-warning" ng-click="updateTask(task._id, task)">Update</button>
+                    <button class="btn btn-danger" ng-click="deleteTask(task)">Delete</button>
                 </ul>
             </div>
+
+            <h2>Daily Tasks</h2>
+            <div class="unfinished-tasks well">
+                <ul ng-repeat="task in dailyList">
+                    <li>{{task.task}}</li>
+                </ul>
+            </div>
+
 
             <h2>Completed</h2>
             <div class="finished-tasks well">
                 <ul ng-repeat="completedTask in completedList">
                     <li>{{completedTask.task}}</li>
-                    <li>{{completedTask.createdAt}}</li>
-                    <li>{{completedTask.completedAt}}</li>
+                    <li>{{completedTask.dateCreated | date:'medium'}}</li>
+                    <li>{{completedTask.completedAt | date:'medium'}}</li>
+                    <button class="btn btn-warning" ng-click="updateTask(completedTask._id, completedTask)">Update</button>
+                    <button class="btn btn-danger" ng-click="deleteTask(completedTask)">Delete</button>
                 </ul>
             </div>
-        </div>
+
     </div>
-
-
-
-
-
 </div>
