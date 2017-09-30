@@ -1,4 +1,4 @@
-angular.module('chasingProgress', ['ui.router'])
+angular.module('chasingProgress', ['ui.router','angular-parallax'])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
