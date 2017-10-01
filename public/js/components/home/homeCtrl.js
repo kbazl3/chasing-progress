@@ -136,6 +136,10 @@ angular.module('chasingProgress')
             {
                 quote:" “Class is an aura of confidence that is being sure without being cocky. Class has nothing to do with money. Class never runs scared. It is self-discipline and self-knowledge. It's the sure-footedness that comes with having proved you can meet life.",
                 author:"Ann Landers"
+            },
+            {
+                quote:"I do not enlighten those who are not eager to learn, nor arousethose who are not anxious to give an explanation themselves.If I have presented one corner of the square and they cannotcome back to me with the other three, I should not go overthe points again.",
+                author: "Confucius"
             }
         ];
         const embeddedHtml = [
@@ -169,9 +173,11 @@ angular.module('chasingProgress')
         ];
 
 
-        var chosenQuotes = [1, 2, 3];
-        let randomNumber;
+
+        let randomNumber; //declare randomNumber, needs to be global because more then 1 function is using it
         let dailyVideo;
+
+        //getRandomNumber assigns the randomNumber variable a number between 0 and ary.length
         let getRandomNumber = function(ary) {
             randomNumber = parseInt((Math.random() * ary.length).toFixed());
             return randomNumber;
@@ -179,8 +185,8 @@ angular.module('chasingProgress')
 
 
         const getDailyQuote = function() {
-            var x = getRandomNumber(quotes);
-             $scope.dailyQuote = quotes[x];
+            let randomQuote = getRandomNumber(quotes);
+             $scope.dailyQuote = quotes[randomQuote];
         };
         getDailyQuote();
 
@@ -188,12 +194,10 @@ angular.module('chasingProgress')
 
 
         var getDailyVideo = function() {
-            var x = getRandomNumber(embeddedHtml);
-            dailyVideo = embeddedHtml[x].video;
+            var randomVideo = getRandomNumber(embeddedHtml);
+            $scope.video = $sce.trustAsHtml(embeddedHtml[randomVideo].video);
         };
         getDailyVideo();
-        $scope.video = $sce.trustAsHtml(dailyVideo);
-
 
 
     });

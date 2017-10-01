@@ -19,6 +19,8 @@ angular.module('chasingProgress')
             task: "read 30 mins"
         }, {
             task: "code 1 hour"
+        }, {
+            task: "meditate 15 mins"
         }];
 
 
@@ -100,6 +102,7 @@ angular.module('chasingProgress')
             },
         ];
         var randomNumber;
+
         var setDailyContact = function() {
             randomNumber = parseInt((Math.random() * peopleToContact.length).toFixed());
             sortedData.dailyContact = peopleToContact[randomNumber];

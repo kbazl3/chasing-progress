@@ -24,7 +24,7 @@ Calendar -
     be able to add events
 
 
-To dr -
+To do -
     have subjects/categories? ie: errands, purchases
     to buy list
     have it add automatic "to dos" every 24 hours/daily todo

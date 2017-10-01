@@ -1,26 +1,28 @@
 <nav-bar></nav-bar>
 
-<div parallax-background parallax-ratio="-0.3" class="motto">
-    <h2>Chasing Progress</h2>
+<div parallax-background parallax-ratio="-0.3" class="parallax-section">
+    <h2 class="align-center">Chasing Progress</h2>
 </div>
 
 <div class="background-one">
 </div>
 
 
-<div parallax-background parallax-ratio="0.8" class="video-container">
-    <p>{{dailyQuote.quote}}</p>
-    <p>- {{dailyQuote.author}}</p>
+<div parallax-background parallax-ratio="-0.3" class="parallax-section">
+    <div class="quotes-container">
+        <p class="text-align"><i>"{{dailyQuote.quote}}"</i></p>
+        <p class="indent">- {{dailyQuote.author}}</p>
+    </div>
 </div>
 
-<div class="background-two">
+<div class="background-one">
 </div>
 
-<div parallax-background parallax-ratio="0.9" class="video-container">
+<div parallax-background parallax-ratio="-0.3" class="parallax-section">
     <div ng-bind-html="video" id="video">
         $sce.trustAsHtml()
     </div>
 </div>
 
-<div class="background-three">
+<div class="background-one">
 </div>

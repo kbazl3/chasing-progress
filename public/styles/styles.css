@@ -5,7 +5,7 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
+b, u, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
@@ -46,38 +46,23 @@ table {
 }
 
 
-.motto {
+.parallax-section {
     background-image: url("../images/footer_lodyas.png");
     background-size: cover;
-    position: relative;
+    position: static;
     width: 100%;
     height: 400px;
 }
 
+.parallax-section h2 {
+    color: white;
+    font-size: 4em;
+    vertical-align: middle;
+    display: inline-block;
+}
+
 .background-one {
     background-image: url('https://source.unsplash.com/collection/437316/daily');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: 50% 0;
-    background-repeat: no-repeat;
-    height: 400px;
-    position: relative;
-}
-
-.background-two {
-    background-image: url('https://avante.biz/wp-content/uploads/Nature-Background-Images/Nature-Background-Images-016.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: 50% 0;
-    background-repeat: no-repeat;
-    height: 400px;
-    position: relative;
-}
-
-.background-three {
-    background-image: url('https://travelling-geek.com/wp-content/uploads/2016/02/highway-9-Zion-NAtional-Park.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -96,10 +81,10 @@ table {
 }
 
 .quotes-container {
-    background-color: rgba(0, 0, 0, 0.4);
+    /*background-color: rgba(0, 0, 0, 0.4);*/
     width: 80%;
     margin: auto;
-     border-radius: 30px/10px;
+    border-radius: 30px/10px;
 }
 
 .quotes-container p {
@@ -107,23 +92,16 @@ table {
     color: white;
 }
 
-.video-container {
-    height: 400px;
-    width: 100%;
-    background-image: url("../images/footer_lodyas.png");
-    background-size: cover;
-    position: relative;
-    background-attachment: fixed;
-/*background-position: 50% 0;*/
-/*background-repeat: no-repeat;*/
+.quotes-container .indent {
+    margin-left: 45px;
+    margin-top: 10px;
 }
 
-#video {
+
+.parallax-section #video {
     width: 36.7%;
-    margin: 20px auto 0 auto;
+    margin: 0 auto 0 auto;
 }
-
-
 
 .image-container img {
     margin: auto;
