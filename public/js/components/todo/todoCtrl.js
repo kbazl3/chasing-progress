@@ -3,27 +3,13 @@ angular.module('chasingProgress')
 
 
 
-        $scope.dailyList = [{
-                    task: "25 pushups - 25 situps - 60 second plank"
-                }, {
-                    task: "cold shower"
-                }, {
-                    task: "aloe vera"
-                }, {
-                    task: "read 30 mins"
-                }, {
-                    task: "code 1 hour"
-                }];
-
-
-
         todoSvc.getTasks($scope.dailyList)
             .then(function(response) {
 
                 $scope.dailyContact = response.dailyContact;
                 $scope.completedList = response.completedList;
                 $scope.todoList = response.todoList;
-
+                $scope.dailyList = response.dailyTasks;
                 console.log(response);
             });
 

@@ -6,22 +6,7 @@ angular.module('chasingProgress')
         let sortedData = {
             todoList: [],
             completedList: [],
-            dailyList: []
         };
-
-        var dailyList = [{
-            task: "25 pushups - 25 situps - 60 second plank"
-        }, {
-            task: "cold shower"
-        }, {
-            task: "aloe vera"
-        }, {
-            task: "read 30 mins"
-        }, {
-            task: "code 1 hour"
-        }, {
-            task: "meditate 15 mins"
-        }];
 
 
         let peopleToContact = [{
@@ -110,7 +95,10 @@ angular.module('chasingProgress')
 
         const sortTasks = function(tasks) {
             tasks.forEach(function(task) {
-                if (task.completed === false) {
+                if (task.task === "Finish Daily Tasks") {
+                    sortedData.dailyTasks = task.dailyTasks;
+                }
+                else if (task.completed === false) {
                     sortedData.todoList.push(task);
                 } else {
                     sortedData.completedList.push(task);
@@ -120,7 +108,6 @@ angular.module('chasingProgress')
 
         this.getTasks = function(dailyList) {
             var dfd = $q.defer();
-            console.log(dailyList);
 
 
             $http({
@@ -169,28 +156,51 @@ angular.module('chasingProgress')
                 });
         };
 
+        const resetDailyTasks = function() {
+            return $http({
+                    method: "PUT",
+                    url: baseUrl + "/api/todoList/59d0846d904ff13874ffeef5",
+                    data: {
+                        task: "Finish Daily Tasks",
+                        dailyTasks: [{
+                            task: "25 pushups - 25 situps - 60 second plank",
+                            completed: false
+                        }, {
+                            task: "cold shower",
+                            completed: false
+                        }, {
+                            task: "aloe vera",
+                            completed: false
+                        }, {
+                            task: "read 30 mins",
+                            completed: false
+                        }, {
+                            task: "code 1 hour",
+                            completed: false
+                        }, {
+                            task: "meditate 15 mins",
+                            completed: false
+                        }]
+                    }
+                })
+                .then(function(response) {
+                    return response;
+                });
+        };
+
 
 
         console.log(new Date().getHours());
 
-        // $interval(function() {
-        //     if (new Date().getHours() === 21) {
-        //         sortedData.dailyList = [{
-        //             task: "25 pushups - 25 situps - 60 second plank"
-        //         }, {
-        //             task: "cold shower"
-        //         }, {
-        //             task: "aloe vera"
-        //         }, {
-        //             task: "read 30 mins"
-        //         }, {
-        //             task: "code 1 hour"
-        //         }];
-        //     }
-        // }, 5000);
+        $interval(function() {
+            if (new Date().getHours() === 3) {
+                resetDailyTasks();
+            }
+        }, 82800000);
 
-        //every 24 hours we run 'getdailytasks' and update them all to completed: false
-        //when task is completed, run a put for JUST that task
+        //every 23 hours we check to see if it is 3am.  If it is then we reset daily tasks to incomplete
+        //when task is completed, run a PUT for JUST that task
+
 
 
 

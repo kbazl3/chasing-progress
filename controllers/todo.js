@@ -60,6 +60,16 @@ module.exports = {
                 res.status(200).json(productItem);
             }
         });
+    },
+
+    addDailyTasks: function(req, res) {
+        Todo.create(req.body, function(err, result) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.status(200).json(result);
+            }
+        });
     }
 
 };

@@ -23,6 +23,8 @@ Calendar -
     be able to set reminders for bills, meetups etc
     be able to add events
 
+    https://github.com/benjamincharity/angular-json-calendar#installation
+
 
 To do -
     have subjects/categories? ie: errands, purchases
@@ -30,6 +32,9 @@ To do -
     have it add automatic "to dos" every 24 hours/daily todo
         - code, read, exercise, contact
     have it check if you completed automatic to do
+
+    https://github.com/jirikavi/AngularJS-Toaster
+    http://ngmodules.org/modules/angular-loading-bar
 
 
 vision board
@@ -39,5 +44,6 @@ vision board
 goals
     journal/blog
     progress bar
+    https://github.com/fraywing/textAngular/
 
 area to write down ideas/journal/blog
