@@ -169,6 +169,18 @@ angular.module('chasingProgress')
             },
             {
                 video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/67Vp7fTgQ3g" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/bIXOo8D9Qsc" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/5fsm-QbN9r8" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/Ela3ChTzFcA" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/UNQhuFL6CWg" frameborder="0" allowfullscreen></iframe>'
             }
         ];
 

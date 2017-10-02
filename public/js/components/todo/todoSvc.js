@@ -31,7 +31,7 @@ angular.module('chasingProgress')
             },
             {
                 person: "Shane",
-                picture: "../../images/shaeno.jpg"
+                picture: "../../images/shaneo.jpg"
             },
             {
                 person: "April",
@@ -39,11 +39,11 @@ angular.module('chasingProgress')
             },
             {
                 person: "Mason",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/mason.jpeg"
             },
             {
                 person: "Tayia",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/tayia.jpeg"
             },
             {
                 person: "Brandon",
