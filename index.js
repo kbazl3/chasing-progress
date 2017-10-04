@@ -23,9 +23,6 @@ app.put('/api/todoList/:id', todoCtrl.updateTask);
 
 
 app.post('/api/dailyList', todoCtrl.addDailyTasks);
-// app.post('/api/food/reviews', foodCtrl.addReview);
-
-// app.get('/api/food/review', foodCtrl.getOneReview);
 
 
 

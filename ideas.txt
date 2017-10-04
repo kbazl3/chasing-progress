@@ -29,6 +29,7 @@ Calendar -
 To do -
     have subjects/categories? ie: errands, purchases
     to buy list
+    seperate into 3 tabs.  dailyList, to do list and to buy list
     have it add automatic "to dos" every 24 hours/daily todo
         - code, read, exercise, contact
     have it check if you completed automatic to do
