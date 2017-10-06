@@ -108,12 +108,11 @@ angular.module('chasingProgress')
 
         this.getTasks = function(dailyList) {
             var dfd = $q.defer();
-
-
             $http({
                 method: 'GET',
                 url: baseUrl + "/api/todoList"
             }).then(function(response) {
+                console.log(response);
                 sortTasks(response.data);
                 dfd.resolve(sortedData);
             });

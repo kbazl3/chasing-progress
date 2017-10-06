@@ -2,16 +2,18 @@ angular.module('chasingProgress')
     .controller('todoCtrl', function($scope, $interval, todoSvc) {
 
 
+        if (!$scope.todoList) {
+            todoSvc.getTasks($scope.dailyList)
+                .then(function(response) {
 
-        todoSvc.getTasks($scope.dailyList)
-            .then(function(response) {
+                    $scope.dailyContact = response.dailyContact;
+                    $scope.completedList = response.completedList;
+                    $scope.todoList = response.todoList;
+                    $scope.dailyList = response.dailyTasks;
+                    console.log(response);
+                });
+        }
 
-                $scope.dailyContact = response.dailyContact;
-                $scope.completedList = response.completedList;
-                $scope.todoList = response.todoList;
-                $scope.dailyList = response.dailyTasks;
-                console.log(response);
-            });
 
 
 

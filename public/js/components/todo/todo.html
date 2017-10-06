@@ -1,61 +1,78 @@
-
 <nav-bar></nav-bar>
 <div class="todoContainer">
-
     <div class="container">
+        <div class="tabbable tabs-below" ng-init="selectedTab = 1;">
+            <ul class="nav nav-tabs nav-justified">
+                <li ng-class="{active: selectedTab == 1}">
+                    <a href="javascript:void(0)" ng-click="selectedTab = 1;">Daily Contact</a>
+                </li>
+                <li ng-class="{active: selectedTab == 2}">
+                    <a href="javascript:void(0)" ng-click="selectedTab = 2;">Todo List</a>
+                </li>
+                <li ng-class="{active: selectedTab == 3}">
+                    <a href="javascript:void(0)" ng-click="selectedTab = 3;">Daily List</a>
+                </li>
+                <li ng-class="{active: selectedTab == 4}">
+                    <a href="javascript:void(0)" ng-click="selectedTab = 4;">To buy List</a>
+                </li>
+            </ul>
 
-            <div class="well">
-                <h3 class="text-center">{{dailyContact.person}}</h3>
-                <div class="row">
-                    <div class="image-container">
-                        <img class="img-circle img-responsive" ng-src="{{dailyContact.picture}}" alt="">
+            <div class="tab-content" ng-show="selectedTab == 1">
+                <div class="well">
+                    <h3 class="text-center">{{dailyContact.person}}</h3>
+                    <div class="row">
+                        <div class="image-container">
+                            <img class="img-circle img-responsive" ng-src="{{dailyContact.picture}}" alt="">
+                        </div>
                     </div>
                 </div>
-                <!-- <div class="container">
-                    <div class="col-md-4" style="padding-left: 0px;  padding-right: 0px;">
-                        <img src="images/food1.jpg" class="img-responsive">
+            </div>
+
+            <div class="tab-content" ng-show="selectedTab == 2">
+                <div class="well">
+                    <h2>Add</h2>
+                    <form action="">
+                        <input class="form-control" type="text" ng-model="addTaskInput">
+                        <button class="btn" ng-click="addTask(addTaskInput)" type="button" name="button">Add todo</button>
+                    </form>
+                </div>
+
+                <h2>Get This Shit Done</h2>
+                <div class="unfinished-tasks well">
+                    <ul ng-repeat="task in todoList">
+                        <li>{{task.task}}</li>
+                        <li>created: {{task.dateCreated | date:'medium'}}</li>
+                        <li>Completed: {{task.completed}}</li>
+                        <button class="btn btn-warning" ng-click="updateTask(task._id, task)">Update</button>
+                        <button class="btn btn-danger" ng-click="deleteTask(task)">Delete</button>
+                    </ul>
+                </div>
+
+                <h2>Completed</h2>
+                <div class="finished-tasks well">
+                    <ul ng-repeat="completedTask in completedList">
+                        <li>{{completedTask.task}}</li>
+                        <li>{{completedTask.dateCreated | date:'medium'}}</li>
+                        <li>{{completedTask.completedAt | date:'medium'}}</li>
+                        <button class="btn btn-warning" ng-click="updateTask(completedTask._id, completedTask)">Update</button>
+                        <button class="btn btn-danger" ng-click="deleteTask(completedTask)">Delete</button>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tab-content" ng-show="selectedTab == 3">
+                <h2>Daily Tasks</h2>
+                <div class="unfinished-tasks well">
+                    <div class="checkbox" ng-repeat="task in dailyList">
+                        <label><input ng-click="updateTask(task._id, task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
                     </div>
-                </div> -->
+                </div>
             </div>
 
-            <div class="well">
-                <h2>Add</h2>
-                <form action="">
-                    <input class="form-control" type="text" ng-model="addTaskInput">
-                    <button class="btn" ng-click="addTask(addTaskInput)" type="button" name="button">Add todo</button>
-                </form>
+            <div class="tab-content" ng-show="selectedTab == 4">
+                to buy list
             </div>
-
-            <h2>Get This Shit Done</h2>
-            <div class="unfinished-tasks well">
-                <ul ng-repeat="task in todoList">
-                    <li>{{task.task}}</li>
-                    <li>created: {{task.dateCreated | date:'medium'}}</li>
-                    <li>Completed: {{task.completed}}</li>
-                    <button class="btn btn-warning" ng-click="updateTask(task._id, task)">Update</button>
-                    <button class="btn btn-danger" ng-click="deleteTask(task)">Delete</button>
-                </ul>
-            </div>
-
-            <h2>Daily Tasks</h2>
-            <div class="unfinished-tasks well">
-                <ul ng-repeat="task in dailyList">
-                    <li>{{task.task}}</li>
-                    <li>{{task.completed}}</li>
-                </ul>
-            </div>
-
-
-            <h2>Completed</h2>
-            <div class="finished-tasks well">
-                <ul ng-repeat="completedTask in completedList">
-                    <li>{{completedTask.task}}</li>
-                    <li>{{completedTask.dateCreated | date:'medium'}}</li>
-                    <li>{{completedTask.completedAt | date:'medium'}}</li>
-                    <button class="btn btn-warning" ng-click="updateTask(completedTask._id, completedTask)">Update</button>
-                    <button class="btn btn-danger" ng-click="deleteTask(completedTask)">Delete</button>
-                </ul>
-            </div>
+        </div>
 
     </div>
 </div>
