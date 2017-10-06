@@ -95,10 +95,7 @@ angular.module('chasingProgress')
 
         const sortTasks = function(tasks) {
             tasks.forEach(function(task) {
-                if (task.task === "Finish Daily Tasks") {
-                    sortedData.dailyTasks = task.dailyTasks;
-                }
-                else if (task.completed === false) {
+            if (task.completed === false) {
                     sortedData.todoList.push(task);
                 } else {
                     sortedData.completedList.push(task);
@@ -155,6 +152,64 @@ angular.module('chasingProgress')
                 });
         };
 
+
+
+        //*************************  DAILY TASKS  ************************************************
+
+        this.getDailyTasks = function(dailyList) {
+            return $http({
+                method: 'GET',
+                url: baseUrl + "/api/dailyList"
+            }).then(function(response) {
+                console.log(response);
+
+                return response.data;
+            });
+        };
+
+        this.addDailyTask = function(task) {
+            console.log(task);
+            return $http({
+                method: 'POST',
+                url: baseUrl + "/api/dailyList",
+                data: {
+                    task: task
+                }
+            }).then(function(response) {
+                return response;
+            });
+        };
+
+
+        this.deleteDailyTask = function(taskId) {
+            return $http({
+                    method: "DELETE",
+                    url: baseUrl + "/api/dailyList/" + taskId
+                })
+                .then(function(response) {
+                    return response
+                });
+        };
+
+        this.updateDailyTask = function(task) {
+            task.completed = !task.completed;
+            console.log(task._id);
+            return $http({
+                    method: "PUT",
+                    url: baseUrl + "/api/dailyList/" + task._id,
+                    data: {
+                        task: task.task,
+                        completed: task.completed
+                    }
+                })
+                .then(function(response) {
+                    return response;
+                });
+        };
+
+
+
+
         const resetDailyTasks = function() {
             return $http({
                     method: "PUT",
@@ -189,7 +244,7 @@ angular.module('chasingProgress')
 
 
 
-        console.log(new Date().getHours());
+        // console.log(new Date().getHours());
 
         $interval(function() {
             if (new Date().getHours() === 3) {

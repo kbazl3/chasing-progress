@@ -60,14 +60,40 @@
                 </div>
             </div>
 
+
+
+
+
+
+
             <div class="tab-content" ng-show="selectedTab == 3">
                 <h2>Daily Tasks</h2>
+
+
                 <div class="unfinished-tasks well">
                     <div class="checkbox" ng-repeat="task in dailyList">
-                        <label><input ng-click="updateTask(task._id, task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
+                        <label><input ng-click="updateDailyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
+                        <button class="btn btn-danger" ng-click="deleteDailyTask(task)">Delete</button>
                     </div>
                 </div>
+
+
+                <div class="well">
+                    <h2>Add</h2>
+                    <form action="">
+                        <input class="form-control" type="text" ng-model="addDailyTaskInput">
+                        <button class="btn" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button">Add todo</button>
+                    </form>
+                </div>
+
+
             </div>
+
+
+
+
+
+
 
             <div class="tab-content" ng-show="selectedTab == 4">
                 to buy list

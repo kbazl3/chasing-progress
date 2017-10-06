@@ -43,13 +43,11 @@ module.exports = {
 
     updateTask: function(req, res) {
         if (!req.params.id) {
-            console.log('asdfas');
             return res.status(400).send('id query needed');
         }
         if (req.body.completed === true) {
             req.body.completedAt = new Date();
         }
-        console.log(req.body);
         Todo.findOneAndUpdate({
             _id: req.params.id
         }, req.body, function(err, productItem) {
@@ -70,6 +68,10 @@ module.exports = {
                 res.status(200).json(result);
             }
         });
+    },
+
+    updateDailyTask: function(req, res) {
+        // Todo.
     }
 
 };
