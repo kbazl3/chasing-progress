@@ -12,10 +12,6 @@ var todoSchema = new Schema({
         default: false
     },
     completedAt: Date,
-    dailyTasks: [{
-        task: { type: String, required: true},
-        completed: { type: Boolean, default: false }
-    }]
 });
 
 module.exports = mongoose.model("Todo", todoSchema);

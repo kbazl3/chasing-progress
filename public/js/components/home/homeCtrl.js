@@ -59,20 +59,12 @@ angular.module('chasingProgress')
                 author:"J. Paul Getty"
             },
             {
-                quote:"You must never be satisfied with losing. You must get angry, terribly angry, about losing. But the mark of the good loser is that he takes his anger out on himself and not his victorious opponents or on his teammates.",
-                author:"Richard Nixon"
-            },
-            {
                 quote: "Mental toughness is many things and rather difficult to explain. Its qualities are sacrifice and self-denial. Also, most importantly, it is combined with a perfectly disciplined will that refuses to give in. It's a state of mind-you could call it character in action.",
                 author: "Vince Lombard"
             },
             {
                 quote:"We are what we repeatedly do, excellence then is not an act, but a habit.",
                 author:"Aristotle"
-            },
-            {
-                quote:"I think the guys who are really controlling their emotions ... are going to win.",
-                author:"Tiger Woods"
             },
             {
                 quote:"It is necessary to try to surpass one's self always: this occupation ought to last as long as life.",
@@ -88,10 +80,6 @@ angular.module('chasingProgress')
             {
                 quote:"Whoever submits himself to a super-discipline can expect great triumphs",
                 author:"Samael Aun Weor"
-            },
-            {
-                quote:"If you wish to be out front, then act as if you were behind.",
-                author:"Lao Tzu"
             },
             {
                 quote:"The most powerful control we can ever attain, is to be in control of ourselves.",
@@ -181,35 +169,91 @@ angular.module('chasingProgress')
             },
             {
                 video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/UNQhuFL6CWg" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/Cbk980jV7Ao" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/yX39J_YyKbs" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/ltun92DfnPY" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/gww9_S4PNV0" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/il9yftGwoNc" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/WibmcsEGLKo" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/aV805a2XJgA" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/7o4O3U220GE" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/wupToqz1e2g" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/8CrOL-ydFMI" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/mMRrCYPxD0I" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/Lp7E973zozc" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/D9Ihs241zeg" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/iCvmsMzlF7o" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/Ks-_Mh1QhMc" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/4q1dgn_C0AU" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/sioZd3AxmnE" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/IRVdiHu1VCc" frameborder="0" allowfullscreen></iframe>'
             }
         ];
 
+console.log(quotes.length, embeddedHtml.length);
 
-
-        let randomNumber; //declare randomNumber, needs to be global because more then 1 function is using it
-        let dailyVideo;
-
-        //getRandomNumber assigns the randomNumber variable a number between 0 and ary.length
-        let getRandomNumber = function(ary) {
-            randomNumber = parseInt((Math.random() * ary.length).toFixed());
-            return randomNumber;
-        };
-
-
-        const getDailyQuote = function() {
-            let randomQuote = getRandomNumber(quotes);
-             $scope.dailyQuote = quotes[randomQuote];
-        };
-        getDailyQuote();
-
-
-
-
-        var getDailyVideo = function() {
-            var randomVideo = getRandomNumber(embeddedHtml);
-            $scope.video = $sce.trustAsHtml(embeddedHtml[randomVideo].video);
-        };
-        getDailyVideo();
+        // let randomNumber; //declare randomNumber, needs to be global because more then 1 function is using it
+        // let dailyVideo;
+        //
+        // //getRandomNumber assigns the randomNumber variable a number between 0 and ary.length
+        // let getRandomNumber = function(ary) {
+        //     randomNumber = parseInt((Math.random() * ary.length).toFixed());
+        //     return randomNumber;
+        // };
+        //
+        //
+        // const getDailyQuote = function() {
+        //     let randomQuote = getRandomNumber(quotes);
+        //      $scope.dailyQuote = quotes[randomQuote];
+        // };
+        // getDailyQuote();
+        //
+        //
+        // console.log(new Date().getDate());
+        //
+        // var getDailyVideo = function() {
+        //     var randomVideo = getRandomNumber(embeddedHtml);
+        //     $scope.video = $sce.trustAsHtml(embeddedHtml[randomVideo].video);
+        // };
+        // getDailyVideo();
+        $scope.dailyQuote = quotes[new Date().getDate()];
+        $scope.video = $sce.trustAsHtml(embeddedHtml[new Date().getDate()].video);
 
 
     });

@@ -28,11 +28,11 @@ Calendar -
 
 To do -
     have subjects/categories? ie: errands, purchases
-    to buy list
-    seperate into 3 tabs.  dailyList, to do list and to buy list
-    have it add automatic "to dos" every 24 hours/daily todo
-        - code, read, exercise, contact
-    have it check if you completed automatic to do
+    have it keep stats of how often you complete a certain daily task.
+        Total x out of y days
+        average number of days a week/month
+    weekly todo's
+
 
     https://github.com/jirikavi/AngularJS-Toaster
     http://ngmodules.org/modules/angular-loading-bar

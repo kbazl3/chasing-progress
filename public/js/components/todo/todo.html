@@ -69,14 +69,12 @@
             <div class="tab-content" ng-show="selectedTab == 3">
                 <h2>Daily Tasks</h2>
 
-
                 <div class="unfinished-tasks well">
                     <div class="checkbox" ng-repeat="task in dailyList">
                         <label><input ng-click="updateDailyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
                         <button class="btn btn-danger" ng-click="deleteDailyTask(task)">Delete</button>
                     </div>
                 </div>
-
 
                 <div class="well">
                     <h2>Add</h2>
@@ -86,14 +84,7 @@
                     </form>
                 </div>
 
-
             </div>
-
-
-
-
-
-
 
             <div class="tab-content" ng-show="selectedTab == 4">
                 to buy list

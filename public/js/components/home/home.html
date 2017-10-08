@@ -10,8 +10,8 @@
 
 <div parallax-background parallax-ratio="-0.3" class="parallax-section">
     <div class="quotes-container">
-        <p class="text-align"><i>"{{dailyQuote.quote}}"</i></p>
-        <p class="indent">- {{dailyQuote.author}}</p>
+        <p class="text-align quote"><i>"{{dailyQuote.quote}}"</i></p>
+        <p class="indent quote">- {{dailyQuote.author}}</p>
     </div>
 </div>
 
@@ -19,7 +19,7 @@
 </div>
 
 <div parallax-background parallax-ratio="-0.3" class="parallax-section">
-    <div ng-bind-html="video" id="video">
+    <div ng-bind-html="video" class="video">
         $sce.trustAsHtml()
     </div>
 </div>

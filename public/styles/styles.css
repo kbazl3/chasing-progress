@@ -50,6 +50,7 @@ table {
     background-image: url("../images/footer_lodyas.png");
     background-size: cover;
     position: static;
+    text-align: center;
     width: 100%;
     height: 400px;
 }
@@ -57,7 +58,12 @@ table {
 .parallax-section h2 {
     color: white;
     font-size: 4em;
-    vertical-align: middle;
+    display: inline-block;
+    margin-top: 150px;
+}
+
+.parallax-section .quote {
+    margin-top: 120px;
     display: inline-block;
 }
 
@@ -72,19 +78,11 @@ table {
     position: relative;
 }
 
-.quotes li {
-    list-style: none;
-}
-
-.quotes {
-    border: 1px solid black;
-}
 
 .quotes-container {
-    /*background-color: rgba(0, 0, 0, 0.4);*/
     width: 80%;
     margin: auto;
-    border-radius: 30px/10px;
+    text-align: center;
 }
 
 .quotes-container p {
@@ -98,9 +96,10 @@ table {
 }
 
 
-.parallax-section #video {
+.parallax-section .video {
     width: 36.7%;
-    margin: 0 auto 0 auto;
+    margin: 40px auto 0 auto;
+    display: inline-block;
 }
 
 .image-container img {

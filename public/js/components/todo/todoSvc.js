@@ -7,6 +7,7 @@ angular.module('chasingProgress')
             todoList: [],
             completedList: [],
         };
+        let dailyTasks;
 
 
         let peopleToContact = [{
@@ -109,7 +110,6 @@ angular.module('chasingProgress')
                 method: 'GET',
                 url: baseUrl + "/api/todoList"
             }).then(function(response) {
-                console.log(response);
                 sortTasks(response.data);
                 dfd.resolve(sortedData);
             });
@@ -133,9 +133,11 @@ angular.module('chasingProgress')
         this.deleteTask = function(taskId) {
             return $http({
                     method: "DELETE",
-                    url: baseUrl + "/api/todoList?taskId=" + taskId
+                    url: baseUrl + "/api/todoList/" + taskId
                 })
-                .then(function(response) {});
+                .then(function(response) {
+                    return response;
+                });
         };
 
         this.updateTask = function(id, task) {
@@ -161,14 +163,12 @@ angular.module('chasingProgress')
                 method: 'GET',
                 url: baseUrl + "/api/dailyList"
             }).then(function(response) {
-                console.log(response);
-
+                dailyTasks = response.data;
                 return response.data;
             });
         };
 
         this.addDailyTask = function(task) {
-            console.log(task);
             return $http({
                 method: 'POST',
                 url: baseUrl + "/api/dailyList",
@@ -210,49 +210,36 @@ angular.module('chasingProgress')
 
 
 
-        const resetDailyTasks = function() {
+        const resetDailyTasks = function(task) {
             return $http({
                     method: "PUT",
-                    url: baseUrl + "/api/todoList/59d0846d904ff13874ffeef5",
+                    url: baseUrl + "/api/dailyList/reset/" + task._id,
                     data: {
-                        task: "Finish Daily Tasks",
-                        dailyTasks: [{
-                            task: "25 pushups - 25 situps - 60 second plank",
-                            completed: false
-                        }, {
-                            task: "cold shower",
-                            completed: false
-                        }, {
-                            task: "aloe vera",
-                            completed: false
-                        }, {
-                            task: "read 30 mins",
-                            completed: false
-                        }, {
-                            task: "code 1 hour",
-                            completed: false
-                        }, {
-                            task: "meditate 15 mins",
-                            completed: false
-                        }]
+                        task: task.task,
+                        completed: false
                     }
                 })
                 .then(function(response) {
+                    console.log(response);
                     return response;
                 });
         };
 
 
 
-        // console.log(new Date().getHours());
+        console.log(new Date().getHours());
 
-        $interval(function() {
-            if (new Date().getHours() === 3) {
-                resetDailyTasks();
-            }
-        }, 82800000);
+        // $interval(function() {
+        //     if (new Date().getHours() === 3) {
+        //         dailyTasks.forEach(function(task) {
+        //             resetDailyTasks(task);
+        //         })
+        //     }
+        // }, 5000);
 
-        //every 23 hours we check to see if it is 3am.  If it is then we reset daily tasks to incomplete
+
+
+        //every 24 (86400000 milliseconds) hours we check to see if it is 3am.  If it is then we reset daily tasks to incomplete
         //when task is completed, run a PUT for JUST that task
 
 

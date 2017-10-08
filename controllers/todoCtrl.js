@@ -18,28 +18,13 @@ module.exports = {
         });
     },
     deleteTask: function(req, res) {
-        Todo.findByIdAndRemove(req.query.taskId, function(err, result) {
+        Todo.findByIdAndRemove(req.params.id, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-
-    // updateTask: function(req, res) {
-    //     if (!req.params.id) {
-    //         return res.status(400).send('id query needed');
-    //     }
-    //     console.log(req.query);
-    //     console.log(req.body);
-    //     console.log(req.params);
-    //     Todo.findByIdAndUpdate(req.query.id, req.body, function(err, result) {
-    //         if (err) {
-    //             res.status(500).send(err);
-    //         }
-    //         res.status(200).send(result);
-    //     });
-    // }
 
     updateTask: function(req, res) {
         if (!req.params.id) {
@@ -52,26 +37,11 @@ module.exports = {
             _id: req.params.id
         }, req.body, function(err, productItem) {
             if (err) {
-                console.log("asdfasdfas");
                 res.status(500).send(err);
             } else {
                 res.status(200).json(productItem);
             }
         });
-    },
-
-    addDailyTasks: function(req, res) {
-        Todo.create(req.body, function(err, result) {
-            if (err) {
-                res.status(500).send(err);
-            } else {
-                res.status(200).json(result);
-            }
-        });
-    },
-
-    updateDailyTask: function(req, res) {
-        // Todo.
     }
 
 };
