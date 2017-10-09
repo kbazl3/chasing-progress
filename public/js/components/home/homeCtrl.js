@@ -226,32 +226,7 @@ angular.module('chasingProgress')
             }
         ];
 
-console.log(quotes.length, embeddedHtml.length);
 
-        // let randomNumber; //declare randomNumber, needs to be global because more then 1 function is using it
-        // let dailyVideo;
-        //
-        // //getRandomNumber assigns the randomNumber variable a number between 0 and ary.length
-        // let getRandomNumber = function(ary) {
-        //     randomNumber = parseInt((Math.random() * ary.length).toFixed());
-        //     return randomNumber;
-        // };
-        //
-        //
-        // const getDailyQuote = function() {
-        //     let randomQuote = getRandomNumber(quotes);
-        //      $scope.dailyQuote = quotes[randomQuote];
-        // };
-        // getDailyQuote();
-        //
-        //
-        // console.log(new Date().getDate());
-        //
-        // var getDailyVideo = function() {
-        //     var randomVideo = getRandomNumber(embeddedHtml);
-        //     $scope.video = $sce.trustAsHtml(embeddedHtml[randomVideo].video);
-        // };
-        // getDailyVideo();
         $scope.dailyQuote = quotes[new Date().getDate()];
         $scope.video = $sce.trustAsHtml(embeddedHtml[new Date().getDate()].video);
 
