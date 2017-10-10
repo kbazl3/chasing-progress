@@ -83,7 +83,15 @@ angular.module('chasingProgress')
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
             {
-                person: "Obama",
+                person: "Coleman",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Luis",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Amar",
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
         ];

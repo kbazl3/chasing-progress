@@ -15,6 +15,11 @@ const express = require("express"),
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(__dirname + '/public'));
+app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/scripts', express.static(__dirname + '/node_modules/angular-animate'));
+app.use('/scripts', express.static(__dirname + '/node_modules/angular'));
+app.use('/scripts', express.static(__dirname + '/node_modules/angular-ui-router/release'));
+app.use('/scripts', express.static(__dirname + '/node_modules/angular-parallax'));
 mongoose.Promise = global.Promise;
 
 app.post('/api/todoList', todoCtrl.addTask);

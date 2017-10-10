@@ -104,8 +104,8 @@ table {
 
 .image-container img {
     margin: auto;
-    width: 200px;
-    height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .todoContainer {
     height: 100vh;
