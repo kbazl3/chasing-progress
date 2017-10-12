@@ -67,7 +67,7 @@ angular.module('chasingProgress')
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
             {
-                person: "Ryan Hadley",
+                person: "Zack Tuesch",
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
             {
@@ -94,7 +94,49 @@ angular.module('chasingProgress')
                 person: "Amar",
                 picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
             },
+            {
+                person: "Amanda G",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Skyler Brinley",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Maxson",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Dethrone",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Skyler Brinley",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Danny Pobieglo",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Ian",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Rod",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Tyler Tuesch",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
+            {
+                person: "Ryan Hadley",
+                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+            },
         ];
+
+        console.log(peopleToContact.length);
         var randomNumber;
 
         var setDailyContact = function() {
