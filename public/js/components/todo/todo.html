@@ -10,10 +10,10 @@
                     <a href="javascript:void(0)" ng-click="selectedTab = 2;">Todo List</a>
                 </li>
                 <li ng-class="{active: selectedTab == 3}">
-                    <a href="javascript:void(0)" ng-click="selectedTab = 3;">Daily List</a>
+                    <a href="javascript:void(0)" ng-click="selectedTab = 3;">Daily Tasks</a>
                 </li>
                 <li ng-class="{active: selectedTab == 4}">
-                    <a href="javascript:void(0)" ng-click="selectedTab = 4;">To buy List</a>
+                    <a href="javascript:void(0)" ng-click="selectedTab = 4;">Weekly Tasks</a>
                 </li>
             </ul>
 
@@ -75,6 +75,11 @@
                         <button class="btn btn-danger" ng-click="deleteDailyTask(task)">Delete</button>
                     </div>
                 </div>
+                <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar"  aria-valuemin="0" aria-valuemax="100" style="width:20%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
 
                 <div class="well">
                     <h2>Add</h2>
@@ -87,7 +92,23 @@
             </div>
 
             <div class="tab-content" ng-show="selectedTab == 4">
-                to buy list
+                <h2>Weekly Tasks</h2>
+
+                <div class="unfinished-tasks well">
+                    <div class="checkbox" ng-repeat="task in weeklyList">
+                        <label><input ng-click="updateWeeklyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
+                        <button class="btn btn-danger" ng-click="deleteWeeklyTask(task)">Delete</button>
+                    </div>
+                </div>
+
+
+                <div class="well">
+                    <h2>Add</h2>
+                    <form action="">
+                        <input class="form-control" type="text" ng-model="addWeeklyTaskInput">
+                        <button class="btn" ng-click="addWeeklyTask(addWeeklyTaskInput)" type="button" name="button">Add todo</button>
+                    </form>
+                </div>
             </div>
         </div>
 

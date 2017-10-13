@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var dailyTodoSchema = new Schema({
+var weeklyTodoSchema = new Schema({
     task: { type: String, required: true },
     completed: {
         type: Boolean,
@@ -13,4 +13,4 @@ var dailyTodoSchema = new Schema({
     },
 });
 
-module.exports = mongoose.model("DailyTodo", dailyTodoSchema);
+module.exports = mongoose.model("WeeklyTodo", weeklyTodoSchema);

@@ -8,7 +8,8 @@ const express = require("express"),
       app = express(),
       mongoUri = "mongodb://localhost:27017/chasingProgress",
       todoCtrl = require("./controllers/todoCtrl.js"),
-      dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js');
+      dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js'),
+      weeklyTodoCtrl = require('./controllers/weeklyTodoCtrl');
 
 
 
@@ -34,6 +35,11 @@ app.delete('/api/dailyList/:id', dailyTodoCtrl.deleteDailyTask);
 app.put('/api/dailyList/:id', dailyTodoCtrl.updateDailyTask);
 app.put('/api/dailyList/reset/:id', dailyTodoCtrl.resetAllDailyTasks);
 
+app.post('/api/weeklyList', weeklyTodoCtrl.addWeeklyTask);
+app.get('/api/weeklyList', weeklyTodoCtrl.getWeeklyTasks);
+app.delete('/api/weeklyList/:id', weeklyTodoCtrl.deleteWeeklyTask);
+app.put('/api/weeklyList/:id', weeklyTodoCtrl.updateWeeklyTask);
+app.put('/api/weeklyList/reset/:id', weeklyTodoCtrl.resetAllWeeklyTasks);
 
 
 app.listen(port, () => {

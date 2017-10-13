@@ -6,8 +6,11 @@ angular.module('chasingProgress')
         let sortedData = {
             todoList: [],
             completedList: [],
+            dailyCompletedPercentage: 0,
+            weeklyCompletedPercentage: 0
         };
-        let dailyTasks;
+        let dailyTasks,
+            weeklyTasks;
 
 
         let peopleToContact = [{
@@ -48,101 +51,94 @@ angular.module('chasingProgress')
             },
             {
                 person: "Brandon",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/brandon.jpg"
             },
             {
                 person: "Kurtis",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/kurt.jpg"
             },
             {
                 person: "Zeke",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/zeke.jpg"
             },
             {
                 person: "Matt Miya",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/matt.jpg"
             },
             {
                 person: "Dan Lang",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/dan.jpg"
             },
             {
                 person: "Zack Tuesch",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/zack.jpg"
             },
             {
                 person: "Fred ",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/fred.jpg"
             },
             {
                 person: "Drew Baby",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/drew.png"
             },
             {
                 person: "Choice",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/choice.png"
             },
             {
                 person: "Coleman",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/coleman.jpg"
             },
             {
                 person: "Luis",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/luis.jpg"
             },
             {
                 person: "Amar",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/amar.jpg"
             },
             {
                 person: "Amanda G",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/tayia.jpg"
             },
             {
                 person: "Skyler Brinley",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/skyler.jpg"
             },
             {
                 person: "Maxson",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/tayia.jpg"
             },
             {
                 person: "Dethrone",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
-            },
-            {
-                person: "Skyler Brinley",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/dethrone.jpg"
             },
             {
                 person: "Danny Pobieglo",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/danny.jpg"
             },
             {
                 person: "Ian",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/tayia.jpg"
             },
             {
                 person: "Rod",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/rod.jpg"
             },
             {
                 person: "Tyler Tuesch",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/tayia.jpg"
             },
             {
                 person: "Ryan Hadley",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
+                picture: "../../images/ryan hads.jpg"
             },
         ];
 
-        console.log(peopleToContact.length);
-        var randomNumber;
 
-        var setDailyContact = function() {
-            randomNumber = parseInt((Math.random() * peopleToContact.length).toFixed());
-            sortedData.dailyContact = peopleToContact[randomNumber];
-        };
+        sortedData.dailyContact = peopleToContact[new Date().getDate()];
+
+
 
         const sortTasks = function(tasks) {
             tasks.forEach(function(task) {
@@ -154,6 +150,18 @@ angular.module('chasingProgress')
             });
         };
 
+        const percentCompleted = function(ary) {
+            let complete = 0;
+            ary.forEach(function(task) {
+                if (task.completed) {
+                    complete++;
+                }
+            })
+            return (complete / ary.length) * 100;
+        }
+
+
+
         this.getTasks = function(dailyList) {
             var dfd = $q.defer();
             $http({
@@ -163,7 +171,6 @@ angular.module('chasingProgress')
                 sortTasks(response.data);
                 dfd.resolve(sortedData);
             });
-            setDailyContact();
             return dfd.promise;
         };
 
@@ -214,6 +221,7 @@ angular.module('chasingProgress')
                 url: baseUrl + "/api/dailyList"
             }).then(function(response) {
                 dailyTasks = response.data;
+                sortedData.dailyCompletedPercentage = percentCompleted(response.data);
                 return response.data;
             });
         };
@@ -275,6 +283,73 @@ angular.module('chasingProgress')
                 });
         };
 
+        //*************************  WEEKLY TASKS  ************************************************
+
+        this.getWeeklyTasks = function(dailyList) {
+            return $http({
+                method: 'GET',
+                url: baseUrl + "/api/weeklyList"
+            }).then(function(response) {
+                weeklyTasks = response.data;
+                return response.data;
+            });
+        };
+
+        this.addWeeklyTask = function(task) {
+            console.log(task);
+            return $http({
+                method: 'POST',
+                url: baseUrl + "/api/weeklyList",
+                data: {
+                    task: task
+                }
+            }).then(function(response) {
+                return response;
+            });
+        };
+
+
+        this.deleteWeeklyTask = function(taskId) {
+            return $http({
+                    method: "DELETE",
+                    url: baseUrl + "/api/weeklyList/" + taskId
+                })
+                .then(function(response) {
+                    return response
+                });
+        };
+
+        this.updateWeeklyTask = function(task) {
+            task.completed = !task.completed;
+            console.log(task._id);
+            return $http({
+                    method: "PUT",
+                    url: baseUrl + "/api/weeklyList/" + task._id,
+                    data: {
+                        task: task.task,
+                        completed: task.completed
+                    }
+                })
+                .then(function(response) {
+                    return response;
+                });
+        };
+
+        const resetWeeklyTasks = function(task) {
+            return $http({
+                    method: "PUT",
+                    url: baseUrl + "/api/weeklyList/reset/" + task._id,
+                    data: {
+                        task: task.task,
+                        completed: false
+                    }
+                })
+                .then(function(response) {
+                    console.log(response);
+                    return response;
+                });
+        };
+
 
 
         console.log(new Date().getHours());
@@ -285,7 +360,26 @@ angular.module('chasingProgress')
         //             resetDailyTasks(task);
         //         })
         //     }
+        //     if (new Date().getHours() === 13 && new Date().getDay() === 4) {
+        //         console.log("hitting");
+        //         weeklyTasks.forEach(function(task) {
+        //             resetWeeklyTasks(task);
+        //         })
+        //     }
         // }, 5000);
+
+
+        //weekly stats:  every sunday at 3am we
+
+        /*
+            stats
+
+            I want to see how many i've completed out of how many total tasks there are
+            I want to look back on certain weeks to see which tasks were completed and which ones were not
+            I want to see how often a certain task is getting completed over number of weeks
+
+
+        */
 
 
 

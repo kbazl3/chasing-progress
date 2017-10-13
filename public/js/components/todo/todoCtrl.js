@@ -5,20 +5,25 @@ angular.module('chasingProgress')
         if (!$scope.todoList) {
             todoSvc.getTasks($scope.dailyList)
                 .then(function(response) {
-
+                    console.log(response.dailyCompletedPercentage);
                     $scope.dailyContact = response.dailyContact;
                     $scope.completedList = response.completedList;
                     $scope.todoList = response.todoList;
-                    console.log(response);
+                    $scope.dailyCompletedPercentage = response.dailyCompletedPercentage;
                 });
         }
 
 
             todoSvc.getDailyTasks()
                 .then(function(response) {
-                    console.log("hitting");
                     $scope.dailyList = response;
                 });
+
+            todoSvc.getWeeklyTasks()
+                .then(function(response) {
+                    $scope.weeklyList = response;
+                })
+
 
 
 
@@ -67,6 +72,30 @@ angular.module('chasingProgress')
 
         $scope.updateDailyTask = function(task) {
             todoSvc.updateDailyTask(task)
+                .then(function(response) {
+                    console.log(response);
+                });
+        };
+
+        //*************************  WEEKLY TASKS  ************************************************
+
+        $scope.addWeeklyTask = function(task) {
+            todoSvc.addWeeklyTask(task)
+                .then(function(response) {
+
+                });
+        };
+
+        $scope.deleteWeeklyTask = function(task) {
+            console.log(task._id);
+            todoSvc.deleteWeeklyTask(task._id)
+                .then(function(response) {
+                    console.log(response);
+                });
+        };
+
+        $scope.updateWeeklyTask = function(task) {
+            todoSvc.updateWeeklyTask(task)
                 .then(function(response) {
                     console.log(response);
                 });
