@@ -15,16 +15,10 @@ angular.module('chasingProgress', ['ui.router','angular-parallax'])
                 controller: 'todoCtrl'
             })
 
-            .state('goals', {
-                url: '/goals',
-                templateUrl: '/js/components/goals/goals.html',
-                controller: 'goalsCtrl'
-            })
-
-            .state('calendar', {
-                url: '/calendar',
-                templateUrl: '/js/components/calendar/calendar.html',
-                controller: 'calendarCtrl'
+            .state('journal', {
+                url: '/journal',
+                templateUrl: '/js/components/journal/journal.html',
+                controller: 'journalCtrl'
             })
 
             .state('visionBoard', {

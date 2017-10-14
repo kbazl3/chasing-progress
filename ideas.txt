@@ -10,6 +10,7 @@ Home page -
     weather - 5 day forecast?
     video/quote
         -be able to reflect on video/quote journal style
+            need to be a schema
     today is {{day}}
     random question:
         what are you going to do today?
@@ -17,13 +18,6 @@ Home page -
         how are you going to get better?
         etc...
     Ethereum price?
-
-Calendar -
-    daily schedule
-    be able to set reminders for bills, meetups etc
-    be able to add events
-
-    https://github.com/benjamincharity/angular-json-calendar#installation
 
 
 To do -

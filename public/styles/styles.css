@@ -108,14 +108,10 @@ table {
     background-repeat: no-repeat;
 }
 .todoContainer {
-    height: 100vh;
-    margin-left: auto;
+    background-image: url("/images/asanoha.png");
+
 }
 
-.todoContainer h2 {
-    text-align: center;
-    font-size: 3em;
-}
 
 .home-container h2 {
     text-align: center;
@@ -124,8 +120,12 @@ table {
     text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
 }
 
+.navbar-inverse {
+    margin-bottom: 20px;
+}
+
 .tabbable {
-    margin-top: 20px;
+    height: 100vh;
 }
 
 
