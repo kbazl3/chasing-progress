@@ -3,12 +3,18 @@
 angular.module('chasingProgress')
     .service('todoSvc', function($http, $q, $interval) {
         const baseUrl = "http://localhost:8090";
-        let sortedData = {
+        let sortedTodoTasks = {
             todoList: [],
-            completedList: [],
-            dailyCompletedPercentage: 0,
-            weeklyCompletedPercentage: 0
+            completedList: []
         };
+        let sortedDailyTasks = {
+            dailyTasks: [],
+            percentCompleted: 0
+        }
+        let sortedWeeklyTasks = {
+            weeklyTasks: [],
+            percentCompleted: 0
+        }
         let dailyTasks,
             weeklyTasks;
 
@@ -136,16 +142,16 @@ angular.module('chasingProgress')
         ];
 
 
-        sortedData.dailyContact = peopleToContact[new Date().getDate()];
+        sortedTodoTasks.dailyContact = peopleToContact[new Date().getDate()];
 
 
 
         const sortTasks = function(tasks) {
             tasks.forEach(function(task) {
             if (task.completed === false) {
-                    sortedData.todoList.push(task);
+                    sortedTodoTasks.todoList.push(task);
                 } else {
-                    sortedData.completedList.push(task);
+                    sortedTodoTasks.completedList.push(task);
                 }
             });
         };
@@ -169,7 +175,7 @@ angular.module('chasingProgress')
                 url: baseUrl + "/api/todoList"
             }).then(function(response) {
                 sortTasks(response.data);
-                dfd.resolve(sortedData);
+                dfd.resolve(sortedTodoTasks);
             });
             return dfd.promise;
         };
@@ -216,15 +222,19 @@ angular.module('chasingProgress')
         //*************************  DAILY TASKS  ************************************************
 
         this.getDailyTasks = function(dailyList) {
-            return $http({
+            let dfd = $q.defer();
+             $http({
                 method: 'GET',
                 url: baseUrl + "/api/dailyList"
             }).then(function(response) {
-                dailyTasks = response.data;
-                sortedData.dailyCompletedPercentage = percentCompleted(response.data);
-                return response.data;
+                sortedDailyTasks.dailyTasks = response.data;
+                sortedDailyTasks.percentCompleted = percentCompleted(response.data);
+                dfd.resolve(sortedDailyTasks);
             });
+            return dfd.promise;
         };
+
+
 
         this.addDailyTask = function(task) {
             return $http({
@@ -286,14 +296,18 @@ angular.module('chasingProgress')
         //*************************  WEEKLY TASKS  ************************************************
 
         this.getWeeklyTasks = function(dailyList) {
-            return $http({
+            let dfd = $q.defer();
+            $http({
                 method: 'GET',
                 url: baseUrl + "/api/weeklyList"
             }).then(function(response) {
-                weeklyTasks = response.data;
-                return response.data;
+                sortedWeeklyTasks.weeklyTasks = response.data;
+                sortedWeeklyTasks.percentCompleted = percentCompleted(response.data)
+                dfd.resolve(sortedWeeklyTasks)
             });
+            return dfd.promise;
         };
+
 
         this.addWeeklyTask = function(task) {
             console.log(task);
@@ -369,7 +383,7 @@ angular.module('chasingProgress')
         // }, 5000);
 
 
-        //weekly stats:  every sunday at 3am we
+
 
         /*
             stats
@@ -378,6 +392,13 @@ angular.module('chasingProgress')
             I want to look back on certain weeks to see which tasks were completed and which ones were not
             I want to see how often a certain task is getting completed over number of weeks
 
+
+            //weekly stats:  every sunday at 3am we create a new WeeklyStats object to store.  Object of all weekly tasks, and whether they were completed
+            //increment the week each sunday at 3am?
+            each weekly task has a "dateCreated" property.
+            create an array of objects. each object will have a "first day of week" and "las day of week" property
+            loop over array of tasks?
+            take the first task and take its "dateCreated" property and make it the "first day of week"
 
         */
 

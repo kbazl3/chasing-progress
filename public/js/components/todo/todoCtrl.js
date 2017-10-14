@@ -5,7 +5,6 @@ angular.module('chasingProgress')
         if (!$scope.todoList) {
             todoSvc.getTasks($scope.dailyList)
                 .then(function(response) {
-                    console.log(response.dailyCompletedPercentage);
                     $scope.dailyContact = response.dailyContact;
                     $scope.completedList = response.completedList;
                     $scope.todoList = response.todoList;
@@ -16,12 +15,13 @@ angular.module('chasingProgress')
 
             todoSvc.getDailyTasks()
                 .then(function(response) {
-                    $scope.dailyList = response;
+                    console.log(response);
+                    $scope.dailyTasks = response;
                 });
 
             todoSvc.getWeeklyTasks()
                 .then(function(response) {
-                    $scope.weeklyList = response;
+                    $scope.weeklyTasks = response
                 })
 
 
