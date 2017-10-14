@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema
 
 var weeklyTodoSchema = new Schema({
     task: { type: String, required: true },
@@ -10,7 +10,7 @@ var weeklyTodoSchema = new Schema({
     dateCreated: {
         type: Date,
         default: new Date()
-    },
+    }
 });
 
 module.exports = mongoose.model("WeeklyTodo", weeklyTodoSchema);

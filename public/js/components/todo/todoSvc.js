@@ -147,13 +147,16 @@ angular.module('chasingProgress')
 
 
         const sortTasks = function(tasks) {
-            tasks.forEach(function(task) {
-            if (task.completed === false) {
-                    sortedTodoTasks.todoList.push(task);
-                } else {
-                    sortedTodoTasks.completedList.push(task);
-                }
-            });
+            if (sortedTodoTasks.todoList.length === 0) {
+                tasks.forEach(function(task) {
+
+                    if (task.completed === false) {
+                        sortedTodoTasks.todoList.push(task);
+                    } else {
+                        sortedTodoTasks.completedList.push(task);
+                    }
+                });
+            }
         };
 
         const percentCompleted = function(ary) {
@@ -223,7 +226,7 @@ angular.module('chasingProgress')
 
         this.getDailyTasks = function(dailyList) {
             let dfd = $q.defer();
-             $http({
+            $http({
                 method: 'GET',
                 url: baseUrl + "/api/dailyList"
             }).then(function(response) {
@@ -301,9 +304,11 @@ angular.module('chasingProgress')
                 method: 'GET',
                 url: baseUrl + "/api/weeklyList"
             }).then(function(response) {
-                sortedWeeklyTasks.weeklyTasks = response.data;
-                sortedWeeklyTasks.percentCompleted = percentCompleted(response.data)
+                sortedWeeklyTasks.weeklyTasks = response.data.weeklyTasks;
+                sortedWeeklyTasks.percentCompleted = percentCompleted(response.data.weeklyTasks)
+                sortedWeeklyTasks.weeklyLogs = response.data.weeklyLogs
                 dfd.resolve(sortedWeeklyTasks)
+                console.log(sortedWeeklyTasks);
             });
             return dfd.promise;
         };
@@ -382,7 +387,27 @@ angular.module('chasingProgress')
         //     }
         // }, 5000);
 
-
+        // $interval(function() {
+        //     if (new Date().getHours() === 22 && new Date().getDay() === 5) {
+        //         console.log(sortedWeeklyTasks);
+        //         var weeklyLog = {
+        //             tasks: sortedWeeklyTasks.weeklyTasks,
+        //             week: sortedWeeklyTasks.weeklyLogs[sortedWeeklyTasks.weeklyLogs.length - 1].week,
+        //             percentCompleted: sortedWeeklyTasks.percentCompleted
+        //         }
+        //         weeklyLog.week++;
+        //         console.log(weeklyLog);
+        //         return $http({
+        //             method: 'POST',
+        //             url: baseUrl + "/api/weeklyLogs",
+        //             data: weeklyLog
+        //         }).then(function(response) {
+        //             return response;
+        //         });
+        //
+        //     }
+        //
+        // }, 10000);
 
 
         /*

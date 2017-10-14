@@ -2,7 +2,7 @@ angular.module('chasingProgress')
     .controller('todoCtrl', function($scope, $interval, todoSvc) {
 
 
-        if (!$scope.todoList) {
+
             todoSvc.getTasks($scope.dailyList)
                 .then(function(response) {
                     $scope.dailyContact = response.dailyContact;
@@ -10,7 +10,7 @@ angular.module('chasingProgress')
                     $scope.todoList = response.todoList;
                     $scope.dailyCompletedPercentage = response.dailyCompletedPercentage;
                 });
-        }
+        
 
 
             todoSvc.getDailyTasks()

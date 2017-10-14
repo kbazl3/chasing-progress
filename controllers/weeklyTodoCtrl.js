@@ -1,10 +1,10 @@
-var WeeklyTodo = require('./../models/WeeklyTodo');
+var WeeklyTodo = require('./../models/WeeklyTodo'),
+    WeeklyLogs = require('./../models/WeeklyLogs');
 
 module.exports = {
 
     addWeeklyTask: function(req, res) {
         WeeklyTodo.create(req.body, function(err, result) {
-            console.log(req.body);
             if (err) {
                 res.status(500).send(err);
             }
@@ -12,18 +12,37 @@ module.exports = {
         });
     },
 
-    getWeeklyTasks: function(req, res) {
-        WeeklyTodo.find(req.query, function(err, result) {
-            if (err) {
-                res.status(500).send(err);
-            }
-            dailyTasks = result;
-            res.status(200).send(result);
-        });
+    // getWeeklyTasks: function(req, res) {
+    //     WeeklyTodo.find(req.query, function(err, result) {
+    //         if (err) {
+    //             res.status(500).send(err);
+    //         }
+    //         res.status(200).send(result);
+    //     });
+    // },
+
+    getWeeklyTasks: function(req, res, next) {
+        WeeklyTodo.find(req.query)
+            .exec(function(err, result) {
+                let weeklyData = {}
+                if (err) {
+                    res.status(500 + "getPractice function error").json(err);
+                } else {
+                    weeklyData.weeklyTasks = result;
+                    WeeklyLogs.find(req.query, function(err, weeklyLogs) {
+                        console.log(weeklyLogs);
+                        if (err) {
+                            res.status(500).send(err);
+                        }
+                        weeklyData.weeklyLogs = weeklyLogs
+                        res.status(200).json(weeklyData);
+                    });
+
+                }
+            })
     },
 
     deleteWeeklyTask: function(req, res) {
-        console.log(req.params);
         WeeklyTodo.findByIdAndRemove(req.params.id, function(err, result) {
             if (err) {
                 res.status(500).send(err);
@@ -40,7 +59,6 @@ module.exports = {
             _id: req.params.id
         }, req.body, function(err, productItem) {
             if (err) {
-                console.log("asdfasdfas");
                 res.status(500).send(err);
             } else {
                 res.status(200).json(productItem);
