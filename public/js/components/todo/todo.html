@@ -1,8 +1,10 @@
 <nav-bar></nav-bar>
+
 <div class="todoContainer">
-    <div class="container">
-        <div class="tabbable tabs-below" ng-init="selectedTab = 1;">
-            <ul class="nav nav-tabs nav-justified">
+
+    <div class="row">
+        <div class="tabbable tabs-below col-md-2" ng-init="selectedTab = 1;">
+            <ul class="nav nav-pills nav-stacked">
                 <li ng-class="{active: selectedTab == 1}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 1;">Daily Contact</a>
                 </li>
@@ -16,7 +18,9 @@
                     <a href="javascript:void(0)" ng-click="selectedTab = 4;">Weekly Tasks</a>
                 </li>
             </ul>
+        </div>
 
+        <div class="tasks-container col-md-10">
             <div class="tab-content" ng-show="selectedTab == 1">
                 <div class="well">
                     <h3 class="text-center">{{dailyContact.person}}</h3>
@@ -60,12 +64,6 @@
                 </div>
             </div>
 
-
-
-
-
-
-
             <div class="tab-content" ng-show="selectedTab == 3">
                 <h2>Daily Tasks</h2>
 
@@ -76,7 +74,7 @@
                     </div>
                 </div>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"  aria-valuemin="0" aria-valuemax="100" style="width:{{dailyTasks.percentCompleted}}%">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{dailyTasks.percentCompleted}}%">
                         {{dailyTasks.percentCompleted}}%
                     </div>
                 </div>
@@ -101,7 +99,7 @@
                     </div>
                 </div>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"  aria-valuemin="0" aria-valuemax="100" style="width:{{weeklyTasks.percentCompleted}}%">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{weeklyTasks.percentCompleted}}%">
                         {{weeklyTasks.percentCompleted}}%
                     </div>
                 </div>
@@ -118,4 +116,5 @@
         </div>
 
     </div>
+
 </div>
