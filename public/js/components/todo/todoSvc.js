@@ -231,7 +231,7 @@ angular.module('chasingProgress')
                 url: baseUrl + "/api/dailyList"
             }).then(function(response) {
                 sortedDailyTasks.dailyTasks = response.data;
-                sortedDailyTasks.percentCompleted = percentCompleted(response.data);
+                sortedDailyTasks.percentCompleted = percentCompleted(response.data.dailyTasks);
                 dfd.resolve(sortedDailyTasks);
             });
             return dfd.promise;
@@ -308,7 +308,6 @@ angular.module('chasingProgress')
                 sortedWeeklyTasks.percentCompleted = percentCompleted(response.data.weeklyTasks)
                 sortedWeeklyTasks.weeklyLogs = response.data.weeklyLogs
                 dfd.resolve(sortedWeeklyTasks)
-                console.log(sortedWeeklyTasks);
             });
             return dfd.promise;
         };

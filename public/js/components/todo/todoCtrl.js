@@ -10,7 +10,7 @@ angular.module('chasingProgress')
                     $scope.todoList = response.todoList;
                     $scope.dailyCompletedPercentage = response.dailyCompletedPercentage;
                 });
-        
+
 
 
             todoSvc.getDailyTasks()
@@ -23,10 +23,6 @@ angular.module('chasingProgress')
                 .then(function(response) {
                     $scope.weeklyTasks = response
                 })
-
-
-
-
 
 
         $scope.addTask = function(task) {

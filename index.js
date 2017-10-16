@@ -10,7 +10,8 @@ const express = require("express"),
       todoCtrl = require("./controllers/todoCtrl.js"),
       dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js'),
       weeklyTodoCtrl = require('./controllers/weeklyTodoCtrl'),
-      weeklyLogsCtrl = require('./controllers/weeklyLogsCtrl');
+      weeklyLogsCtrl = require('./controllers/weeklyLogsCtrl'),
+      dailyLogsCtrl = require('./controllers/dailyLogsCtrl');
 
 
 
@@ -45,6 +46,10 @@ app.put('/api/weeklyList/reset/:id', weeklyTodoCtrl.resetAllWeeklyTasks);
 app.post('/api/weeklyLogs', weeklyLogsCtrl.addWeeklyLog);
 app.get('/api/weeklyLogs', weeklyLogsCtrl.getWeeklyLogs);
 app.delete('/api/weeklyLogs/:id', weeklyLogsCtrl.deleteWeeklyLogs);
+
+app.post('/api/dailyLogs', dailyLogsCtrl.addDailyLog);
+app.get('/api/dailyLogs', dailyLogsCtrl.getDailyLogs);
+app.delete('/api/dailyLogs/:id', dailyLogsCtrl.deleteDailyLogs);
 
 
 app.listen(port, () => {

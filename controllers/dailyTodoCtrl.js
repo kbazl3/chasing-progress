@@ -1,4 +1,5 @@
-var DailyTodo = require('./../models/DailyTodo');
+var DailyTodo = require('./../models/DailyTodo'),
+    DailyLogs = require('./../models/DailyLogs');
 
 module.exports = {
 
@@ -11,14 +12,36 @@ module.exports = {
         });
     },
 
-    getDailyTasks: function(req, res) {
-        DailyTodo.find(req.query, function(err, result) {
-            if (err) {
-                res.status(500).send(err);
-            }
-            dailyTasks = result;
-            res.status(200).send(result);
-        });
+    // getDailyTasks: function(req, res) {
+    //     DailyTodo.find(req.query, function(err, result) {
+    //         if (err) {
+    //             res.status(500).send(err);
+    //         }
+    //         dailyTasks = result;
+    //         res.status(200).send(result);
+    //     });
+    // },
+
+
+    getDailyTasks: function(req, res, next) {
+        DailyTodo.find(req.query)
+            .exec(function(err, result) {
+                let dailyData = {}
+                if (err) {
+                    res.status(500 + "getPractice function error").json(err);
+                } else {
+                    dailyData.dailyTasks = result;
+                    DailyLogs.find(req.query, function(err, dailyLogs) {
+                        console.log(dailyLogs);
+                        if (err) {
+                            res.status(500).send(err);
+                        }
+                        dailyData.dailyLogs = dailyLogs
+                        res.status(200).json(dailyData);
+                    });
+
+                }
+            })
     },
 
     deleteDailyTask: function(req, res) {

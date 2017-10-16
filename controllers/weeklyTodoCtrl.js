@@ -12,15 +12,6 @@ module.exports = {
         });
     },
 
-    // getWeeklyTasks: function(req, res) {
-    //     WeeklyTodo.find(req.query, function(err, result) {
-    //         if (err) {
-    //             res.status(500).send(err);
-    //         }
-    //         res.status(200).send(result);
-    //     });
-    // },
-
     getWeeklyTasks: function(req, res, next) {
         WeeklyTodo.find(req.query)
             .exec(function(err, result) {
