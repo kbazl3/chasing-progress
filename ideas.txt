@@ -29,7 +29,6 @@ To do -
 
 
     https://github.com/jirikavi/AngularJS-Toaster
-    http://ngmodules.org/modules/angular-loading-bar
 
 
 vision board
