@@ -41,7 +41,7 @@ angular.module('chasingProgress')
         };
 
         $scope.updateTask = function(id, task) {
-            task.completed = !task.completed;  //do this in service
+              //do this in service
             todoSvc.updateTask(id, task)
                 .then(function(response) {
                     console.log(response);

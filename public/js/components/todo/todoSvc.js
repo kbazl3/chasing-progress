@@ -207,6 +207,7 @@ angular.module('chasingProgress')
         };
 
         this.updateTask = function(id, task) {
+            task.completed = !task.completed;
             return $http({
                     method: "PUT",
                     url: baseUrl + "/api/todoList/" + id,
@@ -264,7 +265,6 @@ angular.module('chasingProgress')
 
         this.updateDailyTask = function(task) {
             task.completed = !task.completed;
-            console.log(task._id);
             return $http({
                     method: "PUT",
                     url: baseUrl + "/api/dailyList/" + task._id,
