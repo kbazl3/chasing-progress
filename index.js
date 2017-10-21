@@ -57,7 +57,9 @@ app.listen(port, () => {
 });
 
 
-mongoose.connect(mongoUri);
+mongoose.connect(mongoUri, {
+    useMongoClient: true
+});
 mongoose.connection.once('open', () => {
     console.log('connected to MongoDB at ', mongoUri);
 });

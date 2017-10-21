@@ -45,7 +45,7 @@
                 <div class="unfinished-tasks well">
                     <h2>Get This Shit Done</h2>
                     <ul ng-repeat="task in todoList">
-                        <li>{{task.task}}</li>
+                        <li><h3>{{task.task}}</h3></li>
                         <li>created: {{task.dateCreated | date:'medium'}}</li>
                         <li>Completed: {{task.completed}}</li>
                         <button class="btn btn-warning" ng-click="updateTask(task._id, task)">Update</button>
@@ -89,6 +89,14 @@
                         <input class="form-control" type="text" ng-model="addDailyTaskInput">
                         <button class="btn" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button">Add todo</button>
                     </form>
+                </div>
+
+                <div class="well">
+                    <div ng-repeat="dailyLog in dailyTasks.dailyTasks.dailyLogs">
+                        {{dailyLog.dateCreated | date: 'longDate'}}<br>
+                        Completed: {{dailyLog.percentCompleted}}%
+                    </div>
+
                 </div>
 
             </div>
