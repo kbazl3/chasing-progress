@@ -41,7 +41,6 @@ angular.module('chasingProgress')
         };
 
         $scope.updateTask = function(id, task) {
-              //do this in service
             todoSvc.updateTask(id, task)
                 .then(function(response) {
                     console.log(response);

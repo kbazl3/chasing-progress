@@ -4,16 +4,16 @@ const express = require("express"),
       bodyParser = require("body-parser"),
       mongoose = require("mongoose"),
       cors = require("cors"),
-      port = 8090,
+      port = 8090 || process.env.PORT,
       app = express(),
-      mongoUri = "mongodb://localhost:27017/chasingProgress",
+    //   mongoUri = "mongodb://localhost:27017/chasingProgress",
+      mongoUri = "mongodb://kyle:chaseprogress@ds155325.mlab.com:55325/chasing-progress",
+    //   mongoUri = process.env.MONGO_LABS_URI,
       todoCtrl = require("./controllers/todoCtrl.js"),
       dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js'),
       weeklyTodoCtrl = require('./controllers/weeklyTodoCtrl'),
       weeklyLogsCtrl = require('./controllers/weeklyLogsCtrl'),
       dailyLogsCtrl = require('./controllers/dailyLogsCtrl');
-
-
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -29,7 +29,6 @@ app.post('/api/todoList', todoCtrl.addTask);
 app.get('/api/todoList', todoCtrl.getTasks);
 app.delete('/api/todoList/:id', todoCtrl.deleteTask);
 app.put('/api/todoList/:id', todoCtrl.updateTask);
-
 
 app.post('/api/dailyList', dailyTodoCtrl.addDailyTask);
 app.get('/api/dailyList', dailyTodoCtrl.getDailyTasks);
@@ -51,15 +50,14 @@ app.post('/api/dailyLogs', dailyLogsCtrl.addDailyLog);
 app.get('/api/dailyLogs', dailyLogsCtrl.getDailyLogs);
 app.delete('/api/dailyLogs/:id', dailyLogsCtrl.deleteDailyLogs);
 
-
 app.listen(port, () => {
     console.log("listening on ", + port);
 });
 
-
 mongoose.connect(mongoUri, {
     useMongoClient: true
 });
+
 mongoose.connection.once('open', () => {
     console.log('connected to MongoDB at ', mongoUri);
 });

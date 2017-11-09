@@ -223,7 +223,12 @@ angular.module('chasingProgress')
             },
             {
                 video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/IRVdiHu1VCc" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/ljqra3BcqWM" frameborder="0" allowfullscreen></iframe>'
             }
+
+
         ];
 
 

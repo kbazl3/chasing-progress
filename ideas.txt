@@ -10,7 +10,7 @@ Home page -
     weather - 5 day forecast?
     video/quote
         -be able to reflect on video/quote journal style
-            need to be a schema
+            needs to be a schema
     today is {{day}}
     random question:
         what are you going to do today?

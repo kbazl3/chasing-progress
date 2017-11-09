@@ -39,7 +39,6 @@ module.exports = {
             _id: req.params.id
         }, req.body, function(err, productItem) {
             if (err) {
-                console.log("asdfasdfas");
                 res.status(500).send(err);
             } else {
                 res.status(200).json(productItem);

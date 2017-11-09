@@ -231,6 +231,7 @@ angular.module('chasingProgress')
                 method: 'GET',
                 url: baseUrl + "/api/dailyList"
             }).then(function(response) {
+                dailyTasks = response.data.dailyTasks;
                 sortedDailyTasks.dailyTasks = response.data;
                 sortedDailyTasks.percentCompleted = percentCompleted(response.data.dailyTasks);
                 dfd.resolve(sortedDailyTasks);
@@ -304,6 +305,8 @@ angular.module('chasingProgress')
                 method: 'GET',
                 url: baseUrl + "/api/weeklyList"
             }).then(function(response) {
+                weeklyTasks = response.data.weeklyTasks;
+                console.log(weeklyTasks);
                 sortedWeeklyTasks.weeklyTasks = response.data.weeklyTasks;
                 sortedWeeklyTasks.percentCompleted = percentCompleted(response.data.weeklyTasks)
                 sortedWeeklyTasks.weeklyLogs = response.data.weeklyLogs
@@ -373,18 +376,18 @@ angular.module('chasingProgress')
         console.log(new Date().getHours());
 
         // $interval(function() {
-        //     if (new Date().getHours() === 3) {
+        //     if (new Date().getHours() === 14) {
         //         dailyTasks.forEach(function(task) {
         //             resetDailyTasks(task);
         //         })
         //     }
-        //     if (new Date().getHours() === 13 && new Date().getDay() === 4) {
+        //     if (new Date().getHours() === 14 && new Date().getDay() === 4) {
         //         console.log("hitting");
         //         weeklyTasks.forEach(function(task) {
         //             resetWeeklyTasks(task);
         //         })
         //     }
-        // }, 5000);
+        // }, 10000);
 
         // $interval(function() {
         //     if (new Date().getHours() === 22 && new Date().getDay() === 5) {
@@ -429,7 +432,6 @@ angular.module('chasingProgress')
 
 
         //every 24 (86400000 milliseconds) hours we check to see if it is 3am.  If it is then we reset daily tasks to incomplete
-        //when task is completed, run a PUT for JUST that task
 
 
 
