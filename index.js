@@ -7,8 +7,8 @@ const express = require("express"),
       port = process.env.PORT || 8090,
       app = express(),
     //   mongoUri = "mongodb://localhost:27017/chasingProgress",
-    //   mongoUri = "mongodb://kyle:chaseprogress@ds155325.mlab.com:55325/chasing-progress",
-      mongoUri = process.env.MONGO_LABS_URI,
+      mongoUri = "mongodb://kyle:chaseprogress@ds155325.mlab.com:55325/chasing-progress",
+    //   mongoUri = process.env.MONGO_LABS_URI,
       todoCtrl = require("./controllers/todoCtrl.js"),
       dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js'),
       weeklyTodoCtrl = require('./controllers/weeklyTodoCtrl'),
@@ -23,6 +23,7 @@ app.use('/scripts', express.static(__dirname + '/node_modules/angular-animate'))
 app.use('/scripts', express.static(__dirname + '/node_modules/angular'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-ui-router/release'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-parallax'));
+app.use('/scripts', express.static(__dirname + '/node_modules/angular-parallax-npm'));
 mongoose.Promise = global.Promise;
 
 app.post('/api/todoList', todoCtrl.addTask);
