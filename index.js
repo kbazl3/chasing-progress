@@ -3,7 +3,7 @@
 const express = require("express"),
       bodyParser = require("body-parser"),
       mongoose = require("mongoose"),
-      cors = require("cors"),
+    //   cors = require("cors"),
       port = 8090 || process.env.PORT,
       app = express(),
     //   mongoUri = "mongodb://localhost:27017/chasingProgress",
@@ -16,7 +16,7 @@ const express = require("express"),
       dailyLogsCtrl = require('./controllers/dailyLogsCtrl');
 
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 app.use(express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-animate'));
