@@ -376,19 +376,18 @@ angular.module('chasingProgress')
 
         $interval(function() {
             const d = new Date();
-            if (d.getHours() === 23 && d.getDay() === 4) {
-                console.log("hitting");
+            if (d.getHours() === 3 && d.getDay() === 0) {
                 weeklyTasks.forEach(function(task) {
                     resetWeeklyTasks(task);
                 })
             }
-            if (d.getHours() === 23) {
+            if (d.getHours() === 3) {
                 dailyTasks.forEach(function(task) {
                     resetDailyTasks(task);
                 })
             }
 
-        }, 10000);
+        }, 3600000);
 
         // $interval(function() {
         //     if (new Date().getHours() === 22 && new Date().getDay() === 5) {
