@@ -175,7 +175,7 @@ angular.module('chasingProgress')
             var dfd = $q.defer();
             $http({
                 method: 'GET',
-                url: baseUrl + "/api/todoList"
+                url: "/api/todoList"
             }).then(function(response) {
                 sortTasks(response.data);
                 dfd.resolve(sortedTodoTasks);
@@ -186,7 +186,7 @@ angular.module('chasingProgress')
         this.addTask = function(task) {
             return $http({
                 method: 'POST',
-                url: baseUrl + "/api/todoList",
+                url: "/api/todoList",
                 data: {
                     task: task
                 }
@@ -199,7 +199,7 @@ angular.module('chasingProgress')
         this.deleteTask = function(taskId) {
             return $http({
                     method: "DELETE",
-                    url: baseUrl + "/api/todoList/" + taskId
+                    url: "/api/todoList/" + taskId
                 })
                 .then(function(response) {
                     return response;
@@ -210,7 +210,7 @@ angular.module('chasingProgress')
             task.completed = !task.completed;
             return $http({
                     method: "PUT",
-                    url: baseUrl + "/api/todoList/" + id,
+                    url: "/api/todoList/" + id,
                     data: {
                         task: task.task,
                         completed: task.completed
@@ -229,7 +229,7 @@ angular.module('chasingProgress')
             let dfd = $q.defer();
             $http({
                 method: 'GET',
-                url: baseUrl + "/api/dailyList"
+                url: "/api/dailyList"
             }).then(function(response) {
                 dailyTasks = response.data.dailyTasks;
                 sortedDailyTasks.dailyTasks = response.data;
@@ -244,7 +244,7 @@ angular.module('chasingProgress')
         this.addDailyTask = function(task) {
             return $http({
                 method: 'POST',
-                url: baseUrl + "/api/dailyList",
+                url: "/api/dailyList",
                 data: {
                     task: task
                 }
@@ -257,7 +257,7 @@ angular.module('chasingProgress')
         this.deleteDailyTask = function(taskId) {
             return $http({
                     method: "DELETE",
-                    url: baseUrl + "/api/dailyList/" + taskId
+                    url: "/api/dailyList/" + taskId
                 })
                 .then(function(response) {
                     return response
@@ -268,7 +268,7 @@ angular.module('chasingProgress')
             task.completed = !task.completed;
             return $http({
                     method: "PUT",
-                    url: baseUrl + "/api/dailyList/" + task._id,
+                    url: "/api/dailyList/" + task._id,
                     data: {
                         task: task.task,
                         completed: task.completed
@@ -285,7 +285,7 @@ angular.module('chasingProgress')
         const resetDailyTasks = function(task) {
             return $http({
                     method: "PUT",
-                    url: baseUrl + "/api/dailyList/reset/" + task._id,
+                    url: "/api/dailyList/reset/" + task._id,
                     data: {
                         task: task.task,
                         completed: false
@@ -303,7 +303,7 @@ angular.module('chasingProgress')
             let dfd = $q.defer();
             $http({
                 method: 'GET',
-                url: baseUrl + "/api/weeklyList"
+                url: "/api/weeklyList"
             }).then(function(response) {
                 weeklyTasks = response.data.weeklyTasks;
                 console.log(weeklyTasks);
@@ -320,7 +320,7 @@ angular.module('chasingProgress')
             console.log(task);
             return $http({
                 method: 'POST',
-                url: baseUrl + "/api/weeklyList",
+                url: "/api/weeklyList",
                 data: {
                     task: task
                 }
@@ -333,7 +333,7 @@ angular.module('chasingProgress')
         this.deleteWeeklyTask = function(taskId) {
             return $http({
                     method: "DELETE",
-                    url: baseUrl + "/api/weeklyList/" + taskId
+                    url: "/api/weeklyList/" + taskId
                 })
                 .then(function(response) {
                     return response
@@ -345,7 +345,7 @@ angular.module('chasingProgress')
             console.log(task._id);
             return $http({
                     method: "PUT",
-                    url: baseUrl + "/api/weeklyList/" + task._id,
+                    url: "/api/weeklyList/" + task._id,
                     data: {
                         task: task.task,
                         completed: task.completed
@@ -359,7 +359,7 @@ angular.module('chasingProgress')
         const resetWeeklyTasks = function(task) {
             return $http({
                     method: "PUT",
-                    url: baseUrl + "/api/weeklyList/reset/" + task._id,
+                    url: "/api/weeklyList/reset/" + task._id,
                     data: {
                         task: task.task,
                         completed: false
