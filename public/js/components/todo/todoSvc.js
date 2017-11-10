@@ -2,7 +2,6 @@
 
 angular.module('chasingProgress')
     .service('todoSvc', function($http, $q, $interval) {
-        const baseUrl = "http://localhost:8090";
         let sortedTodoTasks = {
             todoList: [],
             completedList: []
@@ -375,19 +374,21 @@ angular.module('chasingProgress')
 
         console.log(new Date().getHours());
 
-        // $interval(function() {
-        //     if (new Date().getHours() === 14) {
-        //         dailyTasks.forEach(function(task) {
-        //             resetDailyTasks(task);
-        //         })
-        //     }
-        //     if (new Date().getHours() === 14 && new Date().getDay() === 4) {
-        //         console.log("hitting");
-        //         weeklyTasks.forEach(function(task) {
-        //             resetWeeklyTasks(task);
-        //         })
-        //     }
-        // }, 10000);
+        $interval(function() {
+            const d = new Date();
+            if (d.getHours() === 22 && d.getDay() === 4) {
+                console.log("hitting");
+                weeklyTasks.forEach(function(task) {
+                    resetWeeklyTasks(task);
+                })
+            }
+            if (d.getHours() === 22) {
+                dailyTasks.forEach(function(task) {
+                    resetDailyTasks(task);
+                })
+            }
+
+        }, 10000);
 
         // $interval(function() {
         //     if (new Date().getHours() === 22 && new Date().getDay() === 5) {
