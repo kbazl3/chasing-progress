@@ -376,13 +376,13 @@ angular.module('chasingProgress')
 
         $interval(function() {
             const d = new Date();
-            if (d.getHours() === 22 && d.getDay() === 4) {
+            if (d.getHours() === 23 && d.getDay() === 4) {
                 console.log("hitting");
                 weeklyTasks.forEach(function(task) {
                     resetWeeklyTasks(task);
                 })
             }
-            if (d.getHours() === 22) {
+            if (d.getHours() === 23) {
                 dailyTasks.forEach(function(task) {
                     resetDailyTasks(task);
                 })
