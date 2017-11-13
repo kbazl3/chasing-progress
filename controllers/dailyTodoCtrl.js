@@ -74,6 +74,17 @@ module.exports = {
                 res.status(200).json(productItem);
             }
         });
-    }
+    },
+
+    getDailyTaskszzz: function(req, res, next) {
+        DailyTodo.find()
+            .exec(function(err, result) {
+                if (err) {
+                    res.status(500 + "getPractice function error").json(err);
+                } else {
+                    return result;
+                }
+            })
+    },
 
 };
