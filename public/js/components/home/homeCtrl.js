@@ -43,7 +43,7 @@ angular.module('chasingProgress')
                 author:"Anonymous"
             },
             {
-                quote:"Self-discipline is an act of cultivation. It require you to connect today's actions to tomorrow's results. There's a season for sowing a season for reaping. Self-discipline helps you know which is which.",
+                quote:"Self-discipline is an act of cultivation. It requires you to connect today's actions to tomorrow's results. There's a season for sowing and a season for reaping. Self-discipline helps you know which is which.",
                 author:"Gary Ryan Blair"
             },
             {
@@ -131,6 +131,9 @@ angular.module('chasingProgress')
             }
         ];
         const embeddedHtml = [
+            {
+                video: 'youll do fookin nuttin'
+            },
             {
                 video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/5mvV6ZlZf8U" frameborder="0" allowfullscreen></iframe>'
             },
