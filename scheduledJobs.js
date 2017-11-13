@@ -1,5 +1,10 @@
 const dailyTodoCtrl = require('./controllers/dailyTodoCtrl');
 
 
-let dailyTasks = dailyTodoCtrl.getDailyTaskszzz();
-console.log(dailyTasks);
+let dailyTasks = function() {
+
+    dailyTodoCtrl.getDailyTaskszzz()
+        .then(function(response) {
+            console.log(response);
+        });
+}
