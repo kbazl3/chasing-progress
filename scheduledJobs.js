@@ -8,3 +8,4 @@ let dailyTasks = function() {
             console.log(response);
         });
 }
+dailyTasks();
