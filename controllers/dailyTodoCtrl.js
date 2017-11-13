@@ -12,15 +12,9 @@ module.exports = {
         });
     },
 
-    // getDailyTasks: function(req, res) {
-    //     DailyTodo.find(req.query, function(err, result) {
-    //         if (err) {
-    //             res.status(500).send(err);
-    //         }
-    //         dailyTasks = result;
-    //         res.status(200).send(result);
-    //     });
-    // },
+    hello: function(req, res) {
+        console.log("Hey you!!!!");
+    },
 
 
     getDailyTasks: function(req, res, next) {

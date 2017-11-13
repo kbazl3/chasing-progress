@@ -1,5 +1,5 @@
+const dailyTodoCtrl = require('./controllers/dailyTodoCtrl');
 
-function scheduledLog() {
-    console.log("Hello");
-}
-scheduledLog();
+
+
+dailyTodoCtrl.hello();
