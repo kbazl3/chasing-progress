@@ -82,7 +82,10 @@ module.exports = {
                 if (err) {
                     res.status(500 + "getPractice function error").json(err);
                 } else {
-                    return result;
+                    result.forEach(function() {
+                        console.log(result);
+                    })
+
                 }
             })
     },
