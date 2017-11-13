@@ -18,7 +18,7 @@ module.exports = {
 
 
     getDailyTasks: function(req, res, next) {
-        DailyTodo.find(req.query)
+        DailyTodo.find()
             .exec(function(err, result) {
                 let dailyData = {}
                 if (err) {
