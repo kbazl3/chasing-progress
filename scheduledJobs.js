@@ -6,10 +6,9 @@ mongoose.Promise = global.Promise;
 
 request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function(error, response, body) {
   let json = JSON.parse(body);
-  console.log(json);
-  // body.dailyTasks.forEach(function(task) {
-  //     console.log(task);
-  // })
+  json.dailyTasks.forEach(function(task) {
+      console.log(task);
+  })
 });
 
 
