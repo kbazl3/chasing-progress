@@ -7,7 +7,14 @@ mongoose.Promise = global.Promise;
 request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function(error, response, body) {
   let json = JSON.parse(body);
   json.dailyTasks.forEach(function(task) {
-      console.log(task);
+      task.completed = false;
+      request({
+          url: "https://cryptic-ravine-99712.herokuapp.com/api/dailyList",
+          method: 'PUT',
+          json: task
+      }, function(error, request, body) {
+              console.log(body);
+          })
   })
 });
 
