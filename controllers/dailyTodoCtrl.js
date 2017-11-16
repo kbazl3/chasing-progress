@@ -76,6 +76,7 @@ module.exports = {
         DailyTodo.find()
             .exec(function(err, result) {
                 if (err) {
+                    console.log("error", err);
                     res.status(500 + "getPractice function error").json(err);
                 } else {
                     console.log(result);
