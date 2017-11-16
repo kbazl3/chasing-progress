@@ -72,9 +72,8 @@ module.exports = {
     },
 
     getDailyTaskszzz: function(req, res, next) {
-        DailyTodo.find(function() {
-            console.log('hitting in the function');
-        })
+        console.log(req, res, next);
+        // DailyTodo.find()
             // .exec(function(err, result) {
             //     if (err) {
             //         console.log("error", err);
