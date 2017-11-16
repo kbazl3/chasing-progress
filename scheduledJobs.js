@@ -9,7 +9,7 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
   json.dailyTasks.forEach(function(task) {
       task.completed = false;
       request({
-          url: "https://cryptic-ravine-99712.herokuapp.com/api/dailyList" + task._id,
+          url: "https://cryptic-ravine-99712.herokuapp.com/api/dailyList/" + task._id,
           method: 'PUT',
           json: task
       }, function(error, request, body) {
