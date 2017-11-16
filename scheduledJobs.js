@@ -5,8 +5,8 @@ const dailyTodoCtrl = require('./controllers/dailyTodoCtrl'),
 mongoose.Promise = global.Promise;
 
 request.get("/api/dailyList", function(error, response, body) {
-  let json = JSON.parse(body);
-  console.log(body);
+  // let json = JSON.parse(body);
+  console.log(response, "xxxxxxxxxxxxxx", body);
 });
 
 
