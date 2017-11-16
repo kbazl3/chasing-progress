@@ -5,4 +5,5 @@ mongoose.Promise = global.Promise;
 
 
 
-dailyTodoCtrl.getDailyTaskszzz()
+// dailyTodoCtrl.getDailyTaskszzz()
+console.log(dailyTodoCtrl.dailyTodoObject);
