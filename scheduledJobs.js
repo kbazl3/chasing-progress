@@ -5,10 +5,10 @@ const dailyTodoCtrl = require('./controllers/dailyTodoCtrl'),
 mongoose.Promise = global.Promise;
 
 request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function(error, response, body) {
-  // let json = JSON.parse(body);
-  body.dailyTasks.forEach(function(task) {
-      console.log(task);
-  })
+  console.log(body);
+  // body.dailyTasks.forEach(function(task) {
+  //     console.log(task);
+  // })
 });
 
 
