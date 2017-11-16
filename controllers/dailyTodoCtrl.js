@@ -72,7 +72,7 @@ module.exports = {
     },
 
     getDailyTaskszzz: function(req, res, next) {
-        console.log("hitting");
+        console.log("hitting here");
         DailyTodo.find()
             .exec(function(err, result) {
                 if (err) {
@@ -80,9 +80,9 @@ module.exports = {
                     res.status(500 + "getPractice function error").json(err);
                 } else {
                     console.log(result);
-                    result.forEach(function() {
-                        console.log(result);
-                    })
+                    // result.forEach(function() {
+                    //     console.log(result);
+                    // })
 
                 }
             })
