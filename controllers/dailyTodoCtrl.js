@@ -72,7 +72,6 @@ module.exports = {
     },
 
     getDailyTaskszzz: function(req, res, next) {
-        console.log("hitting here");
         DailyTodo.find()
             .exec(function(err, result) {
                 if (err) {
@@ -86,6 +85,7 @@ module.exports = {
 
                 }
             })
+            console.log("hitting here too");
     }
 
 };
