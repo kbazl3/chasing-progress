@@ -19,7 +19,8 @@
     "bootstrap": "^3.3.7",
     "cors": "^2.8.4",
     "express": "^4.16.0",
-    "mongoose": "^4.11.13"
+    "mongoose": "^4.11.13",
+    "request": "^2.83.0"
   },
   "devDependencies": {},
   "repository": {
