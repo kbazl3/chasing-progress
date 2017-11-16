@@ -18,6 +18,8 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
   })
 });
 
+console.log("also hitting this");
+
 
 
 // dailyTodoCtrl.getDailyTaskszzz()
