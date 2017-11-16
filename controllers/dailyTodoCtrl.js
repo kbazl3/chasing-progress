@@ -21,7 +21,9 @@ module.exports = {
                     res.status(500 + "getPractice function error").json(err);
                 } else {
                     dailyData.dailyTasks = result;
-                    this.dailyTodoObject = result
+                    console.log(this.dailyTodoObject, "xxxxxxxxxxxxxxxx");
+                    this.dailyTodoObject = result;
+                    console.log(this.dailyTodoObject, "xxxxxxxxxxxxxxxx");
                     DailyLogs.find(req.query, function(err, dailyLogs) {
                         if (err) {
                             res.status(500).send(err);
