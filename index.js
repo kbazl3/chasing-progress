@@ -34,7 +34,7 @@ app.post('/api/dailyList', dailyTodoCtrl.addDailyTask);
 app.get('/api/dailyList', dailyTodoCtrl.getDailyTasks);
 app.delete('/api/dailyList/:id', dailyTodoCtrl.deleteDailyTask);
 app.put('/api/dailyList/:id', dailyTodoCtrl.updateDailyTask);
-app.put('/api/dailyList/reset/:id', dailyTodoCtrl.resetAllDailyTasks);
+app.put('/api/dailyList/reset', dailyTodoCtrl.getDailyTaskszzz);
 
 app.post('/api/weeklyList', weeklyTodoCtrl.addWeeklyTask);
 app.get('/api/weeklyList', weeklyTodoCtrl.getWeeklyTasks);

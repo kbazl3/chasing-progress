@@ -12,10 +12,6 @@ module.exports = {
         });
     },
 
-    hello: function(req, res) {
-        console.log("Hey you!!!!");
-    },
-
 
     getDailyTasks: function(req, res, next) {
         DailyTodo.find()
@@ -26,7 +22,6 @@ module.exports = {
                 } else {
                     dailyData.dailyTasks = result;
                     DailyLogs.find(req.query, function(err, dailyLogs) {
-                        console.log(dailyLogs);
                         if (err) {
                             res.status(500).send(err);
                         }
@@ -90,6 +85,6 @@ module.exports = {
 
                 }
             })
-    },
+    }
 
 };
