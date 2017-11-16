@@ -12,8 +12,8 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
           url: "https://cryptic-ravine-99712.herokuapp.com/api/dailyList/" + task._id,
           method: 'PUT',
           json: task
-      }, function(error, request, body) {
-              console.log(body);
+      }, function(error, request, bodys) {
+              console.log(bodys);
           })
   })
 });
