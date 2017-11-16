@@ -4,7 +4,7 @@ const dailyTodoCtrl = require('./controllers/dailyTodoCtrl'),
 
 mongoose.Promise = global.Promise;
 
-request.get("/api/dailyList", function(error, response, body) {
+request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function(error, response, body) {
   // let json = JSON.parse(body);
   console.log(response, "xxxxxxxxxxxxxx", body);
 });
