@@ -72,19 +72,21 @@ module.exports = {
     },
 
     getDailyTaskszzz: function(req, res, next) {
-        DailyTodo.find()
-            .exec(function(err, result) {
-                if (err) {
-                    console.log("error", err);
-                    res.status(500 + "getPractice function error").json(err);
-                } else {
-                    console.log(result);
-                    // result.forEach(function() {
-                    //     console.log(result);
-                    // })
-
-                }
-            })
+        DailyTodo.find(function() {
+            console.log('hitting in the function');
+        })
+            // .exec(function(err, result) {
+            //     if (err) {
+            //         console.log("error", err);
+            //         res.status(500 + "getPractice function error").json(err);
+            //     } else {
+            //         console.log(result);
+            //         // result.forEach(function() {
+            //         //     console.log(result);
+            //         // })
+            //
+            //     }
+            // })
             console.log("hitting here too");
     }
 
