@@ -4,7 +4,11 @@ var mongoose = require('mongoose'),
 var weeklyLogsSchema = new Schema({
     tasks: {type: Array, required: true},
     week: Number,
-    percentCompleted: Number
+    percentCompleted: Number,
+    dateCreated: {
+        type: Date,
+        default: new Date()
+    }
 });
 
 module.exports = mongoose.model("WeeklyLogs", weeklyLogsSchema);

@@ -106,13 +106,13 @@
 
                 <div class="unfinished-tasks well">
                     <h2>Weekly Tasks</h2>
-                    <div class="checkbox" ng-repeat="task in weeklyTasks.weeklyTasks">
+                    <div class="checkbox" ng-repeat="task in weeklyData.weeklyTasks">
                         <label><input ng-click="updateWeeklyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
                         <button class="btn btn-danger" ng-click="deleteWeeklyTask(task)">Delete</button>
                     </div>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{weeklyTasks.percentCompleted}}%">
-                            {{weeklyTasks.percentCompleted}}%
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{weeklyData.percentCompleted}}%">
+                            {{weeklyData.percentCompleted}}%
                         </div>
                     </div>
                 </div>
@@ -125,6 +125,11 @@
                         <input class="form-control" type="text" ng-model="addWeeklyTaskInput">
                         <button class="btn" ng-click="addWeeklyTask(addWeeklyTaskInput)" type="button" name="button">Add todo</button>
                     </form>
+                </div>
+
+                <div ng-repeat="week in weeklyData.weeklyLogs">
+                    {{week.createdAt | date: 'longDate'}}
+                    {{week.percentCompleted}}
                 </div>
             </div>
         </div>

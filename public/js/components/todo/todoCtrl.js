@@ -3,26 +3,27 @@ angular.module('chasingProgress')
 
 
 
-            todoSvc.getTasks($scope.dailyList)
-                .then(function(response) {
-                    $scope.dailyContact = response.dailyContact;
-                    $scope.completedList = response.completedList;
-                    $scope.todoList = response.todoList;
-                    $scope.dailyCompletedPercentage = response.dailyCompletedPercentage;
-                });
+        todoSvc.getTasks($scope.dailyList)
+            .then(function(response) {
+                $scope.dailyContact = response.dailyContact;
+                $scope.completedList = response.completedList;
+                $scope.todoList = response.todoList;
+                $scope.dailyCompletedPercentage = response.dailyCompletedPercentage;
+            });
 
 
 
-            todoSvc.getDailyTasks()
-                .then(function(response) {
-                    console.log(response);
-                    $scope.dailyTasks = response;
-                });
+        todoSvc.getDailyTasks()
+            .then(function(response) {
+                console.log(response);
+                $scope.dailyTasks = response;
+            });
 
-            todoSvc.getWeeklyTasks()
-                .then(function(response) {
-                    $scope.weeklyTasks = response
-                })
+        todoSvc.getWeeklyTasks()
+            .then(function(response) {
+                console.log(response);
+                $scope.weeklyData = response
+            })
 
 
         $scope.addTask = function(task) {
