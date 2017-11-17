@@ -1,4 +1,4 @@
-const dailyTodoCtrl = require('./controllers/dailyTodoCtrl'),
+const dailyTodoCtrl = require('../controllers/dailyTodoCtrl'),
     mongoose = require('mongoose'),
     request = require('request');
 
