@@ -21,9 +21,6 @@ module.exports = {
                     res.status(500 + "getPractice function error").json(err);
                 } else {
                     dailyData.dailyTasks = result;
-                    // console.log(this.dailyTodoObject, "xxxxxxxxxxxxxxxx");
-                    // this.dailyTodoObject = result;
-                    // console.log(this.dailyTodoObject, "xxxxxxxxxxxxxxxx");
                     DailyLogs.find(req.query, function(err, dailyLogs) {
                         if (err) {
                             res.status(500).send(err);
@@ -60,35 +57,7 @@ module.exports = {
                 res.status(200).json(productItem);
             }
         });
-    },
+    }
 
-    resetAllDailyTasks: function(req, res) {
-        DailyTodo.findOneAndUpdate({
-            _id: req.params.id
-        }, req.body, function(err, productItem) {
-            if (err) {
-                res.status(500).send(err);
-            } else {
-                res.status(200).json(productItem);
-            }
-        });
-    },
-
-    getDailyTaskszzz: function(req, res, next) {
-        DailyTodo.find()
-            .exec(function(err, result) {
-                if (err) {
-                    console.log("error", err);
-                    res.status(500 + "getPractice function error").json(err);
-                } else {
-                    console.log(result);
-                    // result.forEach(function() {
-                    //     console.log(result);
-                    // })
-
-                }
-            })
-    },
-    dailyTodoObject: {}
 
 };
