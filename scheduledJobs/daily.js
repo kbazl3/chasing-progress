@@ -37,7 +37,30 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
         })
     })
 });
-console.log(new Date().getDay());
-if (new Date().getDay() === 4) {
-    console.log("herjalsdfjadsfa");
+
+if (new Date().getDay() === 5) {
+    request.get("https://cryptic-ravine-99712.herokuapp.com/api/weeklyList", function(error, response, body) {
+        let parsedJson = JSON.parse(body);
+        request({
+            url: "https://cryptic-ravine-99712.herokuapp.com/api/weeklyLogs",
+            method: 'POST',
+            json: {
+                tasks: parsedJson.weeklyTasks,
+                percentCompleted: percentCompleted(parsedJson.weeklyTasks)
+            }
+        }, function(error, request, body) {
+
+        })
+        parsedJson.weeklyTasks.forEach(function(task) {
+            task.completed = false;
+            request({
+                url: "https://cryptic-ravine-99712.herokuapp.com/api/weeklyList/" + task._id,
+                method: 'PUT',
+                json: task
+            }, function(error, request, bodys) {
+
+            })
+        })
+
+    });
 }
