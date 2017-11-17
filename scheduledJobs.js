@@ -11,8 +11,8 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
       method: 'POST',
       json: parsedJson.dailyTasks
   }, function(error, request, body) {
-      console.log("create daily log", body);
-      console.log(error);
+      console.log("create daily log xxxxxxxxxxxxxxxxxxxxxx", body);
+      console.log("error xxxxxxxxxxxxxxxxxxxxxx", error);
   })
   parsedJson.dailyTasks.forEach(function(task) {
       task.completed = false;
@@ -21,7 +21,7 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
           method: 'PUT',
           json: task
       }, function(error, request, bodys) {
-              console.log(bodys);
+
           })
   })
 });

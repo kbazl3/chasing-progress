@@ -4,7 +4,7 @@ module.exports = {
 
     addDailyLog: function(req, res) {
         DailyLogs.create(req.body, function(err, result) {
-            console.log(req.body);
+            console.log(req.body, "hitting daily Logs create");
             if (err) {
                 res.status(500).send(err);
             }
