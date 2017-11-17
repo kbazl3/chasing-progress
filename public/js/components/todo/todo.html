@@ -128,8 +128,11 @@
                 </div>
 
                 <div ng-repeat="week in weeklyData.weeklyLogs">
-                    {{week.createdAt | date: 'longDate'}}
-                    {{week.percentCompleted}}
+                    <h4>Week of {{week.dateCreated | date: 'longDate'}}</h4> Completed: {{week.percentCompleted}}%
+
+                    <ul ng-repeat="task in week.tasks">
+                        {{task.task}} : Completed: {{task.completed}}
+                    </ul>
                 </div>
             </div>
         </div>
