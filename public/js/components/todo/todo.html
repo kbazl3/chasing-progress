@@ -3,7 +3,7 @@
 <div class="todoContainer">
 
     <div class="row">
-        <div class="tabbable tabs-below col-md-2 well" ng-init="selectedTab = 1;">
+        <div class="tabbable col-md-2 well" ng-init="selectedTab = 1;">
             <ul class="nav nav-pills nav-stacked">
                 <li ng-class="{active: selectedTab == 1}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 1;">Daily Contact</a>
@@ -73,7 +73,7 @@
                     <h2>Daily Tasks</h2>
                     <div class="checkbox" ng-repeat="task in dailyTasks.dailyTasks.dailyTasks">
                         <label><input ng-click="updateDailyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
-                        <button class="btn btn-danger" ng-click="deleteDailyTask(task)">Delete</button>
+                        <button class="btn btn-danger align-right" ng-click="deleteDailyTask(task)">Delete</button>
                     </div>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{dailyTasks.percentCompleted}}%">

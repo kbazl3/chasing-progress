@@ -25,7 +25,6 @@ To do -
     have it keep stats of how often you complete a certain daily task.
         Total x out of y days
         average number of days a week/month
-    weekly todo's
 
 
     https://github.com/jirikavi/AngularJS-Toaster

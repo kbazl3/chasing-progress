@@ -24,7 +24,7 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
             percentCompleted: percentCompleted(parsedJson.dailyTasks)
         }
     }, function(error, request, body) {
-        
+
     })
     parsedJson.dailyTasks.forEach(function(task) {
         task.completed = false;
@@ -37,6 +37,3 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
         })
     })
 });
-
-// dailyTodoCtrl.getDailyTaskszzz()
-// console.log(dailyTodoCtrl.dailyTodoObject);

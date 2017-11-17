@@ -112,6 +112,15 @@ table {
 
 }
 
+.well .checkbox {
+    margin-bottom: 25px;
+    font-size: 1.4em;
+    border: 1px solid black;
+    padding: 25px;
+    border: 1px dashed #ddd;
+	box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+}
+
 
 .home-container h2 {
     text-align: center;
@@ -131,4 +140,20 @@ table {
 
 .unfinished-tasks, .finished-tasks {
     height: auto;
+}
+
+
+
+@media only screen and (max-width: 1000px) {
+    .todoContainer .tabbable {
+        height: 300px;
+    }
+
+    .todoContainer .tabbable li{
+        font-size: 2em;
+    }
+
+    .nav-tabs li{
+        font-size: 100px;
+    }
 }
