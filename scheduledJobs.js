@@ -8,10 +8,11 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
   let parsedJson = JSON.parse(body);
   request({
       url: "https://cryptic-ravine-99712.herokuapp.com/api/dailyLogs",
-      method: 'PUT',
+      method: 'POST',
       json: parsedJson.dailyTasks
   }, function(error, request, body) {
       console.log("create daily log", body);
+      console.log(error);
   })
   parsedJson.dailyTasks.forEach(function(task) {
       task.completed = false;
