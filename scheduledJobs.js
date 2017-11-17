@@ -9,7 +9,7 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
   request({
       url: "https://cryptic-ravine-99712.herokuapp.com/api/dailyLogs",
       method: 'POST',
-      json: parsedJson.dailyTasks
+      json: { tasks: parsedJson.dailyTasks }
   }, function(error, request, body) {
       console.log("create daily log xxxxxxxxxxxxxxxxxxxxxx", body);
       console.log("error xxxxxxxxxxxxxxxxxxxxxx", error);
