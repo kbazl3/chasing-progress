@@ -12,7 +12,6 @@
   "dependencies": {
     "angular": "^1.6.4",
     "angular-animate": "^1.6.6",
-    "angular-loading-bar": "^0.9.0",
     "angular-parallax-npm": "0.0.4",
     "angular-ui-router": "^1.0.3",
     "body-parser": "^1.18.2",

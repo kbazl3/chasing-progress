@@ -31,6 +31,7 @@ angular.module('chasingProgress')
                 .then(function(response) {
 
                 });
+                $scope.addTaskInput = "";
         };
 
         $scope.deleteTask = function(task) {

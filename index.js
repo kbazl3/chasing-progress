@@ -6,7 +6,7 @@ const express = require("express"),
     //   cors = require("cors"),
       port = process.env.PORT || 8090,
       app = express(),
-    //   secrets = require('./secrets.js')
+      secrets = require('./secrets.js')
       mongoUri = process.env.MONGO_LABS_URI || secrets.MONGO_LABS_URI,
       todoCtrl = require("./controllers/todoCtrl.js"),
       dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js'),
@@ -17,7 +17,6 @@ const express = require("express"),
 app.use(bodyParser.json());
 // app.use(cors());
 app.use(express.static(__dirname + '/public'));
-app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-animate'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-ui-router/release'));

@@ -3,7 +3,7 @@
 <div class="todoContainer">
 
     <div class="row">
-        <div class="tabbable col-md-2 well" ng-init="selectedTab = 1;">
+        <div class="tabbable col-md-2 well well-sm" ng-init="selectedTab = 1;">
             <ul class="nav nav-pills nav-stacked">
                 <li ng-class="{active: selectedTab == 1}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 1;">Daily Contact</a>
@@ -33,35 +33,34 @@
             </div>
 
             <div class="tab-content" ng-show="selectedTab == 2">
-                <div class="well">
-                    <h2>Add</h2>
+                <div class="well well-sm addTodo">
                     <form action="">
-                        <input class="form-control" type="text" ng-model="addTaskInput">
-                        <button class="btn" ng-click="addTask(addTaskInput)" type="button" name="button">Add todo</button>
+                        <input placeholder="What do you need to get done, Kyle?" class="form-control" type="text" ng-model="addTaskInput">
+                        <button class="snip1562" ng-click="addTask(addTaskInput)" type="button" name="button">Add Task <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                     </form>
                 </div>
 
 
-                <div class="unfinished-tasks well">
-                    <h2>Get This Shit Done</h2>
+                <div class="unfinished-tasks well well-sm">
+                    <!-- <h2>Get This Shit Done</h2> -->
                     <ul ng-repeat="task in todoList">
                         <li><h3>{{task.task}}</h3></li>
-                        <li>created: {{task.dateCreated | date:'medium'}}</li>
-                        <li>Completed: {{task.completed}}</li>
-                        <button class="btn btn-warning" ng-click="updateTask(task._id, task)">Update</button>
-                        <button class="btn btn-danger" ng-click="deleteTask(task)">Delete</button>
+                        <li>created: {{task.dateCreated | date:'short'}}</li>
+                        <button class="btn btn-primary" ng-click="updateTask(task._id, task)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></button>
+                        
+                        <button class="btn btn-danger" ng-click="deleteTask(task)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </ul>
                 </div>
 
 
-                <div class="finished-tasks well">
+                <div class="finished-tasks well well-sm">
                     <h2>Completed</h2>
                     <ul ng-repeat="completedTask in completedList">
                         <li>{{completedTask.task}}</li>
                         <li>{{completedTask.dateCreated | date:'medium'}}</li>
                         <li>{{completedTask.completedAt | date:'medium'}}</li>
                         <button class="btn btn-warning" ng-click="updateTask(completedTask._id, completedTask)">Update</button>
-                        <button class="btn btn-danger" ng-click="deleteTask(completedTask)">Delete</button>
+                        <button class="btn btn-danger" ng-click="deleteTask(completedTask)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </ul>
                 </div>
             </div>
@@ -69,11 +68,11 @@
             <div class="tab-content" ng-show="selectedTab == 3">
 
 
-                <div class="unfinished-tasks well">
+                <div class="unfinished-tasks well well-sm">
                     <h2>Daily Tasks</h2>
                     <div class="checkbox" ng-repeat="task in dailyTasks.dailyTasks.dailyTasks">
                         <label><input ng-click="updateDailyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
-                        <button class="btn btn-danger align-right" ng-click="deleteDailyTask(task)">Delete</button>
+                        <button class="btn btn-danger align-right" ng-click="deleteDailyTask(task)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </div>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{dailyTasks.percentCompleted}}%">
@@ -83,15 +82,14 @@
                 </div>
 
 
-                <div class="well">
-                    <h2>Add</h2>
-                    <form action="">
-                        <input class="form-control" type="text" ng-model="addDailyTaskInput">
-                        <button class="btn" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button">Add todo</button>
-                    </form>
+                <div class="well well-sm">
+                    <!-- <form action=""> -->
+                        <input placeholder="Add another daily task" class="form-control" type="text" ng-model="addDailyTaskInput">
+                        <button class="snip1562" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button"><span class="glyphicon glyphicon-plus" aria-hidden="true">Daily Task</button>
+                    <!-- </form> -->
                 </div>
 
-                <div class="well">
+                <div class="well well-sm">
                     <div ng-repeat="dailyLog in dailyTasks.dailyTasks.dailyLogs">
                         {{dailyLog.dateCreated | date: 'longDate'}}<br>
                         Completed: {{dailyLog.percentCompleted}}%
@@ -104,11 +102,11 @@
             <div class="tab-content" ng-show="selectedTab == 4">
 
 
-                <div class="unfinished-tasks well">
+                <div class="unfinished-tasks well well-sm">
                     <h2>Weekly Tasks</h2>
                     <div class="checkbox" ng-repeat="task in weeklyData.weeklyTasks">
                         <label><input ng-click="updateWeeklyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
-                        <button class="btn btn-danger" ng-click="deleteWeeklyTask(task)">Delete</button>
+                        <button class="btn btn-danger" ng-click="deleteWeeklyTask(task)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </div>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{weeklyData.percentCompleted}}%">
@@ -119,11 +117,10 @@
 
 
 
-                <div class="well">
-                    <h2>Add</h2>
+                <div class="well well-sm">
                     <form action="">
-                        <input class="form-control" type="text" ng-model="addWeeklyTaskInput">
-                        <button class="btn" ng-click="addWeeklyTask(addWeeklyTaskInput)" type="button" name="button">Add todo</button>
+                        <input placeholder="Add another weekly task" class="form-control" type="text" ng-model="addWeeklyTaskInput">
+                        <button class="snip1562" ng-click="addWeeklyTask(addWeeklyTaskInput)" type="button" name="button">Add todo</button>
                     </form>
                 </div>
 
