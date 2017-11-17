@@ -38,6 +38,6 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
     })
 });
 
-if (new Date.getDay() === 4) {
+if (new Date().getDay() === 4) {
     console.log("herjalsdfjadsfa");
 }
