@@ -45,9 +45,9 @@
                     <!-- <h2>Get This Shit Done</h2> -->
                     <ul ng-repeat="task in todoList">
                         <li><h3>{{task.task}}</h3></li>
-                        <li>created: {{task.dateCreated | date:'short'}}</li>
+                        <li><b>Date Added:</b> {{task.dateCreated | date:'short'}}</li>
                         <button class="btn btn-primary" ng-click="updateTask(task._id, task)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></button>
-                        
+
                         <button class="btn btn-danger" ng-click="deleteTask(task)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </ul>
                 </div>
@@ -56,9 +56,9 @@
                 <div class="finished-tasks well well-sm">
                     <h2>Completed</h2>
                     <ul ng-repeat="completedTask in completedList">
-                        <li>{{completedTask.task}}</li>
-                        <li>{{completedTask.dateCreated | date:'medium'}}</li>
-                        <li>{{completedTask.completedAt | date:'medium'}}</li>
+                        <h3><li>{{completedTask.task}}</li></h3>
+                        <li><b>Date Added:</b> {{completedTask.dateCreated | date:'short'}}</li>
+                        <li> <b>Date Completed:</b> {{completedTask.completedAt | date:'short'}}</li>
                         <button class="btn btn-warning" ng-click="updateTask(completedTask._id, completedTask)">Update</button>
                         <button class="btn btn-danger" ng-click="deleteTask(completedTask)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </ul>
@@ -70,13 +70,13 @@
 
                 <div class="unfinished-tasks well well-sm">
                     <h2>Daily Tasks</h2>
-                    <div class="checkbox" ng-repeat="task in dailyTasks.dailyTasks.dailyTasks">
+                    <div class="checkbox" ng-repeat="task in dailyData.dailyTasks.dailyTasks">
                         <label><input ng-click="updateDailyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
                         <button class="btn btn-danger align-right" ng-click="deleteDailyTask(task)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </div>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{dailyTasks.percentCompleted}}%">
-                            {{dailyTasks.percentCompleted}}%
+                            {{dailyData.percentCompleted}}%
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="well well-sm">
-                    <div ng-repeat="dailyLog in dailyTasks.dailyTasks.dailyLogs">
+                    <div ng-repeat="dailyLog in dailyData.dailyTasks.dailyLogs">
                         {{dailyLog.dateCreated | date: 'longDate'}}<br>
                         Completed: {{dailyLog.percentCompleted}}%
                     </div>

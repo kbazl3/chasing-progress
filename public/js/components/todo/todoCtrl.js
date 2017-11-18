@@ -16,7 +16,7 @@ angular.module('chasingProgress')
         todoSvc.getDailyTasks()
             .then(function(response) {
                 console.log(response);
-                $scope.dailyTasks = response;
+                $scope.dailyData = response;
             });
 
         todoSvc.getWeeklyTasks()

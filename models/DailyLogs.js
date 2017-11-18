@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var dailyLogsSchema = new Schema({
     tasks: {type: Array, required: true},
-    dateCreated: {type: Date, default: new Date()},
+    dateCreated: {type: Date, default: new Date().setDate(new Date().getDate() - 1)},
     percentCompleted: {type: Number}
 });
 
