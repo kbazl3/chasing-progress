@@ -38,7 +38,7 @@ request.get("https://cryptic-ravine-99712.herokuapp.com/api/dailyList", function
     })
 });
 
-if (new Date().getDay() === 5) {
+if (new Date().getDay() === 0) {
     request.get("https://cryptic-ravine-99712.herokuapp.com/api/weeklyList", function(error, response, body) {
         let parsedJson = JSON.parse(body);
         request({
