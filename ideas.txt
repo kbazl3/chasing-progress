@@ -21,7 +21,6 @@ Home page -
 
 
 To do -
-    have subjects/categories? ie: errands, purchases
     have it keep stats of how often you complete a certain daily task.
         Total x out of y days
         average number of days a week/month
@@ -40,3 +39,9 @@ goals
     https://github.com/fraywing/textAngular/
 
 area to write down ideas/journal/blog
+
+
+
+Write tests
+Make Mobile friendly
+Images hosted on Amazon S3

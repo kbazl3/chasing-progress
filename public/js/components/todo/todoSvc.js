@@ -372,46 +372,6 @@ angular.module('chasingProgress')
 
 
 
-        console.log(new Date().getHours());
-
-        $interval(function() {
-            const d = new Date();
-            if (d.getHours() === 3 && d.getDay() === 0) {
-                weeklyTasks.forEach(function(task) {
-                    resetWeeklyTasks(task);
-                })
-            }
-            if (d.getHours() === 3) {
-                dailyTasks.forEach(function(task) {
-                    resetDailyTasks(task);
-                })
-            }
-
-        }, 3600000);
-
-        // $interval(function() {
-        //     if (new Date().getHours() === 22 && new Date().getDay() === 5) {
-        //         console.log(sortedWeeklyTasks);
-        //         var weeklyLog = {
-        //             tasks: sortedWeeklyTasks.weeklyTasks,
-        //             week: sortedWeeklyTasks.weeklyLogs[sortedWeeklyTasks.weeklyLogs.length - 1].week,
-        //             percentCompleted: sortedWeeklyTasks.percentCompleted
-        //         }
-        //         weeklyLog.week++;
-        //         console.log(weeklyLog);
-        //         return $http({
-        //             method: 'POST',
-        //             url: baseUrl + "/api/weeklyLogs",
-        //             data: weeklyLog
-        //         }).then(function(response) {
-        //             return response;
-        //         });
-        //
-        //     }
-        //
-        // }, 10000);
-
-
         /*
             stats
 
@@ -428,10 +388,6 @@ angular.module('chasingProgress')
             take the first task and take its "dateCreated" property and make it the "first day of week"
 
         */
-
-
-
-        //every 24 (86400000 milliseconds) hours we check to see if it is 3am.  If it is then we reset daily tasks to incomplete
 
 
 

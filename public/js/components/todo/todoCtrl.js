@@ -57,6 +57,7 @@ angular.module('chasingProgress')
                 .then(function(response) {
 
                 });
+                $scope.addDailyTaskInput = "";
         };
 
         $scope.deleteDailyTask = function(task) {
@@ -81,6 +82,7 @@ angular.module('chasingProgress')
                 .then(function(response) {
 
                 });
+                $scope.addWeeklyTaskInput = "";
         };
 
         $scope.deleteWeeklyTask = function(task) {
