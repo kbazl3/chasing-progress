@@ -126,7 +126,7 @@ angular.module('chasingProgress')
                 author:"Ann Landers"
             },
             {
-                quote:"I do not enlighten those who are not eager to learn, nor arousethose who are not anxious to give an explanation themselves.If I have presented one corner of the square and they cannotcome back to me with the other three, I should not go overthe points again.",
+                quote:"I do not enlighten those who are not eager to learn, nor arouse those who are not anxious to give an explanation themselves. If I have presented one corner of the square and they cannotcome back to me with the other three, I should not go over the points again.",
                 author: "Confucius"
             }
         ];
@@ -229,7 +229,11 @@ angular.module('chasingProgress')
             },
             {
                 video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/Rvc9zguunhc" frameborder="0" allowfullscreen></iframe>'
+            },
+            {
+                video: '<iframe width="560" height="315" src="https://www.youtube.com/embed/mCGLuiL3N5k" frameborder="0" allowfullscreen></iframe>'
             }
+
 
 
         ];

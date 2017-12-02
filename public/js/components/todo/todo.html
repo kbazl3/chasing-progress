@@ -75,7 +75,7 @@
                         <button class="btn btn-danger align-right" ng-click="deleteDailyTask(task)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </div>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{dailyTasks.percentCompleted}}%">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{dailyData.percentCompleted}}%">
                             {{dailyData.percentCompleted}}%
                         </div>
                     </div>
@@ -91,8 +91,7 @@
 
                 <div class="well well-sm">
                     <div ng-repeat="dailyLog in dailyData.dailyTasks.dailyLogs">
-                        {{dailyLog.dateCreated | date: 'longDate'}}<br>
-                        Completed: {{dailyLog.percentCompleted}}%
+                        <p>{{dailyLog.dateCreated | date: 'longDate'}} <b>-</b> Completed: {{dailyLog.percentCompleted}}%</p>
                     </div>
 
                 </div>

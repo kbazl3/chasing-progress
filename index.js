@@ -12,22 +12,24 @@ const express = require("express"),
       dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js'),
       weeklyTodoCtrl = require('./controllers/weeklyTodoCtrl'),
       weeklyLogsCtrl = require('./controllers/weeklyLogsCtrl'),
-      dailyLogsCtrl = require('./controllers/dailyLogsCtrl');
+      dailyLogsCtrl = require('./controllers/dailyLogsCtrl'),
+      bookNotesCtrl = require('./controllers/bookNotesCtrl');
 
 app.use(bodyParser.json());
 // app.use(cors());
 app.use(express.static(__dirname + '/public'));
-app.use('/scripts', express.static(__dirname + '/node_modules/angular-animate'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular'));
+app.use('/scripts', express.static(__dirname + '/node_modules/angular-animate'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-ui-router/release'));
-app.use('/scripts', express.static(__dirname + '/node_modules/angular-parallax'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-parallax-npm'));
+app.use('/scripts', express.static(__dirname + '/node_modules/angular-ui-bootstrap'));
 mongoose.Promise = global.Promise;
 
 app.post('/api/todoList', todoCtrl.addTask);
 app.get('/api/todoList', todoCtrl.getTasks);
 app.delete('/api/todoList/:id', todoCtrl.deleteTask);
 app.put('/api/todoList/:id', todoCtrl.updateTask);
+app.get('/api/todoList/test', todoCtrl.test);
 
 app.post('/api/dailyList', dailyTodoCtrl.addDailyTask);
 app.get('/api/dailyList', dailyTodoCtrl.getDailyTasks);
@@ -48,6 +50,11 @@ app.post('/api/dailyLogs', dailyLogsCtrl.addDailyLog);
 app.get('/api/dailyLogs', dailyLogsCtrl.getDailyLogs);
 app.delete('/api/dailyLogs/:id', dailyLogsCtrl.deleteDailyLogs);
 
+app.post('/api/bookNotes', bookNotesCtrl.addBook);
+app.put('/api/bookNotes/:id', bookNotesCtrl.addBookNote);
+app.get('/api/bookNotes', bookNotesCtrl.getBooks);
+app.delete('/api/bookNotes/:id', bookNotesCtrl.deleteBook);
+
 app.listen(port, () => {
     console.log("listening on ", + port);
 });
@@ -59,3 +66,5 @@ mongoose.connect(mongoUri, {
 mongoose.connection.once('open', () => {
     console.log('connected to MongoDB at ', mongoUri);
 });
+
+module.exports = app;

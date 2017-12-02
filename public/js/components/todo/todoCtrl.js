@@ -36,6 +36,9 @@ angular.module('chasingProgress')
 
         $scope.deleteTask = function(task) {
             console.log(task._id);
+            if(prompt('Are you sure you want to delete this?')) {
+
+            }
             todoSvc.deleteTask(task._id)
                 .then(function(response) {
                     console.log(response);

@@ -210,7 +210,24 @@ table {
   color: white;
 }
 
+.journal-container {
+    background-image: url("../images/bookshelf-wallpaper.jpg");
+    background-position: center;
+    background-size: contain;
+}
 
+.book-cover {
+    width: 200px;
+    height: 280px;
+}
+
+.new-book-form {
+    margin-bottom: 40px;
+}
+
+.book-notes li {
+    list-style-type: circle;
+}
 
 
 @media only screen and (max-width: 1000px) {

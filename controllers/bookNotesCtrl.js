@@ -1,24 +1,24 @@
-var Todo = require('./../models/Todo');
+var Booknotes = require('./../models/BookNotes');
 
 module.exports = {
-    addTask: function(req, res) {
-        Todo.create(req.body, function(err, result) {
+    addBook: function(req, res) {
+        Booknotes.create(req.body, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    getTasks: function(req, res) {
-        Todo.find(req.query, function(err, result) {
+    getBooks: function(req, res) {
+        Booknotes.find(req.query, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    deleteTask: function(req, res) {
-        Todo.findByIdAndRemove(req.params.id, function(err, result) {
+    deleteBook: function(req, res) {
+        Booknotes.findByIdAndRemove(req.params.id, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
@@ -26,14 +26,14 @@ module.exports = {
         });
     },
 
-    updateTask: function(req, res) {
+    addBookNote: function(req, res) {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
         if (req.body.completed === true) {
             req.body.completedAt = new Date();
         }
-        Todo.findOneAndUpdate({
+        Booknotes.findOneAndUpdate({
             _id: req.params.id
         }, req.body, function(err, productItem) {
             if (err) {
