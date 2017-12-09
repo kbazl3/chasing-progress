@@ -1,0 +1,32 @@
+<nav-bar></nav-bar>
+
+
+
+
+<div class="book-details-container">
+    <div class="container">
+        <div class="row">
+            <div class="book-cover col-md-2 col-md-offset-5">
+                <img src="{{chosenBook.coverImage}}" alt="">
+            </div>
+        </div>
+
+        <div class="well">
+            <h3 class>Notes</h3>
+            <ul class="book-notes" ng-repeat="bookNote in chosenBook.notes">
+                <!-- <li>{{bookNote.notes}}</li> -->
+                <div>
+                    <li ng-bind-html="bookNote.notes">
+                        {{bookNote.notes}}
+                    </li>
+                </div>
+            </ul>
+
+        </div>
+    </div>
+    <div class="wysiwig">
+        <div text-angular ng-model="htmlVariable"></div>
+        <button class="snip1562" ng-click="addBookNotez(chosenBook, htmlVariable)">Add Book Notes</button>
+    </div>
+
+</div>

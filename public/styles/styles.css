@@ -211,14 +211,21 @@ table {
 }
 
 .journal-container {
+    height: 100vh;
     background-image: url("../images/bookshelf-wallpaper.jpg");
     background-position: center;
     background-size: contain;
 }
 
-.book-cover {
+.book-cover-thumbnail {
     width: 200px;
-    height: 280px;
+    height: 290px;
+}
+
+.book-details-container {
+    background-image: url('../images/congruent_pentagon.png');
+    background-position: center;
+    background-size: contain;
 }
 
 .new-book-form {
@@ -226,7 +233,17 @@ table {
 }
 
 .book-notes li {
-    list-style-type: circle;
+    list-style-type: square;
+}
+
+.book-cover {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.wysiwig {
+    width: 80%;
+    margin: auto;
 }
 
 

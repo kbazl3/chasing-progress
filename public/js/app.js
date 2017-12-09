@@ -1,6 +1,9 @@
-angular.module('chasingProgress', ['ui.router','angular-parallax', 'ui.bootstrap'])
+
+angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', 'ui.bootstrap', 'textAngular'])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
+
+
 
         $stateProvider
             .state('home', {
@@ -19,6 +22,17 @@ angular.module('chasingProgress', ['ui.router','angular-parallax', 'ui.bootstrap
                 url: '/journal',
                 templateUrl: '/js/components/journal/journal.html',
                 controller: 'journalCtrl'
+            })
+
+            .state('bookPage', {
+                url: '/bookPage/:bookId',
+                templateUrl: '/js/components/journal/bookDetails/bookDetailsTmpl.html',
+                controller: 'bookDetailsCtrl',
+                resolve: {
+                    booksResolve: function(bookSvc) {
+                        return bookSvc.getBooks()
+                    }
+                }
             })
 
             .state('visionBoard', {

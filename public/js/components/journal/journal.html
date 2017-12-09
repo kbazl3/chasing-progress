@@ -1,65 +1,21 @@
 <nav-bar></nav-bar>
 
 
-<div class="journal-container">
-    <div class="container">
-        <div class="new-book-form well">
-            <h2>New Book <span class="glyphicon glyphicon-book" aria-hidden="true"></span></h2>
-            <form action="">
-                <label for="">Title<input type="text" class="form-control" ng-model="bookTitle"></label>
-                <label for="">Cover Image<input type="text" class="form-control" ng-model="coverImage"></label>
-                <button class="snip1562" ng-click="newBook()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Book</button>
-            </form>
-        </div>
-
-        <row>
-            <ul ng-repeat="book in books" class="col-md-4">
-                <img class="book-cover" ng-src="{{book.coverImage}}" alt="">
-                <div class="well">
-                    <h3 class>Book Notes</h3>
-                    <ul class="book-notes" ng-repeat="bookNote in book.notes">
-                        <li>{{bookNote.notes}}</li>
-                    </ul>
-                    <form action="">
-                        <textarea name="name" rows="8" cols="80" ng-model="bookNotes"></textarea>
-                        <button class="snip1562" ng-click="addBookNotes(book, bookNotes)">Add Book Notes</button>
-                    </form>
-                </div>
-
-            </ul>
-        </row>
-    </div>
-</div>
-
-
-
-
-
-<!-- <div class="col-sm-3 col-lg-3 col-md-3 prodCard" ng-repeat="book in books">
-    <div class="thumbnail">
-        <div class="prodImageContainer" data-toggle="modal" data-target="#{{product._id}}">
-            <a href=""><img class="image-responsive" ng-src={{book.coverImage}}></a>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id={{book._id}}>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h3 class="modal-title" id="myModalLabel">{{product.make}}</h3>
-                    <h4>{{product.model}}</h4>
-                </div>
-                <div class="modal-body">
-                    <img class="image-responsive" src={{product.image}} alt="Product Image in Modal" />
-                </div>
-                <div class="modal-footer">
-                    <div><b>Condition</b>: {{product.condition}}</div>
-                    <div><b>Details</b>: {{product.summary}}</div>
-
-                    <div><b>Price</b>: <span class="dollar">$</span>{{product.price}}</div>
-                </div>
+    <div class="journal-container">
+        <div class="container">
+            <div class="new-book-form well">
+                <h2>New Book <span class="glyphicon glyphicon-book" aria-hidden="true"></span></h2>
+                <form action="">
+                    <label for="">Title<input type="text" class="form-control" ng-model="bookTitle"></label>
+                    <label for="">Cover Image<input type="text" class="form-control" ng-model="coverImage"></label>
+                    <button class="snip1562" ng-click="newBook()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Book</button>
+                </form>
             </div>
+
+            <row>
+                <ul ng-repeat="book in books" class="col-md-4">
+                    <a href="" ng-click="openBookPage($index)"><img  class="book-cover-thumbnail img-fluid" ng-src="{{book.coverImage}}" alt=""></a>
+                </ul>
+            </row>
         </div>
     </div>
-</div> -->

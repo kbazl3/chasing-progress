@@ -1,5 +1,5 @@
 angular.module("chasingProgress")
-    .service("bookService", function($http) {
+    .service("bookSvc", function($http) {
 
         this.newBook = function(bookObj) {
           return $http({
@@ -16,7 +16,6 @@ angular.module("chasingProgress")
               method: 'GET',
               url: '/api/bookNotes'
             }).then(function(response) {
-                console.log(response);
                 return response;
             });
         };

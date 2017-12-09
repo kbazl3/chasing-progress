@@ -1,31 +1,6 @@
-angular.module("chasingProgress")
-    .controller("journalCtrl", function($scope, bookSvc, $uibModal, $log, $document, $state) {
 
-
-
-
-
-        $scope.newBook = function() {
-            let bookObj = {
-                title: $scope.bookTitle,
-                coverImage: $scope.coverImage
-            }
-            bookSvc.newBook(bookObj)
-                .then(function(response) {
-                    console.log(response);
-                })
-        }
-
-        bookSvc.getBooks()
-            .then(function(response) {
-                // console.log(response.data);
-                $scope.books = response.data;
-            });
-
-        $scope.openBookPage = function(index) {
-            $state.go('bookPage', {bookId: index})
-        }
-
+    angular.module('chasingProgress')
+    .controller('ModalDemoCtrl', function($uibModal, $log, $document) {
         var $ctrl = this;
 
 
@@ -71,6 +46,49 @@ angular.module("chasingProgress")
             });
         };
 
-
-
     });
+
+// Please note that $uibModalInstance represents a modal window (instance) dependency.
+// It is not the same as the $uibModal service used above.
+
+angular.module('chasingProgress')
+    .controller('ModalInstanceCtrl', function($uibModalInstance, items) {
+    var $ctrl = this;
+
+    $ctrl.ok = function() {
+        $uibModalInstance.close($ctrl.selected.item);
+    };
+
+    $ctrl.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    };
+});
+
+// Please note that the close and dismiss bindings are from $uibModalInstance.
+
+angular.module('chasingProgress')
+    .component('modalComponent', {
+    templateUrl: 'myModalContent.html',
+    bindings: {
+        resolve: '<',
+        close: '&',
+        dismiss: '&'
+    },
+    controller: function() {
+        var $ctrl = this;
+
+        $ctrl.$onInit = function() {
+            $ctrl.items = $ctrl.resolve.items;
+            $ctrl.selected = {
+                item: $ctrl.items[0]
+            };
+        };
+
+
+        $ctrl.cancel = function() {
+            $ctrl.dismiss({
+                $value: 'cancel'
+            });
+        };
+    }
+});
