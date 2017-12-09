@@ -18,15 +18,15 @@ angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', '
                 controller: 'todoCtrl'
             })
 
-            .state('journal', {
-                url: '/journal',
-                templateUrl: '/js/components/journal/journal.html',
-                controller: 'journalCtrl'
+            .state('books', {
+                url: '/books',
+                templateUrl: '/js/components/books/books.html',
+                controller: 'booksCtrl'
             })
 
             .state('bookPage', {
                 url: '/bookPage/:bookId',
-                templateUrl: '/js/components/journal/bookDetails/bookDetailsTmpl.html',
+                templateUrl: '/js/components/books/bookDetails/bookDetailsTmpl.html',
                 controller: 'bookDetailsCtrl',
                 resolve: {
                     booksResolve: function(bookSvc) {

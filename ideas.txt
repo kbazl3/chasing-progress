@@ -24,10 +24,14 @@ To do -
     have it keep stats of how often you complete a certain daily task.
         Total x out of y days
         average number of days a week/month
+    Calendar view that shows the percentage of each day
     Data visualization/charts
-
-
     https://github.com/jirikavi/AngularJS-Toaster
+    Make sub-tasks under a parent task
+    To buy list
+    grocery list
+
+Books
 
 
 vision board

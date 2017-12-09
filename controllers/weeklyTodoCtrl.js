@@ -55,18 +55,6 @@ module.exports = {
                 res.status(200).json(productItem);
             }
         });
-    },
-
-    resetAllWeeklyTasks: function(req, res) {
-        WeeklyTodo.findOneAndUpdate({
-            _id: req.params.id
-        }, req.body, function(err, productItem) {
-            if (err) {
-                res.status(500).send(err);
-            } else {
-                res.status(200).json(productItem);
-            }
-        });
     }
 
 };

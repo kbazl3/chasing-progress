@@ -210,6 +210,27 @@ table {
   color: white;
 }
 
+.grocery-banner {
+    height: 315px;
+    width: 100%;
+    background-image: url('https://ansperformance.com/wp-content/uploads/2017/07/Keto-foods-1.jpg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.grocery-banner h2 {
+    text-align: center;
+    font-weight: 600;
+}
+
+.grocery-banner span {
+    color: white;
+    background-color: gray;
+    opacity: 50%;
+    border-radius: 10px;
+}
+
 .journal-container {
     height: 100vh;
     background-image: url("../images/bookshelf-wallpaper.jpg");

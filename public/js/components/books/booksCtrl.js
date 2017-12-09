@@ -1,5 +1,5 @@
 angular.module("chasingProgress")
-    .controller("journalCtrl", function($scope, bookSvc, $uibModal, $log, $document, $state) {
+    .controller("booksCtrl", function($scope, bookSvc, $uibModal, $log, $document, $state) {
 
 
 

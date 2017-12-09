@@ -6,13 +6,14 @@ const express = require("express"),
     //   cors = require("cors"),
       port = process.env.PORT || 8090,
       app = express(),
-      // secrets = require('./secrets.js'),
+      secrets = require('./secrets.js'),
       mongoUri = process.env.MONGO_LABS_URI || secrets.MONGO_LABS_URI,
       todoCtrl = require("./controllers/todoCtrl.js"),
       dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js'),
       weeklyTodoCtrl = require('./controllers/weeklyTodoCtrl'),
       weeklyLogsCtrl = require('./controllers/weeklyLogsCtrl'),
       dailyLogsCtrl = require('./controllers/dailyLogsCtrl'),
+      groceryCtrl = require('./controllers/groceryCtrl'),
       bookNotesCtrl = require('./controllers/bookNotesCtrl');
 
 app.use(bodyParser.json());
@@ -41,7 +42,11 @@ app.post('/api/weeklyList', weeklyTodoCtrl.addWeeklyTask);
 app.get('/api/weeklyList', weeklyTodoCtrl.getWeeklyTasks);
 app.delete('/api/weeklyList/:id', weeklyTodoCtrl.deleteWeeklyTask);
 app.put('/api/weeklyList/:id', weeklyTodoCtrl.updateWeeklyTask);
-app.put('/api/weeklyList/reset/:id', weeklyTodoCtrl.resetAllWeeklyTasks);
+
+app.post('/api/groceryList', groceryCtrl.addGrocery);
+app.get('/api/groceryList', groceryCtrl.getGroceries);
+app.delete('/api/groceryList/:id', groceryCtrl.deleteGrocery);
+app.put('/api/groceryList/:id', groceryCtrl.updateGrocery);
 
 app.post('/api/weeklyLogs', weeklyLogsCtrl.addWeeklyLog);
 app.get('/api/weeklyLogs', weeklyLogsCtrl.getWeeklyLogs);

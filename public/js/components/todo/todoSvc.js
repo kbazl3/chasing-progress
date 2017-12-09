@@ -355,20 +355,36 @@ angular.module('chasingProgress')
                 });
         };
 
-        const resetWeeklyTasks = function(task) {
+        this.addGroceryItem = function(groceryItem) {
             return $http({
-                    method: "PUT",
-                    url: "/api/weeklyList/reset/" + task._id,
-                    data: {
-                        task: task.task,
-                        completed: false
-                    }
-                })
-                .then(function(response) {
-                    console.log(response);
-                    return response;
-                });
+                method: 'POST',
+                url: "/api/groceryList",
+                data: {
+                    groceryItem: groceryItem
+                }
+            }).then(function(response) {
+                return response;
+            });
+
+        }
+
+        this.getGroceries = function() {
+            return $http({
+              method: 'GET',
+              url: "/api/groceryList"
+            }).then(function(response) {
+                console.log(response);
+                return response;
+            });
         };
+
+        this.deleteGroceryItem = function(item) {
+            console.log();
+            return $http({
+                method: 'Delete',
+                url: "/api/groceryList/" + item._id
+            })
+        }
 
 
 
@@ -378,14 +394,6 @@ angular.module('chasingProgress')
             I want to see how many i've completed out of how many total tasks there are
             I want to look back on certain weeks to see which tasks were completed and which ones were not
             I want to see how often a certain task is getting completed over number of weeks
-
-
-            //weekly stats:  every sunday at 3am we create a new WeeklyStats object to store.  Object of all weekly tasks, and whether they were completed
-            //increment the week each sunday at 3am?
-            each weekly task has a "dateCreated" property.
-            create an array of objects. each object will have a "first day of week" and "las day of week" property
-            loop over array of tasks?
-            take the first task and take its "dateCreated" property and make it the "first day of week"
 
         */
 

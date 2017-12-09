@@ -2,7 +2,9 @@
 
 <div class="todoContainer">
 
+
     <div class="row">
+        <!-- ******************** NAVBAR ******************** -->
         <div class="tabbable col-md-2 well well-sm" ng-init="selectedTab = 1;">
             <ul class="nav nav-pills nav-stacked">
                 <li ng-class="{active: selectedTab == 1}">
@@ -17,10 +19,14 @@
                 <li ng-class="{active: selectedTab == 4}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 4;">Weekly Tasks</a>
                 </li>
+                <li ng-class="{active: selectedTab == 5}">
+                    <a href="javascript:void(0)" ng-click="selectedTab = 5;">Grocery List</a>
+                </li>
             </ul>
         </div>
 
         <div class="tasks-container col-md-9">
+            <!-- ******************** CONTACT ******************** -->
             <div class="tab-content" ng-show="selectedTab == 1">
                 <div>
                     <h3 class="text-center">{{dailyContact.person}}</h3>
@@ -31,7 +37,7 @@
                     </div>
                 </div>
             </div>
-
+            <!-- ******************** Todo ******************** -->
             <div class="tab-content" ng-show="selectedTab == 2">
                 <div class="well well-sm addTodo">
                     <form action="">
@@ -64,7 +70,7 @@
                     </ul>
                 </div>
             </div>
-
+            <!-- ******************** DAILY ******************** -->
             <div class="tab-content" ng-show="selectedTab == 3">
 
 
@@ -97,7 +103,7 @@
                 </div>
 
             </div>
-
+            <!-- ******************** WEEKLY ******************** -->
             <div class="tab-content" ng-show="selectedTab == 4">
 
 
@@ -130,6 +136,29 @@
                         {{task.task}} : Completed: {{task.completed}}
                     </ul>
                 </div>
+            </div>
+            <!-- ******************** GROCERY ******************** -->
+            <div class="tab-content" ng-show="selectedTab == 5">
+
+                <div class="grocery-banner">
+                    <h2><span>Grocery List</span></h2>
+                </div>
+                <div class="unfinished-tasks well well-sm">
+                    <ul ng-repeat="item in groceryList">
+                        <li>{{item.groceryItem}}</li>
+                        <button class="btn btn-danger" ng-click="deleteGroceryItem(item)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                    </ul>
+                </div>
+
+
+
+                <div class="well well-sm">
+                    <form action="">
+                        <input placeholder="Add grocery item" class="form-control" type="text" ng-model="addGroceryItemInput">
+                        <button class="snip1562" ng-click="addGroceryItem(addGroceryItemInput)" type="button" name="button">Add Grocery</button>
+                    </form>
+                </div>
+
             </div>
         </div>
 

@@ -16,7 +16,7 @@ angular.module('chasingProgress')
         todoSvc.getDailyTasks()
             .then(function(response) {
                 console.log(response);
-                $scope.dailyData = response;
+                $scope.dailyData = response.data;
             });
 
         todoSvc.getWeeklyTasks()
@@ -25,18 +25,24 @@ angular.module('chasingProgress')
                 $scope.weeklyData = response
             })
 
+        todoSvc.getGroceries()
+            .then(function(response) {
+                console.log(response);
+                $scope.groceryList = response.data
+            })
+
 
         $scope.addTask = function(task) {
             todoSvc.addTask(task)
                 .then(function(response) {
 
                 });
-                $scope.addTaskInput = "";
+            $scope.addTaskInput = "";
         };
 
         $scope.deleteTask = function(task) {
             console.log(task._id);
-            if(prompt('Are you sure you want to delete this?')) {
+            if (prompt('Are you sure you want to delete this?')) {
 
             }
             todoSvc.deleteTask(task._id)
@@ -60,7 +66,7 @@ angular.module('chasingProgress')
                 .then(function(response) {
 
                 });
-                $scope.addDailyTaskInput = "";
+            $scope.addDailyTaskInput = "";
         };
 
         $scope.deleteDailyTask = function(task) {
@@ -85,7 +91,7 @@ angular.module('chasingProgress')
                 .then(function(response) {
 
                 });
-                $scope.addWeeklyTaskInput = "";
+            $scope.addWeeklyTaskInput = "";
         };
 
         $scope.deleteWeeklyTask = function(task) {
@@ -102,6 +108,23 @@ angular.module('chasingProgress')
                     console.log(response);
                 });
         };
+
+        //*************************  GROCERY LIST  ************************************************
+
+
+        $scope.addGroceryItem = function(groceryItem) {
+            todoSvc.addGroceryItem(groceryItem)
+                .then(function(response) {
+                    console.log(response);
+                })
+        }
+
+        $scope.deleteGroceryItem = function(groceryItem) {
+            todoSvc.deleteGroceryItem(groceryItem)
+                .then(function(response) {
+                    
+                })
+        }
 
 
 
