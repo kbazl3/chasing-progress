@@ -16,7 +16,7 @@ angular.module('chasingProgress')
         todoSvc.getDailyTasks()
             .then(function(response) {
                 console.log(response);
-                $scope.dailyData = response.data;
+                $scope.dailyData = response;
             });
 
         todoSvc.getWeeklyTasks()
@@ -122,7 +122,7 @@ angular.module('chasingProgress')
         $scope.deleteGroceryItem = function(groceryItem) {
             todoSvc.deleteGroceryItem(groceryItem)
                 .then(function(response) {
-                    
+
                 })
         }
 

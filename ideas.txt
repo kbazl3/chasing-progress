@@ -7,17 +7,19 @@ What do I want out of a motivational tool?
 
 
 Home page -
-    weather - 5 day forecast?
-    video/quote
-        -be able to reflect on video/quote journal style
-            needs to be a schema
-    today is {{day}}
-    random question:
-        what are you going to do today?
-        what are you going to achieve?
-        how are you going to get better?
-        etc...
-    Ethereum price?
+    break up into sections
+        -get motivated
+            vides/quotes/images/
+            be able to reflect on video/quote/image journal style
+                modal
+        -financials (do I really want to put financial info on this?)
+        - Calendar
+            link to google calendar?
+        - splash Page
+            weather/eth price/brighton snow?
+            today is {{day}}
+            links to other sites
+                blog/pandafit
 
 
 To do -
@@ -38,7 +40,9 @@ vision board
     -static page with no js?
     goals and steps to achieiveing them/gamify chasing goals/
 
-goals
+research?
+    I want to be able to collect notes on certain subjects
+        keto/coding/
     journal/blog
     progress bar
     https://github.com/fraywing/textAngular/

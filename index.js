@@ -6,7 +6,7 @@ const express = require("express"),
     //   cors = require("cors"),
       port = process.env.PORT || 8090,
       app = express(),
-      // secrets = require('./secrets.js'),
+      secrets = require('./secrets.js'),
       mongoUri = process.env.MONGO_LABS_URI || secrets.MONGO_LABS_URI,
       todoCtrl = require("./controllers/todoCtrl.js"),
       dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js'),
@@ -14,7 +14,8 @@ const express = require("express"),
       weeklyLogsCtrl = require('./controllers/weeklyLogsCtrl'),
       dailyLogsCtrl = require('./controllers/dailyLogsCtrl'),
       groceryCtrl = require('./controllers/groceryCtrl'),
-      bookNotesCtrl = require('./controllers/bookNotesCtrl');
+      bookNotesCtrl = require('./controllers/bookNotesCtrl'),
+      quotesCtrl = require('./controllers/quotesCtrl');
 
 app.use(bodyParser.json());
 // app.use(cors());
@@ -60,6 +61,11 @@ app.post('/api/bookNotes', bookNotesCtrl.addBook);
 app.put('/api/bookNotes/:id', bookNotesCtrl.addBookNote);
 app.get('/api/bookNotes', bookNotesCtrl.getBooks);
 app.delete('/api/bookNotes/:id', bookNotesCtrl.deleteBook);
+
+app.post('/api/quotes', quotesCtrl.addQuote);
+app.put('/api/quotes/:id', quotesCtrl.addQuoteNote);
+app.get('/api/quotes', quotesCtrl.getQuotes);
+app.delete('/api/quotes/:id', quotesCtrl.deleteQuote);
 
 app.listen(port, () => {
     console.log("listening on ", + port);
