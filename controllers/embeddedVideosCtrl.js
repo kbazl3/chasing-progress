@@ -1,24 +1,24 @@
-var Booknotes = require('./../models/BookNotes');
+var EmbeddedVideo = require('./../models/EmbeddedVideo');
 
 module.exports = {
-    addBook: function(req, res) {
-        Booknotes.create(req.body, function(err, result) {
+    addEmbeddedVideo: function(req, res) {
+        EmbeddedVideo.create(req.body, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    getBooks: function(req, res) {
-        Booknotes.find(req.query, function(err, result) {
+    getEmbeddedVideos: function(req, res) {
+        EmbeddedVideo.find(req.query, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    deleteBook: function(req, res) {
-        Booknotes.findByIdAndRemove(req.params.id, function(err, result) {
+    deleteEmbeddedVideo: function(req, res) {
+        EmbeddedVideo.findByIdAndRemove(req.params.id, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
@@ -26,14 +26,11 @@ module.exports = {
         });
     },
 
-    addBookNote: function(req, res) {
+    updateEmbeddedVideo: function(req, res) {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
-        if (req.body.completed === true) {
-            req.body.completedAt = new Date();
-        }
-        Booknotes.findOneAndUpdate({
+        EmbeddedVideo.findOneAndUpdate({
             _id: req.params.id
         }, req.body, function(err, productItem) {
             if (err) {
@@ -45,17 +42,6 @@ module.exports = {
     },
     test: function(req, res) {
         return 'foo';
-    },
-    getOneBook: function(req, res, next) {
-        Booknotes.findOne({
-            _id: req.params.id
-        }, function(err, book) {
-            if (err) {
-                res.status(500).send(err)
-            } else {
-                res.status(200).json(book)
-            }
-        })
     }
 
 };

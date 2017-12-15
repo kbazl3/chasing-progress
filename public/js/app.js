@@ -41,9 +41,3 @@ angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', '
                 controller: 'visionBoardCtrl'
             });
     });
-
-
-
-
-
-    

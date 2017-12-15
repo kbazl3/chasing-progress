@@ -26,13 +26,16 @@ angular.module("chasingProgress")
                 dateCreated: new Date()
             }
             book.notes.push(notesObj);
-            // book.notes = [];
             console.log(book);
             return $http({
                 method: 'put',
                 url: '/api/bookNotes/' + book._id,
                 data: book
             })
+        }
+
+        this.getOneBook = function(bookId) {
+
         }
 
 });

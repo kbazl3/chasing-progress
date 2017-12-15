@@ -116,7 +116,9 @@ angular.module('chasingProgress')
             todoSvc.addGroceryItem(groceryItem)
                 .then(function(response) {
                     console.log(response);
+
                 })
+                $scope.addGroceryItemInput = "";
         }
 
         $scope.deleteGroceryItem = function(groceryItem) {

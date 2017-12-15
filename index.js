@@ -6,7 +6,7 @@ const express = require("express"),
     //   cors = require("cors"),
       port = process.env.PORT || 8090,
       app = express(),
-      // secrets = require('./secrets.js'),
+      secrets = require('./secrets.js'),
       mongoUri = process.env.MONGO_LABS_URI || secrets.MONGO_LABS_URI,
       todoCtrl = require("./controllers/todoCtrl.js"),
       dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js'),
@@ -15,7 +15,8 @@ const express = require("express"),
       dailyLogsCtrl = require('./controllers/dailyLogsCtrl'),
       groceryCtrl = require('./controllers/groceryCtrl'),
       bookNotesCtrl = require('./controllers/bookNotesCtrl'),
-      quotesCtrl = require('./controllers/quotesCtrl');
+      quotesCtrl = require('./controllers/quotesCtrl'),
+      embeddedVideosCtrl = require('./controllers/embeddedVideosCtrl');
 
 app.use(bodyParser.json());
 // app.use(cors());
@@ -56,16 +57,24 @@ app.delete('/api/weeklyLogs/:id', weeklyLogsCtrl.deleteWeeklyLogs);
 app.post('/api/dailyLogs', dailyLogsCtrl.addDailyLog);
 app.get('/api/dailyLogs', dailyLogsCtrl.getDailyLogs);
 app.delete('/api/dailyLogs/:id', dailyLogsCtrl.deleteDailyLogs);
+app.put('/api/dailyLogs/:id', dailyLogsCtrl.updateDailyLogs);
 
 app.post('/api/bookNotes', bookNotesCtrl.addBook);
 app.put('/api/bookNotes/:id', bookNotesCtrl.addBookNote);
 app.get('/api/bookNotes', bookNotesCtrl.getBooks);
 app.delete('/api/bookNotes/:id', bookNotesCtrl.deleteBook);
+app.get('/api/bookNotes/:id', bookNotesCtrl.getOneBook);
+
 
 app.post('/api/quotes', quotesCtrl.addQuote);
 app.put('/api/quotes/:id', quotesCtrl.addQuoteNote);
 app.get('/api/quotes', quotesCtrl.getQuotes);
 app.delete('/api/quotes/:id', quotesCtrl.deleteQuote);
+
+app.post('/api/embeddedVideos', embeddedVideosCtrl.addEmbeddedVideo);
+app.put('/api/embeddedVideos/:id', embeddedVideosCtrl.updateEmbeddedVideo);
+app.get('/api/embeddedVideos', embeddedVideosCtrl.getEmbeddedVideos);
+app.delete('/api/embeddedVideos/:id', embeddedVideosCtrl.deleteEmbeddedVideo);
 
 app.listen(port, () => {
     console.log("listening on ", + port);
