@@ -18,7 +18,7 @@ const express = require("express"),
       quotesCtrl = require('./controllers/quotesCtrl'),
       embeddedVideosCtrl = require('./controllers/embeddedVideosCtrl'),
       researchTopicCtrl = require('./controllers/researchTopicCtrl'),
-      subTodoCtrl = require('./controllers/subTodoCtrl');
+      subTodoCtrl = require('./controllers/subTodoListCtrl');
 
 app.use(bodyParser.json());
 // app.use(cors());
