@@ -17,7 +17,7 @@ const express = require("express"),
       bookNotesCtrl = require('./controllers/bookNotesCtrl'),
       quotesCtrl = require('./controllers/quotesCtrl'),
       embeddedVideosCtrl = require('./controllers/embeddedVideosCtrl'),
-      researchTopicCtrl = require('./controllers/researchTopicCtrl')
+      researchTopicCtrl = require('./controllers/researchTopicCtrl'),
       subTodoCtrl = require('./controllers/subTodoCtrl');
 
 app.use(bodyParser.json());
