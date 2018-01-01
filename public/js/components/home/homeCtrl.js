@@ -4,17 +4,20 @@
 angular.module('chasingProgress')
     .controller('homeCtrl', function($scope, $sce, homeSvc) {
 
+
         let d = new Date().getDate();
 
+        //write this so it only grabs 1 quote instead of all
+        //documents in collection aren't always guarenteed to be the same index every time
         homeSvc.getQuotes()
             .then(function(response) {
-                $scope.dailyQuote = response.data[d];
+                $scope.dailyQuote = response;
             })
 
+        //write this so it only grabs 1 video instead of all
         homeSvc.getEmbeddedVideos()
             .then(function(response) {
-                console.log(response.data);
-                $scope.video = $sce.trustAsHtml(response.data[d].video);
+                $scope.video = $sce.trustAsHtml(response.video);
             })
 
 

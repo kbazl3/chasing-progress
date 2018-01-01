@@ -1,14 +1,14 @@
 /*jshint esversion: 6 */
 
 angular.module('chasingProgress')
-    .service('todoSvc', function($http, $q, $interval) {
+    .service('todoSvc', function($http, $q, $interval, $filter) {
         let sortedTodoTasks = {
             todoList: [],
             completedList: []
         };
         let sortedDailyTasks = {
             dailyTasks: [],
-            percentCompleted: 0
+            percentCompleted: 0,
         }
         let sortedWeeklyTasks = {
             weeklyTasks: [],
@@ -230,9 +230,18 @@ angular.module('chasingProgress')
                 method: 'GET',
                 url: "/api/dailyList"
             }).then(function(response) {
+                let aryOfDates = [],
+                    aryOfDailyLogPercentCompleted = [];
+
+                response.data.dailyLogs.forEach(function(dailyLog) {
+                    aryOfDates.push($filter('date')(dailyLog.dateCreated));
+                    aryOfDailyLogPercentCompleted.push(dailyLog.percentCompleted);
+                })
                 dailyTasks = response.data.dailyTasks;
                 sortedDailyTasks.dailyTasks = response.data;
                 sortedDailyTasks.percentCompleted = percentCompleted(response.data.dailyTasks);
+                sortedDailyTasks.chartLabels = aryOfDates;
+                sortedDailyTasks.aryOfDailyLogPercentCompleted = aryOfDailyLogPercentCompleted;
                 dfd.resolve(sortedDailyTasks);
             });
             return dfd.promise;
@@ -278,24 +287,6 @@ angular.module('chasingProgress')
                 });
         };
 
-
-
-
-        const resetDailyTasks = function(task) {
-            return $http({
-                    method: "PUT",
-                    url: "/api/dailyList/reset/" + task._id,
-                    data: {
-                        task: task.task,
-                        completed: false
-                    }
-                })
-                .then(function(response) {
-                    console.log(response);
-                    return response;
-                });
-        };
-
         //*************************  WEEKLY TASKS  ************************************************
 
         this.getWeeklyTasks = function(dailyList) {
@@ -305,7 +296,6 @@ angular.module('chasingProgress')
                 url: "/api/weeklyList"
             }).then(function(response) {
                 weeklyTasks = response.data.weeklyTasks;
-                console.log(weeklyTasks);
                 sortedWeeklyTasks.weeklyTasks = response.data.weeklyTasks;
                 sortedWeeklyTasks.percentCompleted = percentCompleted(response.data.weeklyTasks)
                 sortedWeeklyTasks.weeklyLogs = response.data.weeklyLogs
@@ -316,7 +306,6 @@ angular.module('chasingProgress')
 
 
         this.addWeeklyTask = function(task) {
-            console.log(task);
             return $http({
                 method: 'POST',
                 url: "/api/weeklyList",
@@ -341,7 +330,6 @@ angular.module('chasingProgress')
 
         this.updateWeeklyTask = function(task) {
             task.completed = !task.completed;
-            console.log(task._id);
             return $http({
                     method: "PUT",
                     url: "/api/weeklyList/" + task._id,
@@ -354,6 +342,8 @@ angular.module('chasingProgress')
                     return response;
                 });
         };
+
+                //*************************  GROCERIES  ************************************************
 
         this.addGroceryItem = function(groceryItem) {
             return $http({
@@ -373,17 +363,80 @@ angular.module('chasingProgress')
               method: 'GET',
               url: "/api/groceryList"
             }).then(function(response) {
-                console.log(response);
                 return response;
             });
         };
 
         this.deleteGroceryItem = function(item) {
-            console.log();
             return $http({
                 method: 'Delete',
                 url: "/api/groceryList/" + item._id
             })
+        }
+
+        this.addSubTodo = function(subTodoList) {
+            return $http({
+                method: 'POST',
+                url: "/api/subTodo",
+                data: {
+                    listName: subTodoList
+                }
+            }).then(function(response) {
+                return response;
+            });
+
+        }
+
+        this.getSubTodoLists = function() {
+            return $http({
+              method: 'GET',
+              url: "/api/subTodo"
+            }).then(function(response) {
+                return response;
+            });
+        };
+
+
+        this.addTaskToList = function(task, listName) {
+
+            listName.tasks.push({
+                taskName: task
+            })
+            console.log(listName);
+            return $http({
+                    method: "PUT",
+                    url: "/api/subTodo/" + listName._id,
+                    data: listName
+                })
+                .then(function(response) {
+                    return response;
+                });
+        };
+
+        this.deleteSubTodo = function(index, list) {
+            list.tasks.splice(index, 1);
+            console.log(list.tasks);
+            return $http({
+                    method: "PUT",
+                    url: "/api/subTodo/" + list._id,
+                    data: list
+                })
+                .then(function(response) {
+                    return response;
+                });
+        }
+
+        this.updateSubTask = function(index, list) {
+            console.log(list.tasks[index].completed);
+            list.tasks[index].completed = !list.tasks[index].completed;
+            return $http({
+                    method: "PUT",
+                    url: "/api/subTodo/" + list._id,
+                    data: list
+                })
+                .then(function(response) {
+                    return response;
+                });
         }
 
 

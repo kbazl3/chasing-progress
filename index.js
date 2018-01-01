@@ -16,7 +16,9 @@ const express = require("express"),
       groceryCtrl = require('./controllers/groceryCtrl'),
       bookNotesCtrl = require('./controllers/bookNotesCtrl'),
       quotesCtrl = require('./controllers/quotesCtrl'),
-      embeddedVideosCtrl = require('./controllers/embeddedVideosCtrl');
+      embeddedVideosCtrl = require('./controllers/embeddedVideosCtrl'),
+      researchTopicCtrl = require('./controllers/researchTopicCtrl')
+      subTodoCtrl = require('./controllers/subTodoCtrl');
 
 app.use(bodyParser.json());
 // app.use(cors());
@@ -27,6 +29,8 @@ app.use('/scripts', express.static(__dirname + '/node_modules/angular-ui-router/
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-parallax-npm'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-ui-bootstrap'));
 app.use('/scripts', express.static(__dirname + '/node_modules/textangular'));
+app.use('/scripts', express.static(__dirname + '/node_modules/angular-chart.js'));
+app.use('/scripts', express.static(__dirname + '/node_modules/chart.js'));
 mongoose.Promise = global.Promise;
 
 app.post('/api/todoList', todoCtrl.addTask);
@@ -75,6 +79,16 @@ app.post('/api/embeddedVideos', embeddedVideosCtrl.addEmbeddedVideo);
 app.put('/api/embeddedVideos/:id', embeddedVideosCtrl.updateEmbeddedVideo);
 app.get('/api/embeddedVideos', embeddedVideosCtrl.getEmbeddedVideos);
 app.delete('/api/embeddedVideos/:id', embeddedVideosCtrl.deleteEmbeddedVideo);
+
+app.post('/api/researchTopic', researchTopicCtrl.addResearchTopic);
+app.put('/api/researchTopic/:id', researchTopicCtrl.updateResearchTopic);
+app.get('/api/researchTopic', researchTopicCtrl.getResearchTopics);
+app.delete('/api/researchTopic/:id', researchTopicCtrl.deleteResearchTopic);
+
+app.post('/api/subTodo', subTodoCtrl.addSubTodo);
+app.put('/api/subTodo/:id', subTodoCtrl.updateSubTodo);
+app.get('/api/subTodo', subTodoCtrl.getSubTodos);
+app.delete('/api/subTodo/:id', subTodoCtrl.deleteSubTodo);
 
 app.listen(port, () => {
     console.log("listening on ", + port);

@@ -12,11 +12,13 @@
   "dependencies": {
     "angular": "^1.6.4",
     "angular-animate": "^1.6.6",
+    "angular-chart.js": "^1.1.1",
     "angular-parallax-npm": "0.0.4",
     "angular-ui-bootstrap": "^2.5.6",
     "angular-ui-router": "^1.0.3",
     "body-parser": "^1.18.2",
     "bootstrap": "^3.3.7",
+    "chartjs": "^0.3.24",
     "cors": "^2.8.4",
     "express": "^4.16.0",
     "mongoose": "^4.11.13",

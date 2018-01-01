@@ -1,7 +1,9 @@
 angular.module('chasingProgress')
-    .controller('todoCtrl', function($scope, $interval, todoSvc) {
+    .controller('todoCtrl', function($scope, $interval, todoSvc, todoResolve) {
 
+        console.log(todoResolve);
 
+        $scope.dailyData = todoResolve;
 
         todoSvc.getTasks($scope.dailyList)
             .then(function(response) {
@@ -12,23 +14,19 @@ angular.module('chasingProgress')
             });
 
 
-
-        todoSvc.getDailyTasks()
-            .then(function(response) {
-                console.log(response);
-                $scope.dailyData = response;
-            });
-
         todoSvc.getWeeklyTasks()
             .then(function(response) {
-                console.log(response);
-                $scope.weeklyData = response
+                $scope.weeklyData = response;
             })
 
         todoSvc.getGroceries()
             .then(function(response) {
-                console.log(response);
                 $scope.groceryList = response.data
+            })
+
+        todoSvc.getSubTodoLists()
+            .then(function(response) {
+                $scope.subTodoLists = response.data
             })
 
 
@@ -41,7 +39,6 @@ angular.module('chasingProgress')
         };
 
         $scope.deleteTask = function(task) {
-            console.log(task._id);
             if (prompt('Are you sure you want to delete this?')) {
 
             }
@@ -84,6 +81,38 @@ angular.module('chasingProgress')
                 });
         };
 
+
+        $scope.labels = todoResolve.chartLabels;
+        $scope.series = ['Completed'];
+        $scope.data = [
+            todoResolve.aryOfDailyLogPercentCompleted
+        ];
+        $scope.color = 'red';
+        // $scope.onHover =
+        $scope.onClick = function(points, evt) {
+            console.log(points, evt);
+        };
+
+        // $scope.options = {
+        //   scales: {
+        //     yAxes: [
+        //       {
+        //         id: 'y-axis-1',
+        //         type: 'linear',
+        //         display: true,
+        //         position: 'left'
+        //       },
+        //       {
+        //         id: 'y-axis-2',
+        //         type: 'linear',
+        //         display: true,
+        //         position: 'right'
+        //       }
+        //     ]
+        //   }
+        // };
+
+
         //*************************  WEEKLY TASKS  ************************************************
 
         $scope.addWeeklyTask = function(task) {
@@ -118,13 +147,46 @@ angular.module('chasingProgress')
                     console.log(response);
 
                 })
-                $scope.addGroceryItemInput = "";
+            $scope.addGroceryItemInput = "";
         }
 
         $scope.deleteGroceryItem = function(groceryItem) {
             todoSvc.deleteGroceryItem(groceryItem)
                 .then(function(response) {
 
+                })
+        }
+
+
+
+        $scope.addSubTodo = function(addSubTodoInput) {
+            todoSvc.addSubTodo(addSubTodoInput)
+                .then(function(response) {
+                    console.log(response);
+                })
+            $scope.addSubTodoInput = "";
+        }
+
+        $scope.addTaskToSubTodoList = function(subTask, listName) {
+            $scope.subTask = "";
+            todoSvc.addTaskToList(subTask, listName)
+                .then(function(response) {
+                    console.log($scope.subTask);
+
+                })
+        }
+
+        $scope.updateSubTask = function(index, listName) {
+            todoSvc.updateSubTask(index, listName)
+                .then(function(response) {
+                    console.log(response);
+                })
+        }
+
+        $scope.deleteSubTask = function(index, listName) {
+            todoSvc.deleteSubTodo(index, listName)
+                .then(function(response) {
+                    console.log(response);
                 })
         }
 

@@ -3,7 +3,7 @@ const mongoose = require('mongoose'),
 
 
 
-    var quotesSchema = new Schema({
+    const quotesSchema = new Schema({
         quote: {type: String, required: true},
         author: {type: String},
         dateCreated: {type: Date, default: new Date()},

@@ -12,13 +12,4 @@ angular.module("chasingProgress")
         }
 
 
-        $scope.addBookNotez = function(book, bookNotes) {
-            console.log($scope.htmlVariable);
-            bookSvc.newNotes(book, bookNotes)
-                .then(function(response) {
-                    console.log(response);
-                })
-        }
-
-
 });

@@ -18,6 +18,9 @@ module.exports = {
         });
     },
     deleteTask: function(req, res) {
+        if (!req.params.id) {
+            return res.status(400).send('id query needed');
+        }
         Todo.findByIdAndRemove(req.params.id, function(err, result) {
             if (err) {
                 res.status(500).send(err);

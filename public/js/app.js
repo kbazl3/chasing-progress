@@ -1,5 +1,5 @@
 
-angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', 'ui.bootstrap', 'textAngular'])
+angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', 'ui.bootstrap', 'textAngular', 'chart.js'])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
@@ -9,13 +9,23 @@ angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', '
             .state('home', {
                 url: '/',
                 templateUrl: '/js/components/home/home.html',
-                controller: 'homeCtrl'
+                controller: 'homeCtrl',
+                resolve: {
+                    homeResolve: function(homeSvc) {
+                        return homeSvc.getQuotes()
+                    }
+                }
             })
 
             .state('todo', {
                 url: '/todo',
                 templateUrl: '/js/components/todo/todo.html',
-                controller: 'todoCtrl'
+                controller: 'todoCtrl',
+                resolve: {
+                    todoResolve: function(todoSvc) {
+                        return todoSvc.getDailyTasks()
+                    }
+                }
             })
 
             .state('books', {
@@ -31,6 +41,23 @@ angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', '
                 resolve: {
                     booksResolve: function(bookSvc) {
                         return bookSvc.getBooks()
+                    }
+                }
+            })
+
+            .state('researchTopic', {
+                url: '/researchTopic',
+                templateUrl: '/js/components/researchTopic/researchTopic.html',
+                controller: 'researchTopicCtrl'
+            })
+
+            .state('researchTopicPage', {
+                url: '/researchTopicPage/:researchTopicId',
+                templateUrl: '/js/components/researchTopic/researchTopicPage/researchTopicPage.html',
+                controller: 'researchTopicPageCtrl',
+                resolve: {
+                    researchTopicResolve: function(researchTopicSvc) {
+                        return researchTopicSvc.getResearchTopics();
                     }
                 }
             })

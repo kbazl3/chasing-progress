@@ -21,7 +21,6 @@ module.exports = {
                 } else {
                     weeklyData.weeklyTasks = result;
                     WeeklyLogs.find(req.query, function(err, weeklyLogs) {
-                        console.log(weeklyLogs);
                         if (err) {
                             res.status(500).send(err);
                         }

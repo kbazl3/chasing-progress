@@ -1,18 +1,16 @@
 
 CHASING PROGRESS MOTIVATION TOOL
 
-Develop Your Life
-
 What do I want out of a motivational tool?
 
+https://frontendchecklist.io/#section-javascript
 
 Home page -
     break up into sections
         -get motivated
             vides/quotes/images/
-            be able to reflect on video/quote/image journal style
-                modal
-        -financials (do I really want to put financial info on this?)
+                add Images
+                figure out how to keep mongo from changing index after updating
         - Calendar
             link to google calendar?
         - splash Page
@@ -28,29 +26,36 @@ To do -
         average number of days a week/month
     Calendar view that shows the percentage of each day
     Data visualization/charts
-    https://github.com/jirikavi/AngularJS-Toaster
-    Make sub-tasks under a parent task
-    To buy list
-    grocery list
-
-Books
-
+        line graph for daily logs
 
 vision board
     -static page with no js?
-    goals and steps to achieiveing them/gamify chasing goals/
+    goals and steps to achieving them/gamify chasing goals
 
 research?
     I want to be able to collect notes on certain subjects
         keto/coding/
     journal/blog
-    progress bar
-    https://github.com/fraywing/textAngular/
 
 area to write down ideas/journal/blog
+dream journal?
 
+
+
+
+
+
+
+
+
+
+ORGANIZING CODE:
+clean up dependencies
+naming conventions
+organize index.js
+es6
 
 
 Write tests
-Make Mobile friendly
-Images hosted on Amazon S3
+cross browser compatible
+SASS/gulp

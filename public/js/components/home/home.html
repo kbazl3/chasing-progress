@@ -4,25 +4,67 @@
     <h2 class="align-center">Chasing Progress</h2>
 </div>
 
-<div class="background-one">
-</div>
+<div class="homepage-background"></div>
 
 
 <div parallax-background parallax-ratio="-0.3" class="parallax-section">
-    <div class="quotes-container">
-        <p class="text-align quote"><i>"{{dailyQuote.quote}}"</i></p>
-        <p class="indent quote">- {{dailyQuote.author}}</p>
+
+    <div ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo">
+        <div class="quote-container" ng-click="$ctrl.open()">
+            <p class="text-align quote"><i>"{{dailyQuote.quote}}"</i></p>
+            <p class="indent">- {{dailyQuote.author}}</p>
+        </div>
+        <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title text-align quote" id="modal-title"><i>"{{dailyQuote.quote}}"</i></h3>
+                <h4 class="indent" id="modal-title">- {{dailyQuote.author}}</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <ul ng-repeat="quoteNote in dailyQuote.notes">
+                    <li ng-bind-html="quoteNote.note">{{quoteNote.note}}</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+                <div class="wysiwig">
+                    <div text-angular ng-model="htmlVariable"></div>
+                    <button class="snip1562" ng-click="addQuoteNotes(dailyQuote, htmlVariable)">Add Quote Notes</button>
+                </div>
+            </div>
+        </script>
     </div>
+
 </div>
 
-<div class="background-one">
-</div>
+<div class="homepage-background"></div>
 
 <div parallax-background parallax-ratio="-0.3" class="parallax-section">
-    <div ng-bind-html="video" class="video">
-        $sce.trustAsHtml()
+
+    <div ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo">
+        <div ng-bind-html="video" class="video">
+            $sce.trustAsHtml()
+        </div>
+        <button class="btn" ng-click="$ctrl.open2()">Add video notes</button>
+        <script type="text/ng-template" id="myModalContent2.html">
+            <div class="modal-header">
+                <div ng-bind-html="video" class="video">
+                    $sce.trustAsHtml()
+                </div>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <ul ng-repeat="videoNote in embeddedVideo.notes">
+                    <li ng-bind-html="videoNote.note">{{videoNote.note}}</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+                <div class="wysiwig">
+                    <div text-angular ng-model="videoNotesInput"></div>
+                    <button class="snip1562" ng-click="addVideoNotes(embeddedVideo, videoNotesInput)">Add Video Notes</button>
+                </div>
+            </div>
+        </script>
     </div>
 </div>
 
-<div class="background-one">
-</div>
+<div class="homepage-background"></div>

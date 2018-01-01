@@ -22,6 +22,9 @@
                 <li ng-class="{active: selectedTab == 5}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 5;">Grocery List</a>
                 </li>
+                <li ng-class="{active: selectedTab == 6}">
+                    <a href="javascript:void(0)" ng-click="selectedTab = 6;">Sub Tasks</a>
+                </li>
             </ul>
         </div>
 
@@ -40,7 +43,7 @@
             <!-- ******************** Todo ******************** -->
             <div class="tab-content" ng-show="selectedTab == 2">
                 <div class="well well-sm addTodo">
-                    <form action="">
+                    <form ng-submit="addTask(addTaskInput)">
                         <input placeholder="What do you need to get done, Kyle?" class="form-control" type="text" ng-model="addTaskInput">
                         <button class="snip1562" ng-click="addTask(addTaskInput)" type="button" name="button">Add Task <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                     </form>
@@ -50,7 +53,8 @@
                 <div class="unfinished-tasks well well-sm">
                     <!-- <h2>Get This Shit Done</h2> -->
                     <ul ng-repeat="task in todoList">
-                        <li><h3>{{task.task}}</h3></li>
+                        <li>
+                            <h3>{{task.task}}</h3></li>
                         <li><b>Date Added:</b> {{task.dateCreated | date:'short'}}</li>
                         <button class="btn btn-primary" ng-click="updateTask(task._id, task)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></button>
 
@@ -89,18 +93,13 @@
 
 
                 <div class="well well-sm">
-                    <!-- <form action=""> -->
+                    <form ng-submit="addDailyTask(addDailyTaskInput)">
                         <input placeholder="Add another daily task" class="form-control" type="text" ng-model="addDailyTaskInput">
                         <button class="snip1562" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button"><span class="glyphicon glyphicon-plus" aria-hidden="true">Daily Task</button>
-                    <!-- </form> -->
+                    </form>
                 </div>
 
-                <div class="well well-sm">
-                    <div ng-repeat="dailyLog in dailyData.dailyTasks.dailyLogs">
-                        <p>{{dailyLog.dateCreated | date: 'longDate'}} <b>-</b> Completed: {{dailyLog.percentCompleted}}%</p>
-                    </div>
-
-                </div>
+                <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-color="color" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
 
             </div>
             <!-- ******************** WEEKLY ******************** -->
@@ -123,7 +122,7 @@
 
 
                 <div class="well well-sm">
-                    <form action="">
+                    <form ng-submit="addWeeklyTask(addWeeklyTaskInput)">
                         <input placeholder="Add another weekly task" class="form-control" type="text" ng-model="addWeeklyTaskInput">
                         <button class="snip1562" ng-click="addWeeklyTask(addWeeklyTaskInput)" type="button" name="button">Add todo</button>
                     </form>
@@ -145,7 +144,7 @@
                     <h2><span>Grocery List</span></h2>
                 </div>
                 <div class="unfinished-tasks well well-sm">
-                    <h3><a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSEUWk28bpkEynOqbh6YME6hyjVrrgCpGkX01VuXGjIFTa3a6tj77jv2Jj5aWc9yB67pYt_XhmyDofl/pubhtml?widget=true&amp;headers=false">Carb Count Google Sheet</a></h3>
+                    <h3><a target="_blank" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSEUWk28bpkEynOqbh6YME6hyjVrrgCpGkX01VuXGjIFTa3a6tj77jv2Jj5aWc9yB67pYt_XhmyDofl/pubhtml?widget=true&amp;headers=false">Carb Count Google Sheet</a></h3>
                     <ul ng-repeat="item in groceryList">
                         <li>{{item.groceryItem}}</li>
                         <button class="btn btn-danger" ng-click="deleteGroceryItem(item)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
@@ -155,11 +154,38 @@
 
 
                 <div class="well well-sm">
-                    <form action="">
+                    <form ng-submit="addGroceryItem(addGroceryItemInput)">
                         <input placeholder="Add grocery item" class="form-control" type="text" ng-model="addGroceryItemInput">
                         <button class="snip1562" ng-click="addGroceryItem(addGroceryItemInput)" type="button" name="button">Add Grocery</button>
                     </form>
                 </div>
+
+            </div>
+            <!-- ******************** SUB TODO ******************** -->
+            <div class="tab-content" ng-show="selectedTab == 6">
+
+
+
+                <div class="well well-sm">
+                    <form ng-submit="addSubTodo(addSubTodoInput)">
+                        <input placeholder="Add new Todo List" class="form-control" type="text" ng-model="addSubTodoInput">
+                        <button class="snip1562" ng-click="addSubTodo(addSubTodoInput)" type="button" name="button">Add New Todo List</button>
+                    </form>
+                </div>
+
+                <div class="subTodoContainer well" ng-repeat="subTodoListName in subTodoLists">
+                    <h2>{{subTodoListName.listName}}</h2>
+                    <ul ng-repeat="task in subTodoListName.tasks">
+                        <label><input ng-click="updateSubTask($index, subTodoListName)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.taskName}}</label>
+                        <button ng-click="deleteSubTask($index, subTodoListName)" class="btn btn-danger"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                    </ul>
+                    <form ng-submit="addTaskToSubTodoList(subTask, subTodoListName)">
+                        <input type="text" ng-model="subTask">
+                    </form>
+                    <button class="btn" ng-click="addTaskToSubTodoList(subTask, subTodoListName)">add new task to {{subTodoListName.listName}} list</button>
+                </div>
+
+
 
             </div>
         </div>

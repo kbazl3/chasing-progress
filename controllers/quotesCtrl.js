@@ -10,13 +10,15 @@ module.exports = {
         });
     },
     getQuotes: function(req, res) {
-        Quotes.find(req.query, function(err, result) {
+        Quotes.find({}, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
+
+
     deleteQuote: function(req, res) {
         Quotes.findByIdAndRemove(req.params.id, function(err, result) {
             if (err) {
