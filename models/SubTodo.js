@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
 
 var subTodoSchema = new Schema({
     listName: { type: String, required: true },
+    listThumbnail: String,
     dateCreated: {
         type: Date,
         default: new Date()

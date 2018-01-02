@@ -1,28 +1,28 @@
 <nav-bar></nav-bar>
 
 
-<!-- <div class="wysiwig">
-    <div text-angular ng-model="htmlVariable"></div>
-</div> -->
-<div class="well">
-    <form action="">
-        <input class="form-control" ng-model="topicName" type="text" placeholder="What Topic Are You Going to Spend Time Researching?">
-        <input class="form-control" type="text" ng-model="topicImage" placeholder="image">
-    </form>
-    <button class="snip1562" ng-click="addResearchTopic()">Add Research Topic </button>
-</div>
+<div class="research-topics-container">
+    <div class="well">
+        <form action="">
+            <input class="form-control" ng-model="topicName" type="text" placeholder="What Topic Are You Going to Spend Time Researching?">
+            <input class="form-control" type="text" ng-model="topicImage" placeholder="image">
+            <input class="form-control" type="text" ng-model="topicImageBackground" placeholder="background image">
+        </form>
+        <button class="snip1562" ng-click="addResearchTopic()">Add Research Topic </button>
+    </div>
 
 
-<div class="container">
-    <div ng-repeat="topic in researchTopics">
-        <h1 class="my-4">{{topic.topicName}}
-            <small>Secondary Text</small>
-        </h1>
-        <div class="row">
-            <div class="col-md-7">
-                <a ng-click="openResearchTopicPage($index)"><img class="img-fluid rounded mb-3 mb-md-0" src="{{topic.topicImage}}" alt=""></a>
+    <div class="container">
+        <div ng-repeat="topic in researchTopics">
+            <h1 class="my-4">{{topic.topicName}}
+                <small>Secondary Text</small>
+            </h1>
+            <div class="row">
+                <div class="col-md-7">
+                    <a ng-click="openResearchTopicPage($index)"><img class="img-fluid rounded mb-3 mb-md-0" src="{{topic.topicImage}}" alt=""></a>
+                </div>
             </div>
+            <hr>
         </div>
-        <hr>
     </div>
 </div>

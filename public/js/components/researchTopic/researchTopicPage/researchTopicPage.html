@@ -1,12 +1,11 @@
 <nav-bar></nav-bar>
 
+<div class="research-topic-page-container" style="background-image: url('{{researchTopic.topicBackgroundImage}}')">
+    <h2>{{researchTopic.topicName}}</h2>
 
 
-<img src="{{researchTopic.topicImage}}" alt="">
-
-
-
-<div class="wysiwig">
-    <div text-angular ng-model="htmlVariable"></div>
-    <button class="snip1562" ng-click="addResearchTopicNotes(researchTopic, htmlVariable)">Add Book Notes</button>
+    <div class="wysiwig">
+        <div text-angular ng-model="htmlVariable"></div>
+        <button class="snip1562" ng-click="addResearchTopicNotes(researchTopic, htmlVariable)">Add Book Notes</button>
+    </div>
 </div>

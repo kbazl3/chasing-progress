@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -21,25 +8,30 @@ time, mark, audio, video {
     vertical-align: baseline;
     box-sizing: border-box;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
     display: block;
 }
+
 body {
     line-height: 1;
 }
+
 ol, ul {
     list-style: none;
 }
+
 blockquote, q {
     quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before, blockquote:after, q:before, q:after {
     content: '';
     content: none;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -83,7 +75,6 @@ table {
     position: relative;
 }
 
-
 .quote-container {
     width: 80%;
     margin: auto;
@@ -94,7 +85,7 @@ table {
     color: white;
 }
 
-.quote-container .quote{
+.quote-container .quote {
     font-size: 2.0em;
 }
 
@@ -103,7 +94,6 @@ table {
     margin-left: 900px;
     margin-top: 20px;
 }
-
 
 .parallax-section .video {
     width: 36.7%;
@@ -116,6 +106,7 @@ table {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .todoContainer {
     background-image: url("/images/asanoha.png");
 }
@@ -135,10 +126,8 @@ table {
     border: 1px solid black;
     padding: 25px;
     border: 1px dashed #ddd;
-	box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
 }
-
-
 
 .navbar-inverse {
     margin-bottom: 20px;
@@ -148,67 +137,61 @@ table {
     height: 100vh;
 }
 
-
 .unfinished-tasks, .finished-tasks {
     height: auto;
 }
 
 .snip1562 {
-  background-color: #367AB3;
-  border: none;
-  color: #ffffff;
-  display: inline-block;
-  font-size: 1.2em;
-  margin: 15px 20px;
-  outline: none;
-  padding: 6px 20px 5px;
-  position: relative;
-  text-transform: uppercase;
-  font-weight: 700;
-  border-radius: 2px;
+    background-color: #367AB3;
+    border: none;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 1.2em;
+    margin: 15px 20px;
+    outline: none;
+    padding: 6px 20px 5px;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 2px;
 }
 
-.snip1562:before,
-.snip1562:after {
-  border-color: transparent;
-  -webkit-transition: all 0.25s;
-  transition: all 0.25s;
-  border-style: solid;
-  border-width: 0;
-  content: "";
-  height: 24px;
-  position: absolute;
-  width: 24px;
+.snip1562:before, .snip1562:after {
+    border-color: transparent;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+    border-style: solid;
+    border-width: 0;
+    content: "";
+    height: 24px;
+    position: absolute;
+    width: 24px;
 }
 
 .snip1562:before {
-  border-color: #367AB3;
-  border-left-width: 2px;
-  border-top-width: 2px;
-  left: -5px;
-  top: -5px;
+    border-color: #367AB3;
+    border-left-width: 2px;
+    border-top-width: 2px;
+    left: -5px;
+    top: -5px;
 }
 
 .snip1562:after {
-  border-bottom-width: 2px;
-  border-color: #367AB3;
-  border-right-width: 2px;
-  bottom: -5px;
-  right: -5px;
+    border-bottom-width: 2px;
+    border-color: #367AB3;
+    border-right-width: 2px;
+    bottom: -5px;
+    right: -5px;
 }
 
-.snip1562:hover,
-.snip1562.hover {
-  background-color: #367AB3;
+.snip1562:hover, .snip1562.hover {
+    background-color: #367AB3;
 }
 
-.snip1562:hover:before,
-.snip1562.hover:before,
-.snip1562:hover:after,
-.snip1562.hover:after {
-  height: 100%;
-  width: 100%;
-  color: white;
+.snip1562:hover:before, .snip1562.hover:before, .snip1562:hover:after, .snip1562.hover:after {
+    height: 100%;
+    width: 100%;
+    color: white;
 }
 
 .grocery-banner {
@@ -232,11 +215,37 @@ table {
     border-radius: 10px;
 }
 
+.subTodoContainer span {
+    font-size: 2em;
+    display: inline-block;
+}
+
+/* .subTodoContainer .glyphicon {
+    float: right;
+    opacity: 0.0;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+} */
+
+.subTodoContainer:hover+.subTodoContainer .glyphicon {
+    opacity: .5;
+}
+
+.list-thumbnail {
+    width: 120px;
+    height: 120px;
+}
+
 .journal-container {
     height: 100vh;
     background-image: url("../images/bookshelf-wallpaper.jpg");
-    background-position: center;
-    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50% 0;
 }
 
 .book-cover-thumbnail {
@@ -268,17 +277,27 @@ table {
     margin: auto;
 }
 
+.research-topics-container {
+    background-image: url('../images/symphony.png');
+
+}
+
+.research-topic-page-container {
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50% 0;
+}
 
 @media only screen and (max-width: 1000px) {
     .todoContainer .tabbable {
         height: 300px;
     }
-
-    .todoContainer .tabbable li{
+    .todoContainer .tabbable li {
         font-size: 2em;
     }
-
-    .nav-tabs li{
+    .nav-tabs li {
         font-size: 100px;
     }
 }

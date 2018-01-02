@@ -8,7 +8,7 @@
         <div class="tabbable col-md-2 well well-sm" ng-init="selectedTab = 1;">
             <ul class="nav nav-pills nav-stacked">
                 <li ng-class="{active: selectedTab == 1}">
-                    <a href="javascript:void(0)" ng-click="selectedTab = 1;">Daily Contact</a>
+                    <a href="javascript:void(0)" ng-click="selectedTab = 1;">Sub Tasks</a>
                 </li>
                 <li ng-class="{active: selectedTab == 2}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 2;">Todo List</a>
@@ -22,24 +22,45 @@
                 <li ng-class="{active: selectedTab == 5}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 5;">Grocery List</a>
                 </li>
+
                 <li ng-class="{active: selectedTab == 6}">
-                    <a href="javascript:void(0)" ng-click="selectedTab = 6;">Sub Tasks</a>
+                    <a href="javascript:void(0)" ng-click="selectedTab = 6;">Daily Contact</a>
                 </li>
             </ul>
         </div>
 
         <div class="tasks-container col-md-9">
-            <!-- ******************** CONTACT ******************** -->
+            <!-- ******************** SUB TODO ******************** -->
             <div class="tab-content" ng-show="selectedTab == 1">
-                <div>
-                    <h3 class="text-center">{{dailyContact.person}}</h3>
-                    <div class="row">
-                        <div class="image-container">
-                            <img class="img-responsive" ng-src="{{dailyContact.picture}}" alt="">
-                        </div>
+
+                <div class="well well-sm">
+                    <form ng-submit="addSubTodo(addSubTodoInput, listThumbnailImage)">
+                        <input placeholder="Add new Todo List" class="form-control" type="text" ng-model="addSubTodoInput">
+                        <input placeholder="List thumbnail image" class="form-control" type="text" ng-model="listThumbnailImage">
+                        <button class="snip1562" ng-click="addSubTodo(addSubTodoInput, listThumbnailImage)" type="button" name="button">Add New Todo List</button>
+                    </form>
+                </div>
+
+                <div class="subTodoContainer well" ng-repeat="subTodoListName in subTodoLists" ng-mouseover="hoverIn(subTodoListName)">
+                    <div class="list-info" ng-click="subTodoListName.isCollapsed = !subTodoListName.isCollapsed">
+                        <img class="img-thumbnail list-thumbnail" ng-src="{{subTodoListName.listThumbnail}}" alt="">
+                        <span>{{subTodoListName.listName}}</span>
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </div>
+                    <div uib-collapse="subTodoListName.isCollapsed">
+                        <ul ng-repeat="task in subTodoListName.tasks">
+                            <label><input ng-click="updateSubTask($index, subTodoListName)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.taskName}}</label>
+                            <button ng-click="deleteSubTask($index, subTodoListName)" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                        </ul>
+                        <form ng-submit="addTaskToSubTodoList(subTask, subTodoListName)">
+                            <input type="text" ng-model="subTask">
+                        </form>
+                        <button class="btn" ng-click="addTaskToSubTodoList(subTask, subTodoListName)">add new task to {{subTodoListName.listName}} list</button>
                     </div>
                 </div>
+
             </div>
+
             <!-- ******************** Todo ******************** -->
             <div class="tab-content" ng-show="selectedTab == 2">
                 <div class="well well-sm addTodo">
@@ -161,33 +182,19 @@
                 </div>
 
             </div>
-            <!-- ******************** SUB TODO ******************** -->
+
+            <!-- ******************** CONTACT ******************** -->
             <div class="tab-content" ng-show="selectedTab == 6">
-
-
-
-                <div class="well well-sm">
-                    <form ng-submit="addSubTodo(addSubTodoInput)">
-                        <input placeholder="Add new Todo List" class="form-control" type="text" ng-model="addSubTodoInput">
-                        <button class="snip1562" ng-click="addSubTodo(addSubTodoInput)" type="button" name="button">Add New Todo List</button>
-                    </form>
+                <div>
+                    <h3 class="text-center">{{dailyContact.person}}</h3>
+                    <div class="row">
+                        <div class="image-container">
+                            <img class="img-responsive" ng-src="{{dailyContact.picture}}" alt="">
+                        </div>
+                    </div>
                 </div>
-
-                <div class="subTodoContainer well" ng-repeat="subTodoListName in subTodoLists">
-                    <h2>{{subTodoListName.listName}}</h2>
-                    <ul ng-repeat="task in subTodoListName.tasks">
-                        <label><input ng-click="updateSubTask($index, subTodoListName)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.taskName}}</label>
-                        <button ng-click="deleteSubTask($index, subTodoListName)" class="btn btn-danger"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                    </ul>
-                    <form ng-submit="addTaskToSubTodoList(subTask, subTodoListName)">
-                        <input type="text" ng-model="subTask">
-                    </form>
-                    <button class="btn" ng-click="addTaskToSubTodoList(subTask, subTodoListName)">add new task to {{subTodoListName.listName}} list</button>
-                </div>
-
-
-
             </div>
+
         </div>
 
     </div>

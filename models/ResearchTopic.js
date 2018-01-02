@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
         topicName: {type: String, required: true},
         dateCreated: {type: Date, default: new Date()},
         topicImage: {type: String, required: true},
+        topicBackgroundImage: String,
         notes: [{
             note: {type: String},
             dateCreated: {type: Date, default: new Date()}

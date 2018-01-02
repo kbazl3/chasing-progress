@@ -1,13 +1,14 @@
 angular.module("chasingProgress")
     .service("researchTopicSvc", function($http) {
 
-        this.addResearchTopic = function(topicName, topicImage) {
+        this.addResearchTopic = function(topicName, topicImage, topicBackgroundImage) {
             return $http({
                 method: 'POST',
                 url: '/api/researchTopic',
                 data: {
                     topicName: topicName,
-                    topicImage: topicImage
+                    topicImage: topicImage,
+                    topicBackgroundImage: topicBackgroundImage
                 }
             }).then(function(response) {
                 return response;
@@ -25,14 +26,15 @@ angular.module("chasingProgress")
         };
 
         this.newNotes = function(researchTopic, researchTopicNotes) {
-            let researchTopicObject = {
-                notes: researchTopicNotes,
-                dateCreated: new Date()
-            }
+            researchTopic.notes.push({
+                note: researchTopicNotes
+            })
             return $http({
                 method: 'PUT',
                 url:'/api/researchTopic/' + researchTopic._id,
-                data: researchTopicObject
+                data: researchTopic
+            }).then(function(response) {
+                return response
             })
         }
 

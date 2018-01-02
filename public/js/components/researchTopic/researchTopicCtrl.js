@@ -5,7 +5,7 @@ angular.module("chasingProgress")
 
 
         $scope.addResearchTopic = function() {
-            researchTopicSvc.addResearchTopic($scope.topicName, $scope.topicImage)
+            researchTopicSvc.addResearchTopic($scope.topicName, $scope.topicImage, $scope.topicImageBackground)
                 .then(function(response) {
                     $scope. researchTopics = response.data;
                     console.log(response.data);

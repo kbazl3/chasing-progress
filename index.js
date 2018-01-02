@@ -69,7 +69,6 @@ app.get('/api/bookNotes', bookNotesCtrl.getBooks);
 app.delete('/api/bookNotes/:id', bookNotesCtrl.deleteBook);
 app.get('/api/bookNotes/:id', bookNotesCtrl.getOneBook);
 
-
 app.post('/api/quotes', quotesCtrl.addQuote);
 app.put('/api/quotes/:id', quotesCtrl.addQuoteNote);
 app.get('/api/quotes', quotesCtrl.getQuotes);

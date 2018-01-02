@@ -158,9 +158,12 @@ angular.module('chasingProgress')
         }
 
 
+        //*************************  SUB TODO LIST  ************************************************
 
-        $scope.addSubTodo = function(addSubTodoInput) {
-            todoSvc.addSubTodo(addSubTodoInput)
+        // $scope.isCollapsed = true;
+
+        $scope.addSubTodo = function(addSubTodoInput, listImage) {
+            todoSvc.addSubTodo(addSubTodoInput, listImage)
                 .then(function(response) {
                     console.log(response);
                 })
@@ -189,8 +192,5 @@ angular.module('chasingProgress')
                     console.log(response);
                 })
         }
-
-
-
 
     });

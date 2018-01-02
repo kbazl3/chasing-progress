@@ -165,7 +165,7 @@ angular.module('chasingProgress')
                     complete++;
                 }
             })
-            return (complete / ary.length) * 100;
+            return Math.round((complete / ary.length) * 100);
         }
 
 
@@ -374,12 +374,14 @@ angular.module('chasingProgress')
             })
         }
 
-        this.addSubTodo = function(subTodoList) {
+        this.addSubTodo = function(subTodoList, listImage) {
+            console.log(listImage);
             return $http({
                 method: 'POST',
                 url: "/api/subTodo",
                 data: {
-                    listName: subTodoList
+                    listName: subTodoList,
+                    listThumbnail: listImage
                 }
             }).then(function(response) {
                 return response;
@@ -392,6 +394,9 @@ angular.module('chasingProgress')
               method: 'GET',
               url: "/api/subTodo"
             }).then(function(response) {
+                response.data.forEach(function(list) {
+                    list.isCollapsed = true;
+                })
                 return response;
             });
         };
