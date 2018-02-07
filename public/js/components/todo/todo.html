@@ -101,7 +101,7 @@
 
                 <div class="unfinished-tasks well well-sm">
                     <h2>Daily Tasks</h2>
-                    <div class="checkbox" ng-repeat="task in dailyData.dailyTasks.dailyTasks">
+                    <div class="checkbox" ng-repeat="task in dailyData">
                         <label><input ng-click="updateDailyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
                         <button class="btn btn-danger align-right" ng-click="deleteDailyTask(task)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </div>

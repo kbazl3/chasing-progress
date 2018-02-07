@@ -12,12 +12,12 @@ var subTodoSchema = new Schema({
     completedAt: Date,
     tasks: [
         {
-        taskName: String,
-        completed: {type: Boolean, default: false},
-        dateCreated: {
-            type: Date,
-            default: new Date()
-        },
+            taskName: String,
+            completed: {type: Boolean, default: false},
+            dateCreated: {
+                type: Date,
+                default: new Date()
+            },
         }
     ]
 });

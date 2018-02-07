@@ -6,16 +6,16 @@ angular.module('chasingProgress')
             todoList: [],
             completedList: []
         };
-        let sortedDailyTasks = {
-            dailyTasks: [],
-            percentCompleted: 0,
-        }
-        let sortedWeeklyTasks = {
-            weeklyTasks: [],
-            percentCompleted: 0
-        }
-        let dailyTasks,
-            weeklyTasks;
+        // let sortedDailyTasks = {
+        //     dailyTasks: [],
+        //     percentCompleted: 0,
+        // }
+        // let sortedWeeklyTasks = {
+        //     weeklyTasks: [],
+        //     percentCompleted: 0
+        // }
+        // let dailyTasks,
+        //     weeklyTasks;
 
 
         let peopleToContact = [{
@@ -141,7 +141,7 @@ angular.module('chasingProgress')
         ];
 
 
-        sortedTodoTasks.dailyContact = peopleToContact[new Date().getDate()];
+        // sortedTodoTasks.dailyContact = peopleToContact[new Date().getDate()];
 
 
 
@@ -158,6 +158,22 @@ angular.module('chasingProgress')
             }
         };
 
+        // const sortTaskz = function(tasks) {
+        //     let completed = [],
+        //         incomplete = [];
+        //     tasks.forEach(function(task) {
+        //         if (task.completed) {
+        //             completed.push(task)
+        //         } else {
+        //             incomplete.push(task)
+        //         }
+        //     })
+        //     return {
+        //         completed: completed,
+        //         incomplete: incomplete
+        //     }
+        // };
+
         const percentCompleted = function(ary) {
             let complete = 0;
             ary.forEach(function(task) {
@@ -166,6 +182,19 @@ angular.module('chasingProgress')
                 }
             })
             return Math.round((complete / ary.length) * 100);
+        }
+
+        const createChartLabels = function(ary) {
+            let aryOfFilteredDates = [],
+                aryOfPercentCompleted = [];
+            ary.forEach(function(obj) {
+                aryOfFilteredDates.push($filter('date')(obj.dateCreated));
+                aryOfPercentCompleted.push(obj.percentCompleted)
+            })
+                return {
+                    aryOfFilteredDates: aryOfFilteredDates,
+                    aryOfPercentCompleted: aryOfPercentCompleted
+                }
         }
 
 
@@ -444,22 +473,87 @@ angular.module('chasingProgress')
                 });
         }
 
+        //have a completed section for every seperate list
+        // let todoData = {
+        //     todoList: [{
+        //         listName: "listName",
+        //         listThumbnail: "image",
+
+        //         completed: [],
+        //         incompleted: [],
+        //         percentCompleted
+        //     }],
+        //     daily: {
+        //         dailyList: [],
+        //         dailyLogs: [],
+        //         percentCompleted: Number,
+        //         chartLabels: []
+        //     },
+        //     weekly: {
+        //         weeklyList: [],
+        //         weeklyLogs: [],
+        //         percentCompleted: Number
+        //     },
+        //     contact: "string",
+        //     groceries: ["array of strings"]
+        // };
+
+        let todoData = {
+            daily: {}
+        };
+
+        this.getTodoData = function() {
+            todoData.contact = peopleToContact[new Date().getDate()];
+            var dfd = $q.defer();
+            $http({
+                method: 'GET',
+                url: "/api/subTodo"
+            }).then(function(response) {
+                response.data.forEach(function(list) {
+                    list.percentCompleted = percentCompleted(list.tasks)
+                    // list.tasks = sortTaskz(list.tasks);
+                })
+                todoData.todoLists = response.data;
+                // console.log(todoData);
 
 
-        /*
-            stats
+                $http({
+                    method: 'GET',
+                    url: "/api/dailyList"
+                }).then(function(response) {
+                    // console.log(response.data);
+                    todoData.daily = response.data;
+                    todoData.daily.percentCompleted = percentCompleted(response.data.dailyTasks);
+                    todoData.daily.chartLabels = createChartLabels(response.data.dailyLogs);
+                    console.log(todoData);
 
-            I want to see how many i've completed out of how many total tasks there are
-            I want to look back on certain weeks to see which tasks were completed and which ones were not
-            I want to see how often a certain task is getting completed over number of weeks
+                    $http({
+                      method: 'GET',
+                      url: "/api/groceryList"
+                    }).then(function(response) {
+                        todoData.grocery = response.data;
 
-        */
+                        $http({
+                            method: 'GET',
+                            url: "/api/weeklyList"
+                        }).then(function(response) {
+                            weeklyTasks = response.data.weeklyTasks
+                            todoData.weekly = {};
+                            todoData.weekly.weeklyTasks = response.data.weeklyTasks;
+                            todoData.weekly.percentCompleted = percentCompleted(response.data.weeklyTasks)
+                            // sortedWeeklyTasks.weeklyLogs = response.data.weeklyLogs
+                            dfd.resolve(todoData);
+                        });
 
 
+                    });
+
+                });
 
 
-
-
+            });
+            return dfd.promise;
+        }
 
 
 

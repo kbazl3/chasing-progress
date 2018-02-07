@@ -3,7 +3,11 @@ angular.module('chasingProgress')
 
         console.log(todoResolve);
 
-        $scope.dailyData = todoResolve;
+        $scope.dailyData = todoResolve.daily.dailyTasks;
+        $scope.groceryList = todoResolve.grocery;
+        $scope.dailyContact = todoResolve.contact;
+        $scope.subTodoLists = todoResolve.todoLists;
+        $scope.weeklyData = todoResolve.weekly;
 
         todoSvc.getTasks($scope.dailyList)
             .then(function(response) {
@@ -14,20 +18,20 @@ angular.module('chasingProgress')
             });
 
 
-        todoSvc.getWeeklyTasks()
-            .then(function(response) {
-                $scope.weeklyData = response;
-            })
+        // todoSvc.getWeeklyTasks()
+        //     .then(function(response) {
+        //         $scope.weeklyData = response;
+        //     })
 
-        todoSvc.getGroceries()
-            .then(function(response) {
-                $scope.groceryList = response.data
-            })
+        // todoSvc.getGroceries()
+        //     .then(function(response) {
+        //         $scope.groceryList = response.data
+        //     })
 
-        todoSvc.getSubTodoLists()
-            .then(function(response) {
-                $scope.subTodoLists = response.data
-            })
+        // todoSvc.getSubTodoLists()
+        //     .then(function(response) {
+        //         $scope.subTodoLists = response.data
+        //     })
 
 
         $scope.addTask = function(task) {
@@ -81,11 +85,11 @@ angular.module('chasingProgress')
                 });
         };
 
-
-        $scope.labels = todoResolve.chartLabels;
+        // $scope.labels = todoResolve.chartLabels;
+        $scope.labels = todoResolve.daily.chartLabels.aryOfFilteredDates;
         $scope.series = ['Completed'];
         $scope.data = [
-            todoResolve.aryOfDailyLogPercentCompleted
+            todoResolve.daily.chartLabels.aryOfPercentCompleted
         ];
         $scope.color = 'red';
         // $scope.onHover =
@@ -160,7 +164,7 @@ angular.module('chasingProgress')
 
         //*************************  SUB TODO LIST  ************************************************
 
-        // $scope.isCollapsed = true;
+        $scope.isCollapsed = true;
 
         $scope.addSubTodo = function(addSubTodoInput, listImage) {
             todoSvc.addSubTodo(addSubTodoInput, listImage)
