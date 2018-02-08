@@ -9,6 +9,14 @@ angular.module("chasingProgress")
                 })
         }
 
+        $scope.deleteNote = function(note, index) {
+            console.log(researchTopicResolve.data[$stateParams.researchTopicId].notes[index], index);
+        }
+
+        $scope.editNote = function(note) {
+            console.log(note.note);
+        }
+
 
 
 });

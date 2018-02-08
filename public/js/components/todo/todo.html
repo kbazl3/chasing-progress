@@ -10,9 +10,6 @@
                 <li ng-class="{active: selectedTab == 1}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 1;">Sub Tasks</a>
                 </li>
-                <li ng-class="{active: selectedTab == 2}">
-                    <a href="javascript:void(0)" ng-click="selectedTab = 2;">Todo List</a>
-                </li>
                 <li ng-class="{active: selectedTab == 3}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 3;">Daily Tasks</a>
                 </li>
@@ -61,40 +58,6 @@
 
             </div>
 
-            <!-- ******************** Todo ******************** -->
-            <div class="tab-content" ng-show="selectedTab == 2">
-                <div class="well well-sm addTodo">
-                    <form ng-submit="addTask(addTaskInput)">
-                        <input placeholder="What do you need to get done, Kyle?" class="form-control" type="text" ng-model="addTaskInput">
-                        <button class="snip1562" ng-click="addTask(addTaskInput)" type="button" name="button">Add Task <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                    </form>
-                </div>
-
-
-                <div class="unfinished-tasks well well-sm">
-                    <!-- <h2>Get This Shit Done</h2> -->
-                    <ul ng-repeat="task in todoList">
-                        <li>
-                            <h3>{{task.task}}</h3></li>
-                        <li><b>Date Added:</b> {{task.dateCreated | date:'short'}}</li>
-                        <button class="btn btn-primary" ng-click="updateTask(task._id, task)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></button>
-
-                        <button class="btn btn-danger" ng-click="deleteTask(task)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                    </ul>
-                </div>
-
-
-                <div class="finished-tasks well well-sm">
-                    <h2>Completed</h2>
-                    <ul ng-repeat="completedTask in completedList">
-                        <h3><li>{{completedTask.task}}</li></h3>
-                        <li><b>Date Added:</b> {{completedTask.dateCreated | date:'short'}}</li>
-                        <li> <b>Date Completed:</b> {{completedTask.completedAt | date:'short'}}</li>
-                        <button class="btn btn-warning" ng-click="updateTask(completedTask._id, completedTask)">Update</button>
-                        <button class="btn btn-danger" ng-click="deleteTask(completedTask)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                    </ul>
-                </div>
-            </div>
             <!-- ******************** DAILY ******************** -->
             <div class="tab-content" ng-show="selectedTab == 3">
 

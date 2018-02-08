@@ -2,6 +2,13 @@
 
 <div class="research-topic-page-container" style="background-image: url('{{researchTopic.topicBackgroundImage}}')">
     <h2>{{researchTopic.topicName}}</h2>
+    <div class="well">
+        <ul ng-repeat="note in researchTopic.notes">
+            <li ng-bind-html="note.note">{{note.note}}</li>
+            <button ng-click="deleteNote(note, $index)">Delete</button>
+            <button ng-click="editNote(note)">Edit</button>
+        </ul>
+    </div>
 
 
     <div class="wysiwig">

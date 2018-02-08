@@ -9,56 +9,6 @@ angular.module('chasingProgress')
         $scope.subTodoLists = todoResolve.todoLists;
         $scope.weeklyData = todoResolve.weekly;
 
-        todoSvc.getTasks($scope.dailyList)
-            .then(function(response) {
-                $scope.dailyContact = response.dailyContact;
-                $scope.completedList = response.completedList;
-                $scope.todoList = response.todoList;
-                $scope.dailyCompletedPercentage = response.dailyCompletedPercentage;
-            });
-
-
-        // todoSvc.getWeeklyTasks()
-        //     .then(function(response) {
-        //         $scope.weeklyData = response;
-        //     })
-
-        // todoSvc.getGroceries()
-        //     .then(function(response) {
-        //         $scope.groceryList = response.data
-        //     })
-
-        // todoSvc.getSubTodoLists()
-        //     .then(function(response) {
-        //         $scope.subTodoLists = response.data
-        //     })
-
-
-        $scope.addTask = function(task) {
-            todoSvc.addTask(task)
-                .then(function(response) {
-
-                });
-            $scope.addTaskInput = "";
-        };
-
-        $scope.deleteTask = function(task) {
-            if (prompt('Are you sure you want to delete this?')) {
-
-            }
-            todoSvc.deleteTask(task._id)
-                .then(function(response) {
-                    console.log(response);
-                });
-        };
-
-        $scope.updateTask = function(id, task) {
-            todoSvc.updateTask(id, task)
-                .then(function(response) {
-                    console.log(response);
-                });
-        };
-
 
         //*************************  DAILY TASKS  ************************************************
 

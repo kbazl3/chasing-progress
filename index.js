@@ -8,7 +8,6 @@ const express = require("express"),
       app = express(),
       secrets = require('./secrets.js'),
       mongoUri = process.env.MONGO_LABS_URI || secrets.MONGO_LABS_URI,
-      todoCtrl = require("./controllers/todoCtrl.js"),
       dailyTodoCtrl = require('./controllers/dailyTodoCtrl.js'),
       weeklyTodoCtrl = require('./controllers/weeklyTodoCtrl'),
       weeklyLogsCtrl = require('./controllers/weeklyLogsCtrl'),
@@ -32,12 +31,6 @@ app.use('/scripts', express.static(__dirname + '/node_modules/textangular'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-chart.js'));
 app.use('/scripts', express.static(__dirname + '/node_modules/chart.js'));
 mongoose.Promise = global.Promise;
-
-app.post('/api/todoList', todoCtrl.addTask);
-app.get('/api/todoList', todoCtrl.getTasks);
-app.delete('/api/todoList/:id', todoCtrl.deleteTask);
-app.put('/api/todoList/:id', todoCtrl.updateTask);
-app.get('/api/todoList/test', todoCtrl.test);
 
 app.post('/api/dailyList', dailyTodoCtrl.addDailyTask);
 app.get('/api/dailyList', dailyTodoCtrl.getDailyTasks);

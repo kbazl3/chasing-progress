@@ -28,16 +28,6 @@ angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', '
                 }
             })
 
-            // .state('todo', {
-            //     url: '/todo',
-            //     templateUrl: '/js/components/todo/todo.html',
-            //     controller: 'todoCtrl',
-            //     resolve: {
-            //         todoResolve: function(todoSvc) {
-            //             return todoSvc.getDailyTasks()
-            //         }
-            //     }
-            // })
 
             .state('books', {
                 url: '/books',

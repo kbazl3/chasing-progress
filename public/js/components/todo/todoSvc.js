@@ -2,20 +2,7 @@
 
 angular.module('chasingProgress')
     .service('todoSvc', function($http, $q, $interval, $filter) {
-        let sortedTodoTasks = {
-            todoList: [],
-            completedList: []
-        };
-        // let sortedDailyTasks = {
-        //     dailyTasks: [],
-        //     percentCompleted: 0,
-        // }
-        // let sortedWeeklyTasks = {
-        //     weeklyTasks: [],
-        //     percentCompleted: 0
-        // }
-        // let dailyTasks,
-        //     weeklyTasks;
+
 
 
         let peopleToContact = [{
@@ -140,24 +127,6 @@ angular.module('chasingProgress')
             },
         ];
 
-
-        // sortedTodoTasks.dailyContact = peopleToContact[new Date().getDate()];
-
-
-
-        const sortTasks = function(tasks) {
-            if (sortedTodoTasks.todoList.length === 0) {
-                tasks.forEach(function(task) {
-
-                    if (task.completed === false) {
-                        sortedTodoTasks.todoList.push(task);
-                    } else {
-                        sortedTodoTasks.completedList.push(task);
-                    }
-                });
-            }
-        };
-
         // const sortTaskz = function(tasks) {
         //     let completed = [],
         //         incomplete = [];
@@ -197,7 +166,7 @@ angular.module('chasingProgress')
                 }
         }
 
-
+        //*************************  TODO LIST  ************************************************
 
         this.getTasks = function(dailyList) {
             var dfd = $q.defer();
@@ -222,7 +191,6 @@ angular.module('chasingProgress')
                 return response;
             });
         };
-
 
         this.deleteTask = function(taskId) {
             return $http({
@@ -249,34 +217,7 @@ angular.module('chasingProgress')
                 });
         };
 
-
-
         //*************************  DAILY TASKS  ************************************************
-
-        this.getDailyTasks = function(dailyList) {
-            let dfd = $q.defer();
-            $http({
-                method: 'GET',
-                url: "/api/dailyList"
-            }).then(function(response) {
-                let aryOfDates = [],
-                    aryOfDailyLogPercentCompleted = [];
-
-                response.data.dailyLogs.forEach(function(dailyLog) {
-                    aryOfDates.push($filter('date')(dailyLog.dateCreated));
-                    aryOfDailyLogPercentCompleted.push(dailyLog.percentCompleted);
-                })
-                dailyTasks = response.data.dailyTasks;
-                sortedDailyTasks.dailyTasks = response.data;
-                sortedDailyTasks.percentCompleted = percentCompleted(response.data.dailyTasks);
-                sortedDailyTasks.chartLabels = aryOfDates;
-                sortedDailyTasks.aryOfDailyLogPercentCompleted = aryOfDailyLogPercentCompleted;
-                dfd.resolve(sortedDailyTasks);
-            });
-            return dfd.promise;
-        };
-
-
 
         this.addDailyTask = function(task) {
             return $http({
@@ -318,22 +259,6 @@ angular.module('chasingProgress')
 
         //*************************  WEEKLY TASKS  ************************************************
 
-        this.getWeeklyTasks = function(dailyList) {
-            let dfd = $q.defer();
-            $http({
-                method: 'GET',
-                url: "/api/weeklyList"
-            }).then(function(response) {
-                weeklyTasks = response.data.weeklyTasks;
-                sortedWeeklyTasks.weeklyTasks = response.data.weeklyTasks;
-                sortedWeeklyTasks.percentCompleted = percentCompleted(response.data.weeklyTasks)
-                sortedWeeklyTasks.weeklyLogs = response.data.weeklyLogs
-                dfd.resolve(sortedWeeklyTasks)
-            });
-            return dfd.promise;
-        };
-
-
         this.addWeeklyTask = function(task) {
             return $http({
                 method: 'POST',
@@ -372,7 +297,7 @@ angular.module('chasingProgress')
                 });
         };
 
-                //*************************  GROCERIES  ************************************************
+        //*************************  GROCERIES  ************************************************
 
         this.addGroceryItem = function(groceryItem) {
             return $http({
@@ -387,21 +312,14 @@ angular.module('chasingProgress')
 
         }
 
-        this.getGroceries = function() {
-            return $http({
-              method: 'GET',
-              url: "/api/groceryList"
-            }).then(function(response) {
-                return response;
-            });
-        };
-
         this.deleteGroceryItem = function(item) {
             return $http({
                 method: 'Delete',
                 url: "/api/groceryList/" + item._id
             })
         }
+
+        //*************************  SUB TODO  ************************************************
 
         this.addSubTodo = function(subTodoList, listImage) {
             console.log(listImage);
@@ -418,21 +336,8 @@ angular.module('chasingProgress')
 
         }
 
-        this.getSubTodoLists = function() {
-            return $http({
-              method: 'GET',
-              url: "/api/subTodo"
-            }).then(function(response) {
-                response.data.forEach(function(list) {
-                    list.isCollapsed = true;
-                })
-                return response;
-            });
-        };
-
 
         this.addTaskToList = function(task, listName) {
-
             listName.tasks.push({
                 taskName: task
             })
@@ -499,12 +404,14 @@ angular.module('chasingProgress')
         // };
 
         let todoData = {
-            daily: {}
+            daily: {},
+            weekly: {}
         };
 
         this.getTodoData = function() {
             todoData.contact = peopleToContact[new Date().getDate()];
             var dfd = $q.defer();
+            //*****TODO LIST CALL*****
             $http({
                 method: 'GET',
                 url: "/api/subTodo"
@@ -514,47 +421,37 @@ angular.module('chasingProgress')
                     // list.tasks = sortTaskz(list.tasks);
                 })
                 todoData.todoLists = response.data;
-                // console.log(todoData);
 
-
+                //*****DAILY CALL*****
                 $http({
                     method: 'GET',
                     url: "/api/dailyList"
                 }).then(function(response) {
-                    // console.log(response.data);
                     todoData.daily = response.data;
                     todoData.daily.percentCompleted = percentCompleted(response.data.dailyTasks);
                     todoData.daily.chartLabels = createChartLabels(response.data.dailyLogs);
                     console.log(todoData);
 
+                    //*****GROCERY CALL*****
                     $http({
                       method: 'GET',
                       url: "/api/groceryList"
                     }).then(function(response) {
                         todoData.grocery = response.data;
 
+                        //*****WEEKLY CALL*****
                         $http({
                             method: 'GET',
                             url: "/api/weeklyList"
                         }).then(function(response) {
-                            weeklyTasks = response.data.weeklyTasks
-                            todoData.weekly = {};
                             todoData.weekly.weeklyTasks = response.data.weeklyTasks;
                             todoData.weekly.percentCompleted = percentCompleted(response.data.weeklyTasks)
-                            // sortedWeeklyTasks.weeklyLogs = response.data.weeklyLogs
                             dfd.resolve(todoData);
                         });
-
-
                     });
-
                 });
-
-
             });
             return dfd.promise;
         }
-
-
 
     });
