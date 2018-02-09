@@ -10,10 +10,19 @@ angular.module("chasingProgress")
         }
 
         $scope.deleteNote = function(note, index) {
-            console.log(researchTopicResolve.data[$stateParams.researchTopicId].notes[index], index);
+            console.log(researchTopicResolve.data[$stateParams.researchTopicId], index);
+            researchTopicSvc.deleteNote(researchTopicResolve.data[$stateParams.researchTopicId], index)
+                // .then(function(response) {
+                //     console.log(response)
+                // })
         }
 
         $scope.editNote = function(note) {
+            //click edit
+            //note html goes into wysiwig.
+                //goes into modal?
+                //goes into wysiwig below?
+                    //if so, toggle "add book notes" and "edit note" button
             console.log(note.note);
         }
 

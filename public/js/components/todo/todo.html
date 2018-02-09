@@ -38,21 +38,22 @@
                     </form>
                 </div>
 
-                <div class="subTodoContainer well" ng-repeat="subTodoListName in subTodoLists" ng-mouseover="hoverIn(subTodoListName)">
-                    <div class="list-info" ng-click="subTodoListName.isCollapsed = !subTodoListName.isCollapsed">
-                        <img class="img-thumbnail list-thumbnail" ng-src="{{subTodoListName.listThumbnail}}" alt="">
-                        <span>{{subTodoListName.listName}}</span>
+                <div class="sub-todo-container well" ng-repeat="subTodoList in subTodoLists" ng-mouseover="hoverIn(subTodoList)">
+                    <div class="list-info" ng-click="subTodoList.isCollapsed = !subTodoList.isCollapsed">
+                        <img class="img-thumbnail list-thumbnail" ng-src="{{subTodoList.listThumbnail}}" alt="">
+                        <span>{{subTodoList.listName}}</span>
                         <span class="glyphicon glyphicon-pencil"></span>
+                        <button ng-click="deleteList(subTodoList)">Delete</button>
                     </div>
-                    <div uib-collapse="subTodoListName.isCollapsed">
-                        <ul ng-repeat="task in subTodoListName.tasks">
-                            <label><input ng-click="updateSubTask($index, subTodoListName)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.taskName}}</label>
-                            <button ng-click="deleteSubTask($index, subTodoListName)" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                    <div uib-collapse="subTodoList.isCollapsed">
+                        <ul ng-repeat="task in subTodoList.tasks">
+                            <label><input ng-click="updateSubTask($index, subTodoList)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.taskName}}</label>
+                            <button ng-click="deleteSubTask($index, subTodoList)" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                         </ul>
-                        <form ng-submit="addTaskToSubTodoList(subTask, subTodoListName)">
+                        <form ng-submit="addTaskToSubTodoList(subTask, subTodoList)">
                             <input type="text" ng-model="subTask">
                         </form>
-                        <button class="btn" ng-click="addTaskToSubTodoList(subTask, subTodoListName)">add new task to {{subTodoListName.listName}} list</button>
+                        <button class="btn" ng-click="addTaskToSubTodoList(subTask, subTodoList)">add new task to {{subTodoList.listName}} list</button>
                     </div>
                 </div>
 
@@ -163,3 +164,5 @@
     </div>
 
 </div>
+
+<footer></footer>

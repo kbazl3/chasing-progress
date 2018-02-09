@@ -22,4 +22,11 @@ angular.module("chasingProgress")
             $state.go('researchTopicPage', {researchTopicId: index});
         }
 
+        $scope.deleteTopic = function(topic) {
+            researchTopicSvc.deleteTopic(topic)
+                .then(function(response) {
+                    console.log('successfully deleted' + topic.topicName);
+                })
+        }
+
 });

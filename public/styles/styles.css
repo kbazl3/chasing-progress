@@ -85,6 +85,10 @@ table {
     color: white;
 }
 
+.quote-container p {
+    cursor: pointer;
+}
+
 .quote-container .quote {
     font-size: 2.0em;
 }
@@ -215,12 +219,18 @@ table {
     border-radius: 10px;
 }
 
-.subTodoContainer span {
+
+.sub-todo-container, .sub-todo-container label  {
+    cursor: pointer;
+}
+
+
+.sub-todo-container span {
     font-size: 2em;
     display: inline-block;
 }
 
-/* .subTodoContainer .glyphicon {
+/* .sub-todo-container .glyphicon {
     float: right;
     opacity: 0.0;
     -webkit-transition: all 200ms ease-in-out;
@@ -230,7 +240,7 @@ table {
     transition: all 200ms ease-in-out;
 } */
 
-.subTodoContainer:hover+.subTodoContainer .glyphicon {
+.sub-todo-container:hover+.sub-todo-container .glyphicon {
     opacity: .5;
 }
 
@@ -277,9 +287,12 @@ table {
     margin: auto;
 }
 
-.research-topics-container {
+.research-topics-page-container {
     background-image: url('../images/symphony.png');
+}
 
+.topic-container {
+    cursor: pointer;
 }
 
 .research-topic-page-container {

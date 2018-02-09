@@ -1,7 +1,7 @@
 <nav-bar></nav-bar>
 
 
-<div class="research-topics-container">
+<div class="research-topics-page-container">
     <div class="well">
         <form action="">
             <input class="form-control" ng-model="topicName" type="text" placeholder="What Topic Are You Going to Spend Time Researching?">
@@ -13,7 +13,7 @@
 
 
     <div class="container">
-        <div ng-repeat="topic in researchTopics">
+        <div ng-repeat="topic in researchTopics" class="topic-container">
             <h1 class="my-4">{{topic.topicName}}
                 <small>Secondary Text</small>
             </h1>
@@ -23,6 +23,7 @@
                 </div>
             </div>
             <hr>
+            <button ng-click="deleteTopic(topic)">Delete Research Topic</button>
         </div>
     </div>
 </div>

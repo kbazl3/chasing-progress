@@ -336,6 +336,16 @@ angular.module('chasingProgress')
 
         }
 
+        this.deleteList = function(list) {
+            console.log(list);
+            return $http({
+                method: 'DELETE',
+                url: "/api/subTodo/" + list._id
+            }).then(function(response) {
+                response;
+            })
+        }
+
 
         this.addTaskToList = function(task, listName) {
             listName.tasks.push({
@@ -352,7 +362,7 @@ angular.module('chasingProgress')
                 });
         };
 
-        this.deleteSubTodo = function(index, list) {
+        this.deleteSubTask = function(index, list) {
             list.tasks.splice(index, 1);
             console.log(list.tasks);
             return $http({

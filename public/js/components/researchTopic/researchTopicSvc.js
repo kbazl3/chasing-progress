@@ -20,12 +20,21 @@ angular.module("chasingProgress")
               method: 'GET',
               url: '/api/researchTopic'
             }).then(function(response) {
-                console.log(response);
                 return response;
             });
         };
 
+        this.deleteTopic = function(topic) {
+            return $http({
+                method: 'DELETE',
+                url: '/api/researchTopic/' + topic._id
+            }).then(function(response) {
+                return response;
+            })
+        }
+
         this.newNotes = function(researchTopic, researchTopicNotes) {
+            console.log('hitting');
             researchTopic.notes.push({
                 note: researchTopicNotes
             })
@@ -36,6 +45,18 @@ angular.module("chasingProgress")
             }).then(function(response) {
                 return response
             })
+        }
+
+        this.deleteNote = function(researchTopic, index) {
+            researchTopic.notes.splice(index, 1);
+            return $http({
+                    method: "PUT",
+                    url: "/api/researchTopic/" + researchTopic._id,
+                    data: researchTopic
+                })
+                .then(function(response) {
+                    return response;
+                });
         }
 
     });

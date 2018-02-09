@@ -124,6 +124,16 @@ angular.module('chasingProgress')
             $scope.addSubTodoInput = "";
         }
 
+        $scope.deleteList = function(list) {
+            console.log(list.listName);
+            if (confirm("Are you sure you want to delete the " + list.listName + " list?")) {
+                todoSvc.deleteList(list)
+                    .then(function(response) {
+                        response;
+                    })
+            }
+        }
+
         $scope.addTaskToSubTodoList = function(subTask, listName) {
             $scope.subTask = "";
             todoSvc.addTaskToList(subTask, listName)
@@ -141,10 +151,12 @@ angular.module('chasingProgress')
         }
 
         $scope.deleteSubTask = function(index, listName) {
-            todoSvc.deleteSubTodo(index, listName)
+            todoSvc.deleteSubTask(index, listName)
                 .then(function(response) {
                     console.log(response);
                 })
         }
+
+
 
     });
