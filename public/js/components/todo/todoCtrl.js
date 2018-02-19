@@ -1,9 +1,10 @@
 angular.module('chasingProgress')
-    .controller('todoCtrl', function($scope, $interval, todoSvc, todoResolve) {
+    .controller('todoCtrl', function($scope, $interval, todoSvc, todoResolve, toastr) {
 
         console.log(todoResolve);
 
-        $scope.dailyData = todoResolve.daily.dailyTasks;
+
+        $scope.dailyData = todoResolve.daily;
         $scope.groceryList = todoResolve.grocery;
         $scope.dailyContact = todoResolve.contact;
         $scope.subTodoLists = todoResolve.todoLists;
@@ -15,23 +16,23 @@ angular.module('chasingProgress')
         $scope.addDailyTask = function(task) {
             todoSvc.addDailyTask(task)
                 .then(function(response) {
+                    toastr.success("Added " + response.data.task + " to Daily Tasks");
 
                 });
             $scope.addDailyTaskInput = "";
         };
 
         $scope.deleteDailyTask = function(task) {
-            console.log(task._id);
             todoSvc.deleteDailyTask(task._id)
                 .then(function(response) {
-                    console.log(response);
+                    toastr.success("Deleted " + response.data.task + " from Daily Tasks");
                 });
         };
 
         $scope.updateDailyTask = function(task) {
             todoSvc.updateDailyTask(task)
                 .then(function(response) {
-                    console.log(response);
+                    toastr.success("Completed " + response.data.task + " today.  Keep the momentum going.");
                 });
         };
 
@@ -72,23 +73,22 @@ angular.module('chasingProgress')
         $scope.addWeeklyTask = function(task) {
             todoSvc.addWeeklyTask(task)
                 .then(function(response) {
-
+                    toastr.success("Added " + response.data.task + " to Weekly Tasks");
                 });
             $scope.addWeeklyTaskInput = "";
         };
 
         $scope.deleteWeeklyTask = function(task) {
-            console.log(task._id);
             todoSvc.deleteWeeklyTask(task._id)
                 .then(function(response) {
-                    console.log(response);
+                    toastr.success("Deleted " + response.data.task + " from Weekly Tasks");
                 });
         };
 
         $scope.updateWeeklyTask = function(task) {
             todoSvc.updateWeeklyTask(task)
                 .then(function(response) {
-                    console.log(response);
+                    toastr.success("Completed " + response.data.task + " for the week.  Keep the Momentum going.");
                 });
         };
 
@@ -99,7 +99,7 @@ angular.module('chasingProgress')
             todoSvc.addGroceryItem(groceryItem)
                 .then(function(response) {
                     console.log(response);
-
+                    toastr.success("Added " + response.data.groceryItem + " to Grocery List");
                 })
             $scope.addGroceryItemInput = "";
         }
@@ -107,7 +107,7 @@ angular.module('chasingProgress')
         $scope.deleteGroceryItem = function(groceryItem) {
             todoSvc.deleteGroceryItem(groceryItem)
                 .then(function(response) {
-
+                    toastr.success("Deleted " + response.data.groceryItem + " from Grocery List");
                 })
         }
 
@@ -120,6 +120,7 @@ angular.module('chasingProgress')
             todoSvc.addSubTodo(addSubTodoInput, listImage)
                 .then(function(response) {
                     console.log(response);
+                    toastr.success("Added " + response.data.listName);
                 })
             $scope.addSubTodoInput = "";
         }
@@ -129,31 +130,35 @@ angular.module('chasingProgress')
             if (confirm("Are you sure you want to delete the " + list.listName + " list?")) {
                 todoSvc.deleteList(list)
                     .then(function(response) {
-                        response;
+                        toastr.success("Deleted " + response.data.listName);
                     })
             }
         }
 
-        $scope.addTaskToSubTodoList = function(subTask, listName) {
+        $scope.addTaskToSubTodoList = function(subTask, list) {
+            console.log(list.listName);
             $scope.subTask = "";
-            todoSvc.addTaskToList(subTask, listName)
+            todoSvc.addTaskToList(subTask, list)
                 .then(function(response) {
                     console.log($scope.subTask);
-
+                    toastr.success("Added " + subTask + " to " + list.listName + " list");
                 })
         }
 
-        $scope.updateSubTask = function(index, listName) {
-            todoSvc.updateSubTask(index, listName)
+        $scope.updateSubTask = function(index, list) {
+            console.log(list);
+            todoSvc.updateSubTask(index, list)
                 .then(function(response) {
                     console.log(response);
+                    toastr.success("Completed " + list.tasks[index].taskName);
                 })
         }
 
-        $scope.deleteSubTask = function(index, listName) {
-            todoSvc.deleteSubTask(index, listName)
+        $scope.deleteSubTask = function(index, list) {
+            todoSvc.deleteSubTask(index, list)
                 .then(function(response) {
                     console.log(response);
+                    toastr.success("Deleted " + list.tasks[index].taskName);
                 })
         }
 

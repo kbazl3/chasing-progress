@@ -1,5 +1,5 @@
 angular.module("chasingProgress")
-    .controller("booksCtrl", function($scope, bookSvc, $uibModal, $log, $document, $state) {
+    .controller("booksCtrl", function($scope, bookSvc, $uibModal, $log, $document, $state, toastr) {
 
 
 
@@ -13,6 +13,7 @@ angular.module("chasingProgress")
             bookSvc.newBook(bookObj)
                 .then(function(response) {
                     console.log(response);
+                    toastr.success("Added " + response.data.book);
                 })
         }
 

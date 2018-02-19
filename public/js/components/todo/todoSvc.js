@@ -342,7 +342,7 @@ angular.module('chasingProgress')
                 method: 'DELETE',
                 url: "/api/subTodo/" + list._id
             }).then(function(response) {
-                response;
+                return response;
             })
         }
 
@@ -371,6 +371,7 @@ angular.module('chasingProgress')
                     data: list
                 })
                 .then(function(response) {
+                    console.log(response);
                     return response;
                 });
         }

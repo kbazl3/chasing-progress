@@ -76,7 +76,7 @@ angular.module('chasingProgress')
 // It is not the same as the $uibModal service used above.
 
 angular.module('chasingProgress')
-    .controller('ModalInstanceCtrl', function($uibModalInstance, items, $scope, homeSvc, $sce) {
+    .controller('ModalInstanceCtrl', function($uibModalInstance, items, $scope, homeSvc, $sce, toastr) {
         var $ctrl = this;
 
         homeSvc.getQuotes()
@@ -93,13 +93,14 @@ angular.module('chasingProgress')
         $scope.addQuoteNotes = function(dailyQuote, htmlVariable) {
             homeSvc.addQuoteNote(dailyQuote, htmlVariable)
                 .then(function(response) {
+                    toastr.success("Added new note");
                 })
         }
 
         $scope.addVideoNotes = function(embeddedVideo, videoNotesInput) {
             homeSvc.addVideoNote(embeddedVideo, videoNotesInput)
                 .then(function(response) {
-
+                    toastr.success("Added new note");
                 })
         }
 

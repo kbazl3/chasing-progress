@@ -1,5 +1,5 @@
 angular.module("chasingProgress")
-    .controller("researchTopicCtrl", function($scope, $state, researchTopicSvc) {
+    .controller("researchTopicCtrl", function($scope, $state, researchTopicSvc, toastr) {
 
 
 
@@ -9,6 +9,7 @@ angular.module("chasingProgress")
                 .then(function(response) {
                     $scope. researchTopics = response.data;
                     console.log(response.data);
+                    toastr.success("Added " + response.data.topicName);
                 })
         }
 
@@ -26,6 +27,7 @@ angular.module("chasingProgress")
             researchTopicSvc.deleteTopic(topic)
                 .then(function(response) {
                     console.log('successfully deleted' + topic.topicName);
+                    toastr.success("Deleted " + response.data.topicName);
                 })
         }
 

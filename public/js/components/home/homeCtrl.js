@@ -2,7 +2,8 @@
 
 
 angular.module('chasingProgress')
-    .controller('homeCtrl', function($scope, $sce, homeSvc) {
+    .controller('homeCtrl', function($scope, $sce, homeSvc, $state) {
+        console.log($state);
 
 
         let d = new Date().getDate();

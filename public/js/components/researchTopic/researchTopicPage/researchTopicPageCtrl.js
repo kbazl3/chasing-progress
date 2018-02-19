@@ -1,20 +1,23 @@
 angular.module("chasingProgress")
-    .controller("researchTopicPageCtrl", function($scope, $stateParams, researchTopicResolve, researchTopicSvc) {
+    .controller("researchTopicPageCtrl", function($scope, $stateParams, researchTopicResolve, researchTopicSvc, toastr) {
 
         $scope.researchTopic = researchTopicResolve.data[$stateParams.researchTopicId];
 
         $scope.addResearchTopicNotes = function(researchTopic, researchTopicNotes) {
             researchTopicSvc.newNotes(researchTopic, researchTopicNotes)
                 .then(function(response) {
+                    toastr.success("Added note ");
                 })
         }
 
         $scope.deleteNote = function(note, index) {
+            console.log(note);
             console.log(researchTopicResolve.data[$stateParams.researchTopicId], index);
             researchTopicSvc.deleteNote(researchTopicResolve.data[$stateParams.researchTopicId], index)
-                // .then(function(response) {
-                //     console.log(response)
-                // })
+                .then(function(response) {
+                    console.log(response)
+                    toastr.success("deleted note");
+                })
         }
 
         $scope.editNote = function(note) {

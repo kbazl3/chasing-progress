@@ -1,5 +1,5 @@
 
-angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', 'ui.bootstrap', 'textAngular', 'chart.js'])
+angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', 'ui.bootstrap', 'textAngular', 'chart.js', 'toastr'])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
