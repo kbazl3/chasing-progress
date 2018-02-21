@@ -14,7 +14,11 @@
 
             <row>
                 <ul ng-repeat="book in books" class="col-md-4">
-                    <a href="" ng-click="openBookPage($index)"><img  class="book-cover-thumbnail img-fluid" ng-src="{{book.coverImage}}" alt=""></a>
+                    <li><a href="" ng-click="openBookPage($index)">
+                        <img class="book-cover-thumbnail img-fluid" ng-src="{{book.coverImage}}" alt="">
+                        </a>
+                        <button ng-click="deleteBook(book)">Delete</button>
+                    </li>
                 </ul>
             </row>
         </div>

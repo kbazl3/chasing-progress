@@ -26,5 +26,12 @@ angular.module("chasingProgress")
             $state.go('bookPage', {bookId: index})
         }
 
+        $scope.deleteBook = function(book) {
+            bookSvc.deleteBook(book)
+                .then(function(response) {
+                    console.log(response);
+                })
+        }
+
 
     });

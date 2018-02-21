@@ -34,8 +34,45 @@ angular.module("chasingProgress")
             })
         }
 
-        this.getOneBook = function(bookId) {
+        this.deleteBook = function(book) {
+            console.log(book);
+            return $http({
+                    method: "DELETE",
+                    url: "/api/bookNotes/" + book._id
+                })
+                .then(function(response) {
+                    return response;
+                });
+        };
 
+        this.deleteBookNote = function(index, book) {
+            console.log(index, book);
+            book.notes.splice(index, 1);
+            return $http({
+                    method: "PUT",
+                    url: "/api/bookNotes/" + book._id,
+                    data: book
+                })
+                .then(function(response) {
+                    console.log(response);
+                    return response;
+                });
         }
+
+        this.updateBookNote = function(book) {
+            return $http({
+                    method: "PUT",
+                    url: "/api/bookNotes/" + book._id,
+                    data: book
+                })
+                .then(function(response) {
+                    console.log(response);
+                    return response;
+                });
+        }
+
+        // this.getOneBook = function(bookId) {
+        //
+        // }
 
 });

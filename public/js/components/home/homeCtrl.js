@@ -6,6 +6,8 @@ angular.module('chasingProgress')
         console.log($state);
 
 
+
+
         let d = new Date().getDate();
 
         //write this so it only grabs 1 quote instead of all

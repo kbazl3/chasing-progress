@@ -20,6 +20,8 @@
                         {{bookNote.notes}}
                     </li>
                 </div>
+                <button ng-click="deleteBookNote($index, chosenBook)">Delete</button>
+                <button ng-click="editBookNote($index, chosenBook)">Edit</button>
             </ul>
 
         </div>
@@ -27,6 +29,7 @@
     <div class="wysiwig">
         <div text-angular ng-model="htmlVariable"></div>
         <button class="snip1562" ng-click="addBookNotes(chosenBook, htmlVariable)">Add Book Notes</button>
+        <button class="snip1562" ng-click="updateBookNotes(chosenBook)">Update Book Notes</button>
     </div>
 
 </div>

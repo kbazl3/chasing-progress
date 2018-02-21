@@ -429,6 +429,7 @@ angular.module('chasingProgress')
             }).then(function(response) {
                 response.data.forEach(function(list) {
                     list.percentCompleted = percentCompleted(list.tasks)
+                    list.isCollapsed = true;
                     // list.tasks = sortTaskz(list.tasks);
                 })
                 todoData.todoLists = response.data;
