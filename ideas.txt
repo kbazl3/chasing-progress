@@ -20,6 +20,8 @@ Home page -
                 blog/pandafit
 
 
+
+
 To do -
     have it keep stats of how often you complete a certain daily task.
         Total x out of y days
@@ -32,16 +34,21 @@ vision board
     -static page with no js?
     goals and steps to achieving them/gamify chasing goals
 
-research?
-    I want to be able to collect notes on certain subjects
-        keto/coding/
-    journal/blog
-
 area to write down ideas/journal/blog
 dream journal?
 
 
+CHASING PROGESS SECTION
+    I want to this to act as my personal site.
+        I have a "Dev Skills" area that shows my dev Skills
+            Each Dev skill has multiple "levels of mastery"
+                Each level of Mastery will have a challenge/essay/working CODE
 
+MUSIC section:
+    I have to write music first
+
+About Me:
+    Links to blog, instagram
 
 
 
@@ -58,4 +65,5 @@ es6
 
 Write tests
 cross browser compatible
+Accessibility
 SASS/gulp

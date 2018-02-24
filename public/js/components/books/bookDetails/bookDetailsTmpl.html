@@ -26,10 +26,11 @@
 
         </div>
     </div>
-    <div class="wysiwig">
+    <div class="wysiwig" id="wysiwig">
         <div text-angular ng-model="htmlVariable"></div>
-        <button class="snip1562" ng-click="addBookNotes(chosenBook, htmlVariable)">Add Book Notes</button>
-        <button class="snip1562" ng-click="updateBookNotes(chosenBook)">Update Book Notes</button>
+        <button ng-show="!isEditingNote" class="snip1562" ng-click="addBookNotes(chosenBook, htmlVariable)">Add Book Notes</button>
+        <button ng-show="isEditingNote" class="snip1562" ng-click="updateBookNotes(chosenBook)">Update Book Notes</button>
+        <button ng-show="isEditingNote" ng-click="cancelNoteEdit()">Cancel Note Edit</button>
     </div>
 
 </div>
