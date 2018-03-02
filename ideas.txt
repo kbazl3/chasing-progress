@@ -28,7 +28,6 @@ To do -
         average number of days a week/month
     Calendar view that shows the percentage of each day
     Data visualization/charts
-        line graph for daily logs
 
 vision board
     -static page with no js?
@@ -38,17 +37,75 @@ area to write down ideas/journal/blog
 dream journal?
 
 
-CHASING PROGESS SECTION
-    I want to this to act as my personal site.
+CHASING PROGRESS SECTION
+    I want to this to act as my personal/portfolio site.
         I have a "Dev Skills" area that shows my dev Skills
             Each Dev skill has multiple "levels of mastery"
                 Each level of Mastery will have a challenge/essay/working CODE
 
+        Dev Skills
+            AngularJS
+                http://pepa.holla.cz/wp-content/uploads/2015/10/ng-book-The-Complete-Book-on-AngularJS.pdf
+                http://ruoyusun.com/2013/05/25/things-i-wish-i-were-told-about-angular-js.html
+                https://www.quora.com/What-are-the-must-know-things-about-AngularJS
+
+                1.Scope
+                2.Dependency Injection
+                3.Directive
+                    Custom Directives
+                    NG Directives
+                4.Services
+                    factory vs service
+                5.Digest Cycle
+                    https://www.ng-book.com/p/The-Digest-Loop-and-apply/
+                6.Event Propagation
+                7.DOM manipulation
+                8.Limits of using JQuery
+                9.Binding
+                10.string evaluation process, and the differences between $eval, $apply, $parse, $watch.
+
+
+            Bootstrap
+                https://acodez.in/everything-about-bootstrap/
+            Wordpress
+                https://skillcrush.com/2016/07/25/13-wordpress-facts/
+                PHP
+                    https://stackoverflow.com/questions/306497/what-should-every-php-programmer-know
+                MYSQL
+                HOSTING
+            Freelancing
+                Sales Tactics
+                Identify Clients
+            React
+            Node
+            Google Maps
+
+
+        Chasing Progress Area
+            24 books in a year
+            Nature Adventures
+                Yellowstone
+                Wind River
+            Hours meditated
+            Pounds Lost
+            Dates I've been on
+            x number of blog/vlog posts in a year
+
+
+Best way to learn something.... Ask questions about it!
+    Set up list of questions that you Don't know about whatever you'r trying to learn
+        Answer those questions
+
+
+
+
 MUSIC section:
     I have to write music first
 
-About Me:
+About Me:  KYLE BARLOW - THE BRAND
     Links to blog, instagram
+    I make my goals public because it helps me hold myself accountable
+    Waka time graphs!!!!!
 
 
 

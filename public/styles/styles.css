@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url(https://fonts.googleapis.com/css?family=Lato:700|Merriweather:300,300italic,700);
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
@@ -39,9 +39,48 @@ table {
 
 /*******************^^ Normalize ^^*****************/
 
-* {
+/* * {
     font-family: 'Lato';
+} */
+
+
+
+
+#splash {
+    overflow: hidden;
+    background-color: #425565;
+    background: url(bg.jpg);
+    background-size: cover;
+    background-position: center;
 }
+
+#logo-wrap {
+	margin-top: 50px;
+	text-align: center;
+	position: relative;
+}
+
+#logo-canvas {
+    margin-left: auto;
+    margin-right: auto;
+    pointer-events: none;
+    z-index: 0;
+    position: absolute;
+}
+
+/* TESSERACT STYLING ^^ ************************** */
+
+
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Lato", sans-serif;
+  font-weight: 200;
+}
+p,a,li,blockquote {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+}
+
 
 .parallax-section {
     background-image: url("../images/footer_lodyas.png");
@@ -63,6 +102,7 @@ table {
 .parallax-section .quote {
     margin-top: 120px;
     display: inline-block;
+    font-family: 'Lato';
 }
 
 .homepage-background {
@@ -234,8 +274,13 @@ table {
 }
 
 
+
+.sub-todo-container .list-name {
+    font-family: 'Lato';
+}
+
 .sub-todo-container span {
-    font-size: 2em;
+    font-size: 2.5em;
     display: inline-block;
 }
 
@@ -258,13 +303,16 @@ table {
     height: 120px;
 }
 
-.journal-container {
-    height: 100vh;
+.books-container {
     background-image: url("../images/bookshelf-wallpaper.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: 50% 0;
+}
+
+.new-book-panel {
+    margin-top: 20px;
 }
 
 .book-cover-thumbnail {
@@ -276,14 +324,6 @@ table {
     background-image: url('../images/congruent_pentagon.png');
     background-position: center;
     background-size: contain;
-}
-
-.new-book-form {
-    margin-bottom: 40px;
-}
-
-.book-notes li {
-    list-style-type: square;
 }
 
 .book-cover {
@@ -305,7 +345,6 @@ table {
 }
 
 .research-topic-page-container {
-    height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

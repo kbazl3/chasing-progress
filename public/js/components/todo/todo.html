@@ -40,10 +40,14 @@
 
                 <div class="sub-todo-container well" ng-repeat="subTodoList in subTodoLists" ng-mouseover="hoverIn(subTodoList)">
                     <div class="list-info" ng-click="subTodoList.isCollapsed = !subTodoList.isCollapsed">
-                        <img class="img-thumbnail list-thumbnail" ng-src="{{subTodoList.listThumbnail}}" alt="">
-                        <span>{{subTodoList.listName}}</span>
-                        <span class="glyphicon glyphicon-pencil"></span>
-                        <button ng-click="deleteList(subTodoList)">Delete</button>
+
+
+                            <img class="img-thumbnail list-thumbnail" ng-src="{{subTodoList.listThumbnail}}" alt="">
+                            <span class="list-name">{{subTodoList.listName}}</span>
+                        
+
+                        <!-- <span class="glyphicon glyphicon-pencil pull-right"></span> -->
+                        <button class="pull-right" ng-click="deleteList(subTodoList)">Delete</button>
                     </div>
                     <div uib-collapse="subTodoList.isCollapsed">
                         <ul ng-repeat="task in subTodoList.tasks">

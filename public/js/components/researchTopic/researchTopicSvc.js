@@ -34,7 +34,6 @@ angular.module("chasingProgress")
         }
 
         this.newNotes = function(researchTopic, researchTopicNotes) {
-            console.log('hitting');
             researchTopic.notes.push({
                 note: researchTopicNotes
             })
@@ -55,6 +54,20 @@ angular.module("chasingProgress")
                     data: researchTopic
                 })
                 .then(function(response) {
+                    return response;
+                });
+        }
+
+        this.updateTopicNotes = function(topic, indexOfNote, updatedNote) {
+            topic.notes[indexOfNote].note = updatedNote
+            console.log(topic, indexOfNote, updatedNote);
+            return $http({
+                    method: "PUT",
+                    url: "/api/researchTopic/" + topic._id,
+                    data: topic
+                })
+                .then(function(response) {
+                    console.log(response);
                     return response;
                 });
         }

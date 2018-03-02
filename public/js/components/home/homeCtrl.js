@@ -3,7 +3,6 @@
 
 angular.module('chasingProgress')
     .controller('homeCtrl', function($scope, $sce, homeSvc, $state) {
-        console.log($state);
 
 
 
@@ -22,6 +21,8 @@ angular.module('chasingProgress')
             .then(function(response) {
                 $scope.video = $sce.trustAsHtml(response.video);
             })
+
+
 
 
     });

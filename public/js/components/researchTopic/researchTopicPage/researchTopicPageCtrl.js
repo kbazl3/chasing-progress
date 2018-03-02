@@ -1,5 +1,8 @@
 angular.module("chasingProgress")
-    .controller("researchTopicPageCtrl", function($scope, $stateParams, researchTopicResolve, researchTopicSvc, toastr) {
+    .controller("researchTopicPageCtrl", function($scope, $stateParams, researchTopicResolve, researchTopicSvc, toastr, $location, $anchorScroll) {
+
+        $scope.isEditingNote = false;
+        let researchTopicIndex;
 
         $scope.researchTopic = researchTopicResolve.data[$stateParams.researchTopicId];
 
@@ -7,12 +10,11 @@ angular.module("chasingProgress")
             researchTopicSvc.newNotes(researchTopic, researchTopicNotes)
                 .then(function(response) {
                     toastr.success("Added note ");
+                    $scope.htmlVariable = "";
                 })
         }
 
         $scope.deleteNote = function(note, index) {
-            console.log(note);
-            console.log(researchTopicResolve.data[$stateParams.researchTopicId], index);
             researchTopicSvc.deleteNote(researchTopicResolve.data[$stateParams.researchTopicId], index)
                 .then(function(response) {
                     console.log(response)
@@ -20,14 +22,28 @@ angular.module("chasingProgress")
                 })
         }
 
-        $scope.editNote = function(note) {
-            //click edit
-            //note html goes into wysiwig.
-                //goes into modal?
-                //goes into wysiwig below?
-                    //if so, toggle "add book notes" and "edit note" button
-            console.log(note.note);
+        $scope.editNote = function(note, index) {
+            $scope.isEditingNote = true;
+            $scope.htmlVariable = note.note
+            $location.hash('wysiwig')
+            $anchorScroll();
+            researchTopicIndex = index;
         }
+
+        $scope.cancelNoteEdit = function() {
+            $scope.isEditingNote = false;
+            $scope.htmlVariable = "";
+        }
+
+        $scope.updateTopicNotes = function() {
+            researchTopicSvc.updateTopicNotes(researchTopicResolve.data[$stateParams.researchTopicId], researchTopicIndex, $scope.htmlVariable)
+                .then(function(response) {
+                    toastr.success("updated");
+                    $scope.htmlVariable = "";
+                })
+        }
+
+        
 
 
 
