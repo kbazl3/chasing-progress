@@ -1,5 +1,5 @@
 angular.module("chasingProgress")
-    .controller("researchTopicPageCtrl", function($scope, $stateParams, researchTopicResolve, researchTopicSvc, toastr, $location, $anchorScroll) {
+    .controller("researchTopicPageCtrl", function($scope, $stateParams, researchTopicResolve, researchTopicSvc, alertify, $location, $anchorScroll) {
 
         $scope.isEditingNote = false;
         let researchTopicIndex;
@@ -9,17 +9,21 @@ angular.module("chasingProgress")
         $scope.addResearchTopicNotes = function(researchTopic, researchTopicNotes) {
             researchTopicSvc.newNotes(researchTopic, researchTopicNotes)
                 .then(function(response) {
-                    toastr.success("Added note ");
+                    alertify.success("Added note ");
                     $scope.htmlVariable = "";
                 })
         }
 
-        $scope.deleteNote = function(note, index) {
-            researchTopicSvc.deleteNote(researchTopicResolve.data[$stateParams.researchTopicId], index)
-                .then(function(response) {
-                    console.log(response)
-                    toastr.success("deleted note");
-                })
+        $scope.deleteNote = function(index) {
+
+            alertify.confirm("You are about to delete a note. Sure you wanna do this?", function() {
+                researchTopicSvc.deleteNote(researchTopicResolve.data[$stateParams.researchTopicId], index)
+                    .then(function(response) {
+                        alertify.success('DELETED')
+                    })
+            }, function() {
+                alertify.error('Cancel')
+            });
         }
 
         $scope.editNote = function(note, index) {
@@ -38,13 +42,8 @@ angular.module("chasingProgress")
         $scope.updateTopicNotes = function() {
             researchTopicSvc.updateTopicNotes(researchTopicResolve.data[$stateParams.researchTopicId], researchTopicIndex, $scope.htmlVariable)
                 .then(function(response) {
-                    toastr.success("updated");
+                    alertify.success("updated");
                     $scope.htmlVariable = "";
                 })
         }
-
-        
-
-
-
 });

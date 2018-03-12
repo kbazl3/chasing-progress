@@ -1,5 +1,5 @@
 angular.module("chasingProgress")
-    .controller("booksCtrl", function($scope, bookSvc, $uibModal, $log, $document, $state, toastr) {
+    .controller("booksCtrl", function($scope, bookSvc, $uibModal, $log, $document, $state, alertify) {
 
 
 
@@ -12,8 +12,9 @@ angular.module("chasingProgress")
             }
             bookSvc.newBook(bookObj)
                 .then(function(response) {
-                    console.log(response);
-                    toastr.success("Added " + response.data.book);
+                    alertify.success("Added " + response.data.book);
+                    $scope.bookTitle = "";
+                    $scope.coverImage = "";
                 })
         }
 
@@ -27,10 +28,15 @@ angular.module("chasingProgress")
         }
 
         $scope.deleteBook = function(book) {
-            bookSvc.deleteBook(book)
-                .then(function(response) {
-                    console.log(response);
-                })
+            alertify.confirm("You are about to delete " + book.title + " and all of the notes you have with it. Sure you wanna do this?", function() {
+                bookSvc.deleteBook(book)
+                    .then(function(response) {
+                        alertify.success("Deleted " + book.title);
+                    });
+            }, function() {
+                alertify.error('Cancel')
+            });
+
         }
 
 

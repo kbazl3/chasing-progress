@@ -6,9 +6,7 @@
         <div>
             <ul ng-repeat="note in researchTopic.notes" class="well">
                 <li ng-bind-html="note.note">{{note.note}}</li>
-                <button ng-click="deleteNote(note, $index)" sweetalert sweet-options="{title: 'Are you sure?',text: 'You will not be able to recover this imaginary file!',type: 'warning',showCancelButton: true,confirmButtonColor: '#DD6B55',confirmButtonText: 'Yes, delete it!',cancelButtonText: 'No, cancel plx!'}"
-                    sweet-confirm-option="{title: 'Deleted!',text: 'Your imaginary file has been deleted.',type: 'success'}" sweet-cancel-option="{title: 'Cancelled!',text: 'Your imaginary file is safe',type: 'error'}" sweet-on-cancel="checkCancel()" sweet-on-confirm="checkConfirm()"
-                    tabindex="4">Delete</button>
+                <button ng-click="deleteNote($index)">Delete</button>
                 <button ng-click="editNote(note, $index)">Edit</button>
             </ul>
         </div>

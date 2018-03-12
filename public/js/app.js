@@ -1,5 +1,5 @@
 
-angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', 'ui.bootstrap', 'textAngular', 'chart.js', 'toastr'])
+angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', 'ui.bootstrap', 'textAngular', 'chart.js', 'ngAlertify'])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
@@ -63,9 +63,4 @@ angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', '
                 }
             })
 
-            .state('visionBoard', {
-                url: '/visionBoard',
-                templateUrl: '/js/components/visionBoard/visionBoard.html',
-                controller: 'visionBoardCtrl'
-            });
     });

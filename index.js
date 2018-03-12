@@ -30,8 +30,6 @@ app.use('/scripts', express.static(__dirname + '/node_modules/angular-ui-bootstr
 app.use('/scripts', express.static(__dirname + '/node_modules/textangular'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-chart.js'));
 app.use('/scripts', express.static(__dirname + '/node_modules/chart.js'));
-app.use('/scripts', express.static(__dirname + '/node_modules/angular-toastr'));
-app.use('/scripts', express.static(__dirname + '/node_modules/ng-sweet-alert'));
 mongoose.Promise = global.Promise;
 
 app.post('/api/dailyList', dailyTodoCtrl.addDailyTask);

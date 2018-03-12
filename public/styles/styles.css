@@ -49,7 +49,7 @@ table {
 #splash {
     overflow: hidden;
     background-color: #425565;
-    background: url(bg.jpg);
+    background: url('../js/components/home/tesseract/bg.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -66,6 +66,11 @@ table {
     pointer-events: none;
     z-index: 0;
     position: absolute;
+}
+
+#logo-img {
+    width: 200px;
+    height: 100px;
 }
 
 /* TESSERACT STYLING ^^ ************************** */
@@ -280,7 +285,7 @@ p,a,li,blockquote {
 }
 
 .sub-todo-container span {
-    font-size: 2.5em;
+    font-size: 1.5em;
     display: inline-block;
 }
 

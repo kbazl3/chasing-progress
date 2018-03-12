@@ -60,14 +60,12 @@ angular.module("chasingProgress")
 
         this.updateTopicNotes = function(topic, indexOfNote, updatedNote) {
             topic.notes[indexOfNote].note = updatedNote
-            console.log(topic, indexOfNote, updatedNote);
             return $http({
                     method: "PUT",
                     url: "/api/researchTopic/" + topic._id,
                     data: topic
                 })
                 .then(function(response) {
-                    console.log(response);
                     return response;
                 });
         }

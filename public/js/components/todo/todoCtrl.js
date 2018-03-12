@@ -1,5 +1,5 @@
 angular.module('chasingProgress')
-    .controller('todoCtrl', function($scope, $interval, todoSvc, todoResolve, toastr) {
+    .controller('todoCtrl', function($scope, todoSvc, todoResolve, alertify) {
 
         console.log(todoResolve);
 
@@ -16,23 +16,29 @@ angular.module('chasingProgress')
         $scope.addDailyTask = function(task) {
             todoSvc.addDailyTask(task)
                 .then(function(response) {
-                    toastr.success("Added " + response.data.task + " to Daily Tasks");
+                    alertify.success("Added " + response.data.task + " to Daily Tasks");
 
                 });
             $scope.addDailyTaskInput = "";
         };
 
-        $scope.deleteDailyTask = function(task) {
-            todoSvc.deleteDailyTask(task._id)
-                .then(function(response) {
-                    toastr.success("Deleted " + response.data.task + " from Daily Tasks");
-                });
+        $scope.deleteDailyTask = function(dailyTask) {
+            alertify.confirm("You are about to delete the " + dailyTask.task + " daily task. Sure you wanna do this?", function() {
+                todoSvc.deleteDailyTask(dailyTask._id)
+                    .then(function(response) {
+                        alertify.success("Deleted " + response.data.task + " from Daily Tasks");
+                    });
+            }, function() {
+                alertify.error('Cancel')
+            });
+
+
         };
 
         $scope.updateDailyTask = function(task) {
             todoSvc.updateDailyTask(task)
                 .then(function(response) {
-                    toastr.success("Completed " + response.data.task + " today.  Keep the momentum going.");
+                    alertify.success("Completed " + response.data.task + " today.  Keep the momentum going.");
                 });
         };
 
@@ -43,7 +49,7 @@ angular.module('chasingProgress')
             todoResolve.daily.chartLabels.aryOfPercentCompleted
         ];
         $scope.color = 'red';
-        // $scope.onHover =
+        // $scope.hoverIn =
         $scope.onClick = function(points, evt) {
             console.log(points, evt);
         };
@@ -73,22 +79,26 @@ angular.module('chasingProgress')
         $scope.addWeeklyTask = function(task) {
             todoSvc.addWeeklyTask(task)
                 .then(function(response) {
-                    toastr.success("Added " + response.data.task + " to Weekly Tasks");
+                    alertify.success("Added " + response.data.task + " to Weekly Tasks");
                 });
             $scope.addWeeklyTaskInput = "";
         };
 
-        $scope.deleteWeeklyTask = function(task) {
-            todoSvc.deleteWeeklyTask(task._id)
-                .then(function(response) {
-                    toastr.success("Deleted " + response.data.task + " from Weekly Tasks");
-                });
+        $scope.deleteWeeklyTask = function(weeklyTask) {
+            alertify.confirm("You are about to delete the " + weeklyTask.task + " weekly task. Sure you wanna do this?", function() {
+                todoSvc.deleteWeeklyTask(weeklyTask._id)
+                    .then(function(response) {
+                        alertify.success("Deleted " + response.data.task + " from Weekly Tasks");
+                    });
+            }, function() {
+                alertify.error('Cancel')
+            });
         };
 
         $scope.updateWeeklyTask = function(task) {
             todoSvc.updateWeeklyTask(task)
                 .then(function(response) {
-                    toastr.success("Completed " + response.data.task + " for the week.  Keep the Momentum going.");
+                    alertify.success("Completed " + response.data.task + " for the week.  Keep the Momentum going.");
                 });
         };
 
@@ -98,8 +108,7 @@ angular.module('chasingProgress')
         $scope.addGroceryItem = function(groceryItem) {
             todoSvc.addGroceryItem(groceryItem)
                 .then(function(response) {
-                    console.log(response);
-                    toastr.success("Added " + response.data.groceryItem + " to Grocery List");
+                    alertify.success("Added " + response.data.groceryItem + " to Grocery List");
                 })
             $scope.addGroceryItemInput = "";
         }
@@ -107,7 +116,7 @@ angular.module('chasingProgress')
         $scope.deleteGroceryItem = function(groceryItem) {
             todoSvc.deleteGroceryItem(groceryItem)
                 .then(function(response) {
-                    toastr.success("Deleted " + response.data.groceryItem + " from Grocery List");
+                    alertify.success("Deleted " + response.data.groceryItem + " from Grocery List");
                 })
         }
 
@@ -120,28 +129,28 @@ angular.module('chasingProgress')
             todoSvc.addSubTodo(addSubTodoInput, listImage)
                 .then(function(response) {
                     console.log(response);
-                    toastr.success("Added " + response.data.listName);
+                    alertify.success("Added " + response.data.listName);
                 })
             $scope.addSubTodoInput = "";
+            $scope.listThumbnailImage = "";
         }
 
         $scope.deleteList = function(list) {
-            console.log(list.listName);
-            if (confirm("Are you sure you want to delete the " + list.listName + " list?")) {
+            alertify.confirm("You are about to delete the " + list.listName + " list. Sure you wanna do this?", function() {
                 todoSvc.deleteList(list)
                     .then(function(response) {
-                        toastr.success("Deleted " + response.data.listName);
-                    })
-            }
+                        alertify.success("Deleted " + response.data.task + " from your todo lists");
+                    });
+            }, function() {
+                alertify.error('Cancel')
+            });
         }
 
-        $scope.addTaskToSubTodoList = function(subTask, list) {
-            console.log(list.listName);
-            $scope.subTask = "";
+        $scope.addTaskToSubTodoList = function(subTask, list, index) {
             todoSvc.addTaskToList(subTask, list)
                 .then(function(response) {
-                    console.log($scope.subTask);
-                    toastr.success("Added " + subTask + " to " + list.listName + " list");
+                    alertify.success("Added " + subTask + " to " + list.listName + " list");
+                    $scope.newVar[index] = "";
                 })
         }
 
@@ -150,16 +159,29 @@ angular.module('chasingProgress')
             todoSvc.updateSubTask(index, list)
                 .then(function(response) {
                     console.log(response);
-                    toastr.success("Completed " + list.tasks[index].taskName);
+                    alertify.success("Completed " + list.tasks[index].taskName);
                 })
         }
 
         $scope.deleteSubTask = function(index, list) {
-            todoSvc.deleteSubTask(index, list)
-                .then(function(response) {
-                    console.log(response);
-                    toastr.success("Deleted " + list.tasks[index].taskName);
-                })
+            alertify.confirm("You are about to delete the " + list.tasks[index].taskName + " task from your " + list.listName + " list. Sure you wanna do this?", function() {
+                todoSvc.deleteSubTask(index, list)
+                    .then(function(response) {
+                        alertify.success("Deleted ");
+                    });
+            }, function() {
+                alertify.error('Cancel')
+            });
+
+        }
+
+        $scope.icon = [];
+        $scope.hoverIn = function(list, index) {
+            $scope.icon[index] = true;
+        }
+
+        $scope.hoverOut = function(list, index) {
+            $scope.icon[index] = false;
         }
 
 

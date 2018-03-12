@@ -2,17 +2,36 @@
 
 
 <div class="research-topics-page-container">
-    <div class="well">
-        <form action="">
-            <input class="form-control" ng-model="topicName" type="text" placeholder="What Topic Are You Going to Spend Time Researching?">
-            <input class="form-control" type="text" ng-model="topicImage" placeholder="image">
-            <input class="form-control" type="text" ng-model="topicImageBackground" placeholder="background image">
-        </form>
-        <button class="snip1562" ng-click="addResearchTopic()">Add Research Topic </button>
-    </div>
 
 
     <div class="container">
+
+
+        <div class="panel panel-default new-book-panel">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title">Add Research Topic </h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-book" aria-hidden="true"></span></span>
+                    <input class="form-control" ng-model="topicName" type="text" placeholder="What Topic Are You Going to Spend Time Researching?">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
+                    <input class="form-control" type="text" ng-model="topicImage" placeholder="image">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
+                    <input class="form-control" type="text" ng-model="topicImageBackground" placeholder="background image">
+                </div>
+            </div>
+            <button class="snip1562" ng-click="addResearchTopic()">Add Research Topic </button>
+        </div>
+
+
         <div ng-repeat="topic in researchTopics" class="topic-container">
             <h1 class="my-4">{{topic.topicName}}
                 <small>Secondary Text</small>

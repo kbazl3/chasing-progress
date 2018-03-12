@@ -1,5 +1,5 @@
 angular.module("chasingProgress")
-    .controller("bookDetailsCtrl", function($scope, $stateParams, booksResolve, bookSvc, toastr, $location, $anchorScroll) {
+    .controller("bookDetailsCtrl", function($scope, $stateParams, booksResolve, bookSvc, alertify, $location, $anchorScroll) {
         console.log(booksResolve.data[$stateParams.bookId]);
 
         $scope.chosenBook = booksResolve.data[$stateParams.bookId];
@@ -10,15 +10,21 @@ angular.module("chasingProgress")
         $scope.addBookNotes = function(book, bookNotes) {
             bookSvc.newNotes(book, bookNotes)
                 .then(function(response) {
-                    toastr.success("Added new note");
+                    alertify.success("Added new note");
                     $scope.htmlVariable = "";
                 })
         }
 
         $scope.deleteBookNote = function(index, book) {
-            bookSvc.deleteBookNote(index, book)
-            .then(function(response) {
-            })
+
+            alertify.confirm("You are about to delete a note from " + book.title + ". Sure you wanna do this?", function() {
+                bookSvc.deleteBookNote(index, book)
+                    .then(function(response) {
+                        alertify.success("Deleted");
+                    });
+            }, function() {
+                alertify.error('Cancel')
+            });
         }
 
         $scope.editBookNote = function(index, book) {

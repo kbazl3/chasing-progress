@@ -17,8 +17,6 @@ angular.module("chasingProgress")
                 note: notes,
                 dateCreated: new Date()
             })
-            // quote.notes = [];
-            console.log(quote);
             return $http({
                 method: 'PUT',
                 url: '/api/quotes/' + quote._id,
@@ -42,7 +40,6 @@ angular.module("chasingProgress")
                 note: notes,
                 dateCreated: new Date()
             })
-            console.log(video);
             return $http({
                 method: 'PUT',
                 url: '/api/embeddedVideos/' + video._id,
@@ -50,6 +47,14 @@ angular.module("chasingProgress")
             }).then(function(response) {
                 return response
             })
+        }
+
+        let _cachedPromise;
+        if (_cachedPromise) {
+            console.log(cached);
+            return _cachedPromise
+        } else {
+            
         }
 
 

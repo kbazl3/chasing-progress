@@ -2,7 +2,9 @@
 
 
 angular.module('chasingProgress')
-    .controller('homeCtrl', function($scope, $sce, homeSvc, $state) {
+    .controller('homeCtrl', function($scope, $sce, homeSvc, $state, alertify) {
+
+
 
 
 

@@ -19,7 +19,6 @@
                 <li ng-class="{active: selectedTab == 5}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 5;">Grocery List</a>
                 </li>
-
                 <li ng-class="{active: selectedTab == 6}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 6;">Daily Contact</a>
                 </li>
@@ -29,35 +28,48 @@
         <div class="tasks-container col-md-9">
             <!-- ******************** SUB TODO ******************** -->
             <div class="tab-content" ng-show="selectedTab == 1">
+                <div class="panel panel-default new-book-panel">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title">Add A New Todo List</h3>
+                    </div>
 
-                <div class="well well-sm">
-                    <form ng-submit="addSubTodo(addSubTodoInput, listThumbnailImage)">
-                        <input placeholder="Add new Todo List" class="form-control" type="text" ng-model="addSubTodoInput">
-                        <input placeholder="List thumbnail image" class="form-control" type="text" ng-model="listThumbnailImage">
-                        <button class="snip1562" ng-click="addSubTodo(addSubTodoInput, listThumbnailImage)" type="button" name="button">Add New Todo List</button>
-                    </form>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
+                            <input placeholder="Add new Todo List" class="form-control" type="text" ng-model="addSubTodoInput">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
+                            <input placeholder="List thumbnail image" class="form-control" type="text" ng-model="listThumbnailImage">
+                        </div>
+                    </div>
+                    <button class="snip1562" ng-click="addSubTodo(addSubTodoInput, listThumbnailImage)" type="button" name="button">Add New Todo List</button>
                 </div>
 
-                <div class="sub-todo-container well" ng-repeat="subTodoList in subTodoLists" ng-mouseover="hoverIn(subTodoList)">
-                    <div class="list-info" ng-click="subTodoList.isCollapsed = !subTodoList.isCollapsed">
 
-
-                            <img class="img-thumbnail list-thumbnail" ng-src="{{subTodoList.listThumbnail}}" alt="">
-                            <span class="list-name">{{subTodoList.listName}}</span>
-                        
-
-                        <!-- <span class="glyphicon glyphicon-pencil pull-right"></span> -->
-                        <button class="pull-right" ng-click="deleteList(subTodoList)">Delete</button>
+                <div class="sub-todo-container well" ng-repeat="subTodoList in subTodoLists">
+                    <div class="list-info" ng-mouseover="hoverIn(subTodoList, $index)" ng-mouseleave="hoverOut(subTodoList, $index)" ng-click="subTodoList.isCollapsed = !subTodoList.isCollapsed">
+                        <img class="img-thumbnail list-thumbnail" ng-src="{{subTodoList.listThumbnail}}" alt="">
+                        <span class="list-name">{{subTodoList.listName}}</span>
+                        <span ng-show="$parent.icon[$index]" ng-model="$parent.icon[$index]" class="glyphicon glyphicon-pencil pull-right"></span>
+                        <button ng-show="$parent.icon[$index]" class="pull-right" ng-click="deleteList(subTodoList)">Delete</button>
+                        <br>
+                        <br>
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{subTodoList.percentCompleted}}%">{{subTodoList.percentCompleted}}%</div>
+                        <br>
                     </div>
+
                     <div uib-collapse="subTodoList.isCollapsed">
+
                         <ul ng-repeat="task in subTodoList.tasks">
                             <label><input ng-click="updateSubTask($index, subTodoList)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.taskName}}</label>
                             <button ng-click="deleteSubTask($index, subTodoList)" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                         </ul>
                         <form ng-submit="addTaskToSubTodoList(subTask, subTodoList)">
-                            <input type="text" ng-model="subTask">
+                            <input type="text" ng-model="$parent.newVar[$index]">
                         </form>
-                        <button class="btn" ng-click="addTaskToSubTodoList(subTask, subTodoList)">add new task to {{subTodoList.listName}} list</button>
+                        <button class="btn" ng-click="addTaskToSubTodoList($parent.newVar[$index], subTodoList, $index)">add new task to {{subTodoList.listName}} list</button>
                     </div>
                 </div>
 
@@ -84,7 +96,7 @@
                 <div class="well well-sm">
                     <form ng-submit="addDailyTask(addDailyTaskInput)">
                         <input placeholder="Add another daily task" class="form-control" type="text" ng-model="addDailyTaskInput">
-                        <button class="snip1562" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button"><span class="glyphicon glyphicon-plus" aria-hidden="true">Daily Task</button>
+                        <button class="snip1562" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Daily Task</button>
                     </form>
                 </div>
 

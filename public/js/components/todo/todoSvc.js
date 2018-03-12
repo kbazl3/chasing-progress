@@ -160,62 +160,11 @@ angular.module('chasingProgress')
                 aryOfFilteredDates.push($filter('date')(obj.dateCreated));
                 aryOfPercentCompleted.push(obj.percentCompleted)
             })
-                return {
-                    aryOfFilteredDates: aryOfFilteredDates,
-                    aryOfPercentCompleted: aryOfPercentCompleted
-                }
+            return {
+                aryOfFilteredDates: aryOfFilteredDates,
+                aryOfPercentCompleted: aryOfPercentCompleted
+            }
         }
-
-        //*************************  TODO LIST  ************************************************
-
-        this.getTasks = function(dailyList) {
-            var dfd = $q.defer();
-            $http({
-                method: 'GET',
-                url: "/api/todoList"
-            }).then(function(response) {
-                sortTasks(response.data);
-                dfd.resolve(sortedTodoTasks);
-            });
-            return dfd.promise;
-        };
-
-        this.addTask = function(task) {
-            return $http({
-                method: 'POST',
-                url: "/api/todoList",
-                data: {
-                    task: task
-                }
-            }).then(function(response) {
-                return response;
-            });
-        };
-
-        this.deleteTask = function(taskId) {
-            return $http({
-                    method: "DELETE",
-                    url: "/api/todoList/" + taskId
-                })
-                .then(function(response) {
-                    return response;
-                });
-        };
-
-        this.updateTask = function(id, task) {
-            task.completed = !task.completed;
-            return $http({
-                    method: "PUT",
-                    url: "/api/todoList/" + id,
-                    data: {
-                        task: task.task,
-                        completed: task.completed
-                    }
-                })
-                .then(function(response) {
-                    return response;
-                });
-        };
 
         //*************************  DAILY TASKS  ************************************************
 
@@ -319,7 +268,7 @@ angular.module('chasingProgress')
             })
         }
 
-        //*************************  SUB TODO  ************************************************
+        //*************************  TODO LISTS  ************************************************
 
         this.addSubTodo = function(subTodoList, listImage) {
             console.log(listImage);
@@ -351,7 +300,6 @@ angular.module('chasingProgress')
             listName.tasks.push({
                 taskName: task
             })
-            console.log(listName);
             return $http({
                     method: "PUT",
                     url: "/api/subTodo/" + listName._id,
@@ -364,20 +312,17 @@ angular.module('chasingProgress')
 
         this.deleteSubTask = function(index, list) {
             list.tasks.splice(index, 1);
-            console.log(list.tasks);
             return $http({
                     method: "PUT",
                     url: "/api/subTodo/" + list._id,
                     data: list
                 })
                 .then(function(response) {
-                    console.log(response);
                     return response;
                 });
         }
 
         this.updateSubTask = function(index, list) {
-            console.log(list.tasks[index].completed);
             list.tasks[index].completed = !list.tasks[index].completed;
             return $http({
                     method: "PUT",
@@ -389,40 +334,15 @@ angular.module('chasingProgress')
                 });
         }
 
-        //have a completed section for every seperate list
-        // let todoData = {
-        //     todoList: [{
-        //         listName: "listName",
-        //         listThumbnail: "image",
-
-        //         completed: [],
-        //         incompleted: [],
-        //         percentCompleted
-        //     }],
-        //     daily: {
-        //         dailyList: [],
-        //         dailyLogs: [],
-        //         percentCompleted: Number,
-        //         chartLabels: []
-        //     },
-        //     weekly: {
-        //         weeklyList: [],
-        //         weeklyLogs: [],
-        //         percentCompleted: Number
-        //     },
-        //     contact: "string",
-        //     groceries: ["array of strings"]
-        // };
-
         let todoData = {
             daily: {},
             weekly: {}
         };
 
-        this.getTodoData = function() {
+        getTodoDataz = function() {
             todoData.contact = peopleToContact[new Date().getDate()];
             var dfd = $q.defer();
-            //*****TODO LIST CALL*****
+            //***************TODO LIST CALL**********
             $http({
                 method: 'GET',
                 url: "/api/subTodo"
@@ -434,7 +354,7 @@ angular.module('chasingProgress')
                 })
                 todoData.todoLists = response.data;
 
-                //*****DAILY CALL*****
+                //***************DAILY CALL**********
                 $http({
                     method: 'GET',
                     url: "/api/dailyList"
@@ -442,16 +362,15 @@ angular.module('chasingProgress')
                     todoData.daily = response.data;
                     todoData.daily.percentCompleted = percentCompleted(response.data.dailyTasks);
                     todoData.daily.chartLabels = createChartLabels(response.data.dailyLogs);
-                    console.log(todoData);
 
-                    //*****GROCERY CALL*****
+                    //***************GROCERY CALL**********
                     $http({
-                      method: 'GET',
-                      url: "/api/groceryList"
+                        method: 'GET',
+                        url: "/api/groceryList"
                     }).then(function(response) {
                         todoData.grocery = response.data;
 
-                        //*****WEEKLY CALL*****
+                        //***************WEEKLY CALL**********
                         $http({
                             method: 'GET',
                             url: "/api/weeklyList"
@@ -465,5 +384,18 @@ angular.module('chasingProgress')
             });
             return dfd.promise;
         }
+
+            var _cachedPromise;
+            this.getTodoData = function() {
+                    if (_cachedPromise) {
+                        console.log("cached");
+                        return _cachedPromise
+                    } else {
+                        console.log("not cached");
+                        _cachedPromise = getTodoDataz();
+                        return _cachedPromise
+                    }
+            }
+
 
     });
