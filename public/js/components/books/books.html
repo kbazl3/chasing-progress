@@ -8,15 +8,17 @@
                 <h3 class="panel-title">Add a New Book</h3>
             </div>
             <div class="panel-body">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-book" aria-hidden="true"></span></span>
-                    <input type="text" class="form-control input-lg" placeholder="Book Title" ng-model="bookTitle">
-                </div>
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
-                    <input type="text" class="form-control input-lg" placeholder="Image of Book Cover" ng-model="coverImage">
-                </div>
+                <form class="" ng-submit="newBook()">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-book" aria-hidden="true"></span></span>
+                        <input type="text" class="form-control input-lg" placeholder="Book Title" ng-model="bookTitle">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
+                        <input type="text" class="form-control input-lg" placeholder="Image of Book Cover" ng-model="coverImage">
+                    </div>
+                </form>
             </div>
             <button class="snip1562" ng-click="newBook()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Book</button>
         </div>
@@ -25,7 +27,7 @@
                 <li><a href="" ng-click="openBookPage($index)">
                         <img class="book-cover-thumbnail img-fluid" ng-src="{{book.coverImage}}" alt="">
                         </a>
-                    <button ng-click="deleteBook(book)">Delete</button>
+                    <button ng-click="deleteBook(book, $index)">Delete</button>
                 </li>
             </ul>
         </row>

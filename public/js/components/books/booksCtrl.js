@@ -12,9 +12,11 @@ angular.module("chasingProgress")
             }
             bookSvc.newBook(bookObj)
                 .then(function(response) {
-                    alertify.success("Added " + response.data.book);
+                    console.log(response);
+                    alertify.success("Added " + response.data.title);
                     $scope.bookTitle = "";
                     $scope.coverImage = "";
+                    $scope.books.push(response.data);
                 })
         }
 
@@ -27,11 +29,12 @@ angular.module("chasingProgress")
             $state.go('bookPage', {bookId: index})
         }
 
-        $scope.deleteBook = function(book) {
+        $scope.deleteBook = function(book, index) {
             alertify.confirm("You are about to delete " + book.title + " and all of the notes you have with it. Sure you wanna do this?", function() {
                 bookSvc.deleteBook(book)
                     .then(function(response) {
                         alertify.success("Deleted " + book.title);
+                        $scope.books.splice(index, 1);
                     });
             }, function() {
                 alertify.error('Cancel')

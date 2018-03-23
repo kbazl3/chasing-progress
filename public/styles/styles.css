@@ -19,9 +19,9 @@ body {
     line-height: 1;
 }
 
-ol, ul {
+/* ol, ul {
     list-style: none;
-}
+} */
 
 blockquote, q {
     quotes: none;
@@ -274,22 +274,22 @@ p,a,li,blockquote {
 }
 
 
-.sub-todo-container, .sub-todo-container label  {
+.todo-list-container, .todo-list-container label  {
     cursor: pointer;
 }
 
 
 
-.sub-todo-container .list-name {
+.todo-list-container .list-name {
     font-family: 'Lato';
 }
 
-.sub-todo-container span {
+.todo-list-container span {
     font-size: 1.5em;
     display: inline-block;
 }
 
-/* .sub-todo-container .glyphicon {
+/* .todo-list-container .glyphicon {
     float: right;
     opacity: 0.0;
     -webkit-transition: all 200ms ease-in-out;
@@ -299,7 +299,7 @@ p,a,li,blockquote {
     transition: all 200ms ease-in-out;
 } */
 
-.sub-todo-container:hover+.sub-todo-container .glyphicon {
+.todo-list-container:hover+.todo-list-container .glyphicon {
     opacity: .5;
 }
 
@@ -354,6 +354,26 @@ p,a,li,blockquote {
     background-size: cover;
     background-attachment: fixed;
     background-position: 50% 0;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition:all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:30px;
 }
 
 @media only screen and (max-width: 1000px) {

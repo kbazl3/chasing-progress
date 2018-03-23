@@ -8,7 +8,7 @@
         <div class="tabbable col-md-2 well well-sm" ng-init="selectedTab = 1;">
             <ul class="nav nav-pills nav-stacked">
                 <li ng-class="{active: selectedTab == 1}">
-                    <a href="javascript:void(0)" ng-click="selectedTab = 1;">Sub Tasks</a>
+                    <a href="javascript:void(0)" ng-click="selectedTab = 1;">Todo Lists</a>
                 </li>
                 <li ng-class="{active: selectedTab == 3}">
                     <a href="javascript:void(0)" ng-click="selectedTab = 3;">Daily Tasks</a>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="tasks-container col-md-9">
-            <!-- ******************** SUB TODO ******************** -->
+            <!-- ******************** TODO ******************** -->
             <div class="tab-content" ng-show="selectedTab == 1">
                 <div class="panel panel-default new-book-panel">
                     <div class="panel-heading clearfix">
@@ -36,7 +36,7 @@
                     <div class="panel-body">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
-                            <input placeholder="Add new Todo List" class="form-control" type="text" ng-model="addSubTodoInput">
+                            <input placeholder="Add new Todo List" class="form-control" type="text" ng-model="newListInput">
                         </div>
                         <br>
                         <div class="input-group">
@@ -44,32 +44,35 @@
                             <input placeholder="List thumbnail image" class="form-control" type="text" ng-model="listThumbnailImage">
                         </div>
                     </div>
-                    <button class="snip1562" ng-click="addSubTodo(addSubTodoInput, listThumbnailImage)" type="button" name="button">Add New Todo List</button>
+                    <button class="snip1562" ng-click="addTodoList(newListInput, listThumbnailImage)" type="button" name="button">Add New Todo List</button>
                 </div>
 
 
-                <div class="sub-todo-container well" ng-repeat="subTodoList in subTodoLists">
-                    <div class="list-info" ng-mouseover="hoverIn(subTodoList, $index)" ng-mouseleave="hoverOut(subTodoList, $index)" ng-click="subTodoList.isCollapsed = !subTodoList.isCollapsed">
-                        <img class="img-thumbnail list-thumbnail" ng-src="{{subTodoList.listThumbnail}}" alt="">
-                        <span class="list-name">{{subTodoList.listName}}</span>
+                <div class="todo-list-container well" ng-repeat="todoList in todoLists">
+                    <div class="list-info" ng-mouseover="hoverIn(todoList, $index)" ng-mouseleave="hoverOut(todoList, $index)" ng-click="todoList.isCollapsed = !todoList.isCollapsed">
+                        <img class="img-thumbnail list-thumbnail" ng-src="{{todoList.listThumbnail}}" alt="">
+                        <span class="list-name">{{todoList.listName}}</span>
                         <span ng-show="$parent.icon[$index]" ng-model="$parent.icon[$index]" class="glyphicon glyphicon-pencil pull-right"></span>
-                        <button ng-show="$parent.icon[$index]" class="pull-right" ng-click="deleteList(subTodoList)">Delete</button>
+                        <button ng-show="$parent.icon[$index]" class="pull-right" ng-click="deleteList(todoList, $index)">Delete</button>
                         <br>
                         <br>
-                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{subTodoList.percentCompleted}}%">{{subTodoList.percentCompleted}}%</div>
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{todoList.percentCompleted}}%">{{todoList.percentCompleted}}%</div>
                         <br>
                     </div>
 
-                    <div uib-collapse="subTodoList.isCollapsed">
+                    <div uib-collapse="todoList.isCollapsed">
 
-                        <ul ng-repeat="task in subTodoList.tasks">
-                            <label><input ng-click="updateSubTask($index, subTodoList)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.taskName}}</label>
-                            <button ng-click="deleteSubTask($index, subTodoList)" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-                        </ul>
-                        <form ng-submit="addTaskToSubTodoList(subTask, subTodoList)">
-                            <input type="text" ng-model="$parent.newVar[$index]">
-                        </form>
-                        <button class="btn" ng-click="addTaskToSubTodoList($parent.newVar[$index], subTodoList, $index)">add new task to {{subTodoList.listName}} list</button>
+                        <div class="animate-repeat" ng-repeat="task in todoList.tasks">
+                            <input ng-click="toggleCompletedTodoTask($index, todoList)" ng-checked="{{task.completed}}" type="checkbox" value=""> <label ng-bind-html="task.taskName">{{task.taskName}}</label>
+                            <button ng-click="deleteTask($index, todoList)" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                            <button ng-click="editTask($index, $parent.$index, todoList)" class="btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                        </div class="animate-repeat">
+                        <div class="wysiwig" id="wysiwig">
+                            <div text-angular ng-model="$parent.userInput[$index]"></div>
+                            <button ng-show="!isEditingTask" class="snip1562" ng-click="addTaskToList($parent.userInput[$index], todoList, $index)">Add New Task To {{todoList.listName}} list</button>
+                            <button ng-show="isEditingTask" class="snip1562" ng-click="updateTask($parent.userInput[$index], $index, todoList)">Update Task</button>
+                            <button ng-show="isEditingTask" ng-click="cancelTaskEdit($index)">Cancel Task Edit</button>
+                        </div>
                     </div>
                 </div>
 
@@ -79,11 +82,27 @@
             <div class="tab-content" ng-show="selectedTab == 3">
 
 
+
+                <div class="panel panel-default new-book-panel">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title">Add A New Daily Task</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
+                            <input placeholder="Add another daily task" class="form-control" type="text" ng-model="addDailyTaskInput">
+                        </div>
+                        <button class="snip1562" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Daily Task</button>
+                    </div>
+                </div>
+
+
                 <div class="unfinished-tasks well well-sm">
                     <h2>Daily Tasks</h2>
                     <div class="checkbox" ng-repeat="task in dailyData.dailyTasks">
-                        <label><input ng-click="updateDailyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
-                        <button class="btn btn-danger align-right" ng-click="deleteDailyTask(task)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                        <label><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span><input ng-click="updateDailyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
+                        <button class="btn btn-danger align-right" ng-click="deleteDailyTask(task, $index)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </div>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{dailyData.percentCompleted}}%">
@@ -93,14 +112,7 @@
                 </div>
 
 
-                <div class="well well-sm">
-                    <form ng-submit="addDailyTask(addDailyTaskInput)">
-                        <input placeholder="Add another daily task" class="form-control" type="text" ng-model="addDailyTaskInput">
-                        <button class="snip1562" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Daily Task</button>
-                    </form>
-                </div>
-
-                <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-color="color" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
+                <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-color="color" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onChartClick"></canvas>
 
             </div>
             <!-- ******************** WEEKLY ******************** -->
@@ -111,7 +123,7 @@
                     <h2>Weekly Tasks</h2>
                     <div class="checkbox" ng-repeat="task in weeklyData.weeklyTasks">
                         <label><input ng-click="updateWeeklyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
-                        <button class="btn btn-danger" ng-click="deleteWeeklyTask(task)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                        <button class="btn btn-danger" ng-click="deleteWeeklyTask(task, $index)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </div>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{weeklyData.percentCompleted}}%">
@@ -148,7 +160,7 @@
                     <h3><a target="_blank" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSEUWk28bpkEynOqbh6YME6hyjVrrgCpGkX01VuXGjIFTa3a6tj77jv2Jj5aWc9yB67pYt_XhmyDofl/pubhtml?widget=true&amp;headers=false">Carb Count Google Sheet</a></h3>
                     <ul ng-repeat="item in groceryList">
                         <li>{{item.groceryItem}}</li>
-                        <button class="btn btn-danger" ng-click="deleteGroceryItem(item)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                        <button class="btn btn-danger" ng-click="deleteGroceryItem(item, $index)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
                     </ul>
                 </div>
 

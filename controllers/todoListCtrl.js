@@ -1,27 +1,28 @@
-var SubTodo = require('./../models/SubTodo');
+var Todo = require('./../models/Todo');
 
 module.exports = {
-    addSubTodo: function(req, res) {
-        SubTodo.create(req.body, function(err, result) {
+    addTodoList: function(req, res) {
+        Todo.create(req.body, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    getSubTodos: function(req, res) {
-        SubTodo.find(req.query, function(err, result) {
+    getTodoLists: function(req, res) {
+        Todo.find(req.query, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
+            console.log(result);
             res.status(200).send(result);
         });
     },
-    deleteSubTodo: function(req, res) {
+    deleteTodoList: function(req, res) {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
-        SubTodo.findByIdAndRemove(req.params.id, function(err, result) {
+        Todo.findByIdAndRemove(req.params.id, function(err, result) {
             if (err) {
                 res.status(500).send(err);
             }
@@ -29,14 +30,14 @@ module.exports = {
         });
     },
 
-    updateSubTodo: function(req, res) {
+    updateTodoList: function(req, res) {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
         if (req.body.completed === true) {
             req.body.completedAt = new Date();
         }
-        SubTodo.findOneAndUpdate({
+        Todo.findOneAndUpdate({
             _id: req.params.id
         }, req.body, function(err, productItem) {
             if (err) {

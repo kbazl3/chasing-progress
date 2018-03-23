@@ -17,7 +17,7 @@ const express = require("express"),
       quotesCtrl = require('./controllers/quotesCtrl'),
       embeddedVideosCtrl = require('./controllers/embeddedVideosCtrl'),
       researchTopicCtrl = require('./controllers/researchTopicCtrl'),
-      subTodoCtrl = require('./controllers/subTodoListCtrl');
+      todoListCtrl = require('./controllers/todoListCtrl');
 
 app.use(bodyParser.json());
 // app.use(cors());
@@ -30,6 +30,8 @@ app.use('/scripts', express.static(__dirname + '/node_modules/angular-ui-bootstr
 app.use('/scripts', express.static(__dirname + '/node_modules/textangular'));
 app.use('/scripts', express.static(__dirname + '/node_modules/angular-chart.js'));
 app.use('/scripts', express.static(__dirname + '/node_modules/chart.js'));
+app.use('/scripts', express.static(__dirname + '/node_modules/alertify'));
+app.use('/scripts', express.static(__dirname + '/node_modules/ngalertify'));
 mongoose.Promise = global.Promise;
 
 app.post('/api/dailyList', dailyTodoCtrl.addDailyTask);
@@ -77,10 +79,10 @@ app.put('/api/researchTopic/:id', researchTopicCtrl.updateResearchTopic);
 app.get('/api/researchTopic', researchTopicCtrl.getResearchTopics);
 app.delete('/api/researchTopic/:id', researchTopicCtrl.deleteResearchTopic);
 
-app.post('/api/subTodo', subTodoCtrl.addSubTodo);
-app.put('/api/subTodo/:id', subTodoCtrl.updateSubTodo);
-app.get('/api/subTodo', subTodoCtrl.getSubTodos);
-app.delete('/api/subTodo/:id', subTodoCtrl.deleteSubTodo);
+app.post('/api/todoList', todoListCtrl.addTodoList);
+app.put('/api/todoList/:id', todoListCtrl.updateTodoList);
+app.get('/api/todoList', todoListCtrl.getTodoLists);
+app.delete('/api/todoList/:id', todoListCtrl.deleteTodoList);
 
 app.listen(port, () => {
     console.log("listening on ", + port);

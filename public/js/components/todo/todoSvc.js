@@ -270,13 +270,12 @@ angular.module('chasingProgress')
 
         //*************************  TODO LISTS  ************************************************
 
-        this.addSubTodo = function(subTodoList, listImage) {
-            console.log(listImage);
+        this.addTodoList = function(todoList, listImage) {
             return $http({
                 method: 'POST',
-                url: "/api/subTodo",
+                url: "/api/todoList",
                 data: {
-                    listName: subTodoList,
+                    listName: todoList,
                     listThumbnail: listImage
                 }
             }).then(function(response) {
@@ -286,10 +285,9 @@ angular.module('chasingProgress')
         }
 
         this.deleteList = function(list) {
-            console.log(list);
             return $http({
                 method: 'DELETE',
-                url: "/api/subTodo/" + list._id
+                url: "/api/todoList/" + list._id
             }).then(function(response) {
                 return response;
             })
@@ -302,7 +300,7 @@ angular.module('chasingProgress')
             })
             return $http({
                     method: "PUT",
-                    url: "/api/subTodo/" + listName._id,
+                    url: "/api/todoList/" + listName._id,
                     data: listName
                 })
                 .then(function(response) {
@@ -310,11 +308,11 @@ angular.module('chasingProgress')
                 });
         };
 
-        this.deleteSubTask = function(index, list) {
+        this.deleteTask = function(index, list) {
             list.tasks.splice(index, 1);
             return $http({
                     method: "PUT",
-                    url: "/api/subTodo/" + list._id,
+                    url: "/api/todoList/" + list._id,
                     data: list
                 })
                 .then(function(response) {
@@ -322,11 +320,23 @@ angular.module('chasingProgress')
                 });
         }
 
-        this.updateSubTask = function(index, list) {
+        this.toggleCompletedTodoTask = function(index, list) {
             list.tasks[index].completed = !list.tasks[index].completed;
             return $http({
                     method: "PUT",
-                    url: "/api/subTodo/" + list._id,
+                    url: "/api/todoList/" + list._id,
+                    data: list
+                })
+                .then(function(response) {
+                    return response;
+                });
+        }
+
+        this.updateTask = function(updatedTask, list, editedTaskIndex) {
+            list.tasks[editedTaskIndex].taskName = updatedTask;
+            return $http({
+                    method: "PUT",
+                    url: "/api/todoList/" + list._id,
                     data: list
                 })
                 .then(function(response) {
@@ -345,7 +355,7 @@ angular.module('chasingProgress')
             //***************TODO LIST CALL**********
             $http({
                 method: 'GET',
-                url: "/api/subTodo"
+                url: "/api/todoList"
             }).then(function(response) {
                 response.data.forEach(function(list) {
                     list.percentCompleted = percentCompleted(list.tasks)
