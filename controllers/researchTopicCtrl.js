@@ -33,9 +33,6 @@ module.exports = {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
-        if (req.body.completed === true) {
-            req.body.completedAt = new Date();
-        }
         ResearchTopic.findOneAndUpdate({
             _id: req.params.id
         }, req.body, function(err, productItem) {

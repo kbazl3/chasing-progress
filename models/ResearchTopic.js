@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 
     const researchTopicSchema = new Schema({
         topicName: {type: String, required: true},
+        secondaryText: {type: String, default: "Secondary Text"},
         dateCreated: {type: Date, default: new Date()},
         topicImage: {type: String, required: true},
         topicBackgroundImage: String,

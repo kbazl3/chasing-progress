@@ -33,6 +33,23 @@ angular.module("chasingProgress")
             })
         }
 
+        this.updateResearchTopic = function(editedTopic, newTopicName, newSecondaryText, newTopicImage, newTopicImageBackground) {
+            console.log(editedTopic, newTopicName, newSecondaryText, newTopicImage, newTopicImageBackground);
+            return $http({
+              method: 'PUT',
+              url: '/api/researchTopic/' + editedTopic._id,
+              data: {
+                  topicName: newTopicName,
+                  secondaryText: newSecondaryText,
+                  topicImage: newTopicImage,
+                  topicBackgroundImage: newTopicImageBackground
+              }
+            }).then(function(response) {
+                return response;
+            });
+
+        }
+
         this.newNotes = function(researchTopic, researchTopicNotes) {
             researchTopic.notes.push({
                 note: researchTopicNotes

@@ -2,12 +2,10 @@
 
 
 <div class="research-topics-page-container">
-
-
     <div class="container">
 
 
-        <div class="panel panel-default new-book-panel">
+        <div class="panel panel-default new-book-panel" id="topicInputFields">
             <div class="panel-heading clearfix">
                 <h3 class="panel-title">Add Research Topic </h3>
             </div>
@@ -19,22 +17,31 @@
                 </div>
                 <br>
                 <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-book" aria-hidden="true"></span></span>
+                    <input class="form-control" ng-model="secondaryText" type="text" placeholder="Secondary Text">
+                </div>
+                <br>
+                <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
                     <input class="form-control" type="text" ng-model="topicImage" placeholder="image">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
-                    <input class="form-control" type="text" ng-model="topicImageBackground" placeholder="background image">
+                    <input class="form-control" type="text" ng-model="topicBackgroundImage" placeholder="background image">
                 </div>
             </div>
-            <button class="snip1562" ng-click="addResearchTopic()">Add Research Topic </button>
+            <div class="btn-group">
+                <button ng-show="!isEditing" class="snip1562" ng-click="addResearchTopic()">Add Research Topic </button>
+                <button ng-show="isEditing" class="snip1562" ng-click="updateTopic()">Update Topic </button>
+                <button ng-show="isEditing" class="snip1562" ng-click="cancelEdit()">Cancel Edit</button>
+            </div>
         </div>
 
 
         <div ng-repeat="topic in researchTopics" class="topic-container">
             <h1 class="my-4">{{topic.topicName}}
-                <small>Secondary Text</small>
+                <small>{{topic.secondaryText}}</small>
             </h1>
             <div class="row">
                 <div class="col-md-7">
@@ -42,7 +49,12 @@
                 </div>
             </div>
             <hr>
-            <button ng-click="deleteTopic(topic, $index)">Delete Research Topic</button>
+            <div class="btn-group">
+                <button class="btn btn-danger" ng-click="deleteTopic(topic, $index)">Delete Research Topic</button>
+                <button class="btn btn-default" ng-click="toggleUpdateTopic(topic)">Edit Research Topic</button>
+            </div>
         </div>
+
+
     </div>
 </div>
