@@ -191,7 +191,7 @@ angular.module('chasingProgress')
                 });
         };
 
-        this.updateDailyTask = function(task) {
+        this.toggleDailyTaskComplete = function(task) {
             task.completed = !task.completed;
             return $http({
                     method: "PUT",
@@ -205,6 +205,31 @@ angular.module('chasingProgress')
                     return response;
                 });
         };
+
+        this.updateDailyTask = function(editedDailyTask, dailyTaskObj) {
+            return $http({
+                    method: "PUT",
+                    url: "/api/dailyList/" + dailyTaskObj._id,
+                    data: {
+                        task: editedDailyTask,
+                    }
+                })
+                .then(function(response) {
+                    return response;
+                });
+        }
+
+        this.updateDailyLog = function(log) {
+            log.percentCompleted = percentCompleted(log.tasks);
+            return $http({
+                    method: "PUT",
+                    url: "/api/dailyLogs/" + log._id,
+                    data: log
+                })
+                .then(function(response) {
+                    return response;
+                });
+        }
 
         //*************************  WEEKLY TASKS  ************************************************
 

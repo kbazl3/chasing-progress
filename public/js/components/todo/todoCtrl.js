@@ -9,9 +9,12 @@ angular.module('chasingProgress')
         $scope.dailyContact = todoResolve.contact;
         $scope.todoLists = todoResolve.todoLists;
         $scope.weeklyData = todoResolve.weekly;
+        let editedDailyTask;
 
 
         //*************************  DAILY TASKS  ************************************************
+
+        $scope.isEditingDailyTask = false;
 
         $scope.addDailyTask = function(task) {
             todoSvc.addDailyTask(task)
@@ -32,16 +35,39 @@ angular.module('chasingProgress')
             }, function() {
                 alertify.error('Cancel')
             });
-
-
         };
 
-        $scope.updateDailyTask = function(task) {
-            todoSvc.updateDailyTask(task)
+
+        $scope.toggleDailyTaskComplete = function(task) {
+            todoSvc.toggleDailyTaskComplete(task)
                 .then(function(response) {
                     alertify.success("Completed " + response.data.task + " today.  Keep the momentum going.");
                 });
         };
+
+        $scope.editDailyTask = function(task, index) {
+            $scope.isEditingDailyTask = true;
+            editedDailyTask = task;
+            $scope.addDailyTaskInput = task.task
+            $location.hash('dailyTaskInput')
+            $anchorScroll();
+        }
+
+        $scope.updateDailyTask = function() {
+            todoSvc.updateDailyTask($scope.addDailyTaskInput, editedDailyTask)
+                .then(function(response) {
+                    console.log(response);
+                    alertify.success('UPDATED')
+                    $scope.addDailyTaskInput = "";
+                    $scope.isEditingDailyTask = false;
+                })
+        }
+
+        $scope.cancelDailyTaskEdit = function() {
+            $scope.addDailyTaskInput = "";
+            $scope.isEditingDailyTask = false;
+            editedDailyTask = {};
+        }
 
         // $scope.labels = todoResolve.chartLabels;
         $scope.labels = todoResolve.daily.chartLabels.aryOfFilteredDates;
@@ -51,17 +77,49 @@ angular.module('chasingProgress')
         ];
         $scope.color = 'red';
         // $scope.hoverIn =
-        $scope.onChartClick = function(points, evt) {
-            console.log(todoResolve.daily.dailyLogs[points[0]._index].tasks);
-            alertify.delay(20000).log(function() {
-                let str;
-                // let str = "<h2>" + todoResolve.daily.dailyLogs[points[0]._index].dateCreated + "</h2><br>";
-                str = "<h2>" + $filter('date')(todoResolve.daily.dailyLogs[points[0]._index].dateCreated) + "</h2><br><p>" + todoResolve.daily.dailyLogs[points[0]._index]._id + "</p>";
-                todoResolve.daily.dailyLogs[points[0]._index].tasks.forEach(function(taskObj) {
-                    str += "<b>" + taskObj.task + ":</b>" + "——" + taskObj.completed + "<br>"
+
+        $scope.isEditingLog = false;
+
+        const editDailyLog = function(points) {
+            $scope.isEditingLog = true;
+            $scope.editedDailyLog = todoResolve.daily.dailyLogs[points[0]._index];
+            console.log($scope.editedDailyLog);
+        }
+
+        $scope.toggleDailyLogComplete = function(index, logObj) {
+            logObj.tasks[index].completed = !logObj.tasks[index].completed
+        }
+
+        $scope.updateDailyLog = function(log) {
+            todoSvc.updateDailyLog(log)
+                .then(function(response) {
+                    console.log(response);
                 })
-                return str;
-            }())
+        }
+
+
+
+        $scope.onChartClick = function(points, evt) {
+            editDailyLog(points);
+            $scope.$apply('isEditingLog', function() {
+
+            })
+
+            // console.log(todoResolve.daily.dailyLogs[points[0]._index].tasks);
+            // $scope.isEditingLog = true;
+            // $scope.$watch('isEditingLog', function() {
+            //     console.log("changed");
+            // })
+            // editDailyLog(points)
+            // alertify.delay(20000).log(function() {
+            //     let str;
+            //     str = "<h2>" + $filter('date')(todoResolve.daily.dailyLogs[points[0]._index].dateCreated) + "</h2><br><p>" + todoResolve.daily.dailyLogs[points[0]._index]._id + "</p>";
+            //     todoResolve.daily.dailyLogs[points[0]._index].tasks.forEach(function(taskObj) {
+            //         str += "<b>" + taskObj.task + ":</b>" + "——" + taskObj.completed + "<br>"
+            //     })
+            //
+            //     return str;
+            // }())
         };
 
         // $scope.options = {

@@ -3,6 +3,7 @@ const mongoose = require('mongoose'),
 
     const embeddedVideo = new Schema({
         video: {type: String, required: true},
+        videoTitle: {type: String, required: true},
         dateCreated: {type: Date, default: new Date()},
         notes: [{
             note: {type: String},

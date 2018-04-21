@@ -93,7 +93,7 @@ p,a,li,blockquote {
     position: static;
     text-align: center;
     width: 100%;
-    height: 400px;
+    height: 430px;
 }
 
 .parallax-section h2 {
@@ -156,6 +156,17 @@ p,a,li,blockquote {
     background-repeat: no-repeat;
 }
 
+.thumbnail {
+    width: 240px;
+    height: 180px;
+}
+
+/* *********** CUSTOM checkbox *********** */
+
+
+
+/* *********** TODO *********** */
+
 .todoContainer {
     background-image: url("/images/asanoha.png");
 }
@@ -193,10 +204,6 @@ p,a,li,blockquote {
 
 .tabbable {
     height: 100vh;
-}
-
-.unfinished-tasks, .finished-tasks {
-    height: auto;
 }
 
 .snip1562 {
@@ -250,6 +257,10 @@ p,a,li,blockquote {
     height: 100%;
     width: 100%;
     color: white;
+}
+
+.completed-task {
+    text-decoration: line-through;
 }
 
 .grocery-banner {

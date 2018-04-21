@@ -16,6 +16,7 @@ const express = require("express"),
       bookNotesCtrl = require('./controllers/bookNotesCtrl'),
       quotesCtrl = require('./controllers/quotesCtrl'),
       embeddedVideosCtrl = require('./controllers/embeddedVideosCtrl'),
+      imagesCtrl = require('./controllers/imagesCtrl'),
       researchTopicCtrl = require('./controllers/researchTopicCtrl'),
       todoListCtrl = require('./controllers/todoListCtrl');
 
@@ -73,6 +74,11 @@ app.post('/api/embeddedVideos', embeddedVideosCtrl.addEmbeddedVideo);
 app.put('/api/embeddedVideos/:id', embeddedVideosCtrl.updateEmbeddedVideo);
 app.get('/api/embeddedVideos', embeddedVideosCtrl.getEmbeddedVideos);
 app.delete('/api/embeddedVideos/:id', embeddedVideosCtrl.deleteEmbeddedVideo);
+
+app.post('/api/images', imagesCtrl.addImage);
+app.put('/api/images/:id', imagesCtrl.addImageNote);
+app.get('/api/images', imagesCtrl.getImages);
+app.delete('/api/images/:id', imagesCtrl.deleteImage);
 
 app.post('/api/researchTopic', researchTopicCtrl.addResearchTopic);
 app.put('/api/researchTopic/:id', researchTopicCtrl.updateResearchTopic);

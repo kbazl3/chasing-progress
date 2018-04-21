@@ -1,12 +1,13 @@
 angular.module("chasingProgress")
     .service("researchTopicSvc", function($http) {
 
-        this.addResearchTopic = function(topicName, topicImage, topicBackgroundImage) {
+        this.addResearchTopic = function(topicName, secondaryText, topicImage, topicBackgroundImage) {
             return $http({
                 method: 'POST',
                 url: '/api/researchTopic',
                 data: {
                     topicName: topicName,
+                    secondaryText: secondaryText,
                     topicImage: topicImage,
                     topicBackgroundImage: topicBackgroundImage
                 }

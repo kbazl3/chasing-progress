@@ -62,11 +62,16 @@
 
                     <div uib-collapse="todoList.isCollapsed">
 
+
+
                         <div class="animate-repeat" ng-repeat="task in todoList.tasks">
-                            <input ng-click="toggleCompletedTodoTask($index, todoList)" ng-checked="{{task.completed}}" type="checkbox" value=""> <label ng-bind-html="task.taskName">{{task.taskName}}</label>
+                            <input ng-click="toggleCompletedTodoTask($index, todoList)" ng-checked="{{task.completed}}" type="checkbox" value=""> <label ng-bind-html="task.taskName"{{task.taskName}}></label>
                             <button ng-click="deleteTask($index, todoList)" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                             <button ng-click="editTask($index, $parent.$index, todoList)" class="btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
                         </div class="animate-repeat">
+
+
+
                         <div class="wysiwig" id="wysiwig">
                             <div text-angular ng-model="$parent.userInput[$index]"></div>
                             <button ng-show="!isEditingTask" class="snip1562" ng-click="addTaskToList($parent.userInput[$index], todoList, $index)">Add New Task To {{todoList.listName}} list</button>
@@ -91,18 +96,21 @@
                     <div class="panel-body">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
-                            <input placeholder="Add another daily task" class="form-control" type="text" ng-model="addDailyTaskInput">
+                            <input id="dailyTaskInput" placeholder="Add another daily task" class="form-control" type="text" ng-model="addDailyTaskInput">
                         </div>
-                        <button class="snip1562" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Daily Task</button>
+                        <button ng-show="!isEditingDailyTask" class="snip1562" ng-click="addDailyTask(addDailyTaskInput)" type="button" name="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Daily Task</button>
+                        <button ng-show="isEditingDailyTask" class="btn btn-primary" ng-click="updateDailyTask()" type="button" name="button">Update</button>
+                        <button ng-show="isEditingDailyTask" class="btn btn-default" ng-click="cancelDailyTaskEdit()" type="button" name="button">Cancel</button>
                     </div>
                 </div>
 
 
-                <div class="unfinished-tasks well well-sm">
+                <div class="well well-sm">
                     <h2>Daily Tasks</h2>
                     <div class="checkbox" ng-repeat="task in dailyData.dailyTasks">
-                        <label><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span><input ng-click="updateDailyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
+                        <label><span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span><input ng-click="toggleDailyTaskComplete(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
                         <button class="btn btn-danger align-right" ng-click="deleteDailyTask(task, $index)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
+                        <button class="btn align-right" ng-click="editDailyTask(task, $index)"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></button>
                     </div>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{dailyData.percentCompleted}}%">
@@ -114,12 +122,28 @@
 
                 <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-color="color" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onChartClick"></canvas>
 
+
+
+
+                    <div>
+                        <h3>{{editedDailyLog.dateCreated | date: 'longDate' }}</h3>
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{editedDailyLog.percentCompleted}}%">
+                            {{editedDailyLog.percentCompleted}}%
+                        </div>
+                        <br>
+                        <div ng-repeat="taskObj in editedDailyLog.tasks">
+                            <label><input ng-click="toggleDailyLogComplete($index, editedDailyLog)" ng-checked="{{taskObj.completed}}" type="checkbox" value="">{{taskObj.task}}</label>
+                        </div>
+                        <button ng-click="updateDailyLog(editedDailyLog)" type="button" name="button">Update Log</button>
+                    </div>
+
+
             </div>
             <!-- ******************** WEEKLY ******************** -->
             <div class="tab-content" ng-show="selectedTab == 4">
 
 
-                <div class="unfinished-tasks well well-sm">
+                <div class="well well-sm">
                     <h2>Weekly Tasks</h2>
                     <div class="checkbox" ng-repeat="task in weeklyData.weeklyTasks">
                         <label><input ng-click="updateWeeklyTask(task)" ng-checked="{{task.completed}}" type="checkbox" value="">{{task.task}}</label>
@@ -156,7 +180,7 @@
                 <div class="grocery-banner">
                     <h2><span>Grocery List</span></h2>
                 </div>
-                <div class="unfinished-tasks well well-sm">
+                <div class="well well-sm">
                     <h3><a target="_blank" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSEUWk28bpkEynOqbh6YME6hyjVrrgCpGkX01VuXGjIFTa3a6tj77jv2Jj5aWc9yB67pYt_XhmyDofl/pubhtml?widget=true&amp;headers=false">Carb Count Google Sheet</a></h3>
                     <ul ng-repeat="item in groceryList">
                         <li>{{item.groceryItem}}</li>
