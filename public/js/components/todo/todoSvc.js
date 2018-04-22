@@ -153,6 +153,49 @@ angular.module('chasingProgress')
             return Math.round((complete / ary.length) * 100);
         }
 
+        // const findAverage = function(ary) {
+        //     let sum = 0;
+        //     ary.forEach(function(number) {
+        //         sum += number.percentCompleted
+        //     })
+        //     return sum / ary.length;
+        // }
+
+        const findAverage = function(ary) {
+            let obj = {};
+            ary.forEach(function(number) {
+                number.tasks.forEach(function(tasks) {
+                    if (!obj.hasOwnProperty(tasks.task)) {
+                        obj[tasks.task] = {};
+                        obj[tasks.task].timesCompleted = 0;
+                        obj[tasks.task].runningTotal = 0;
+                        if (tasks.completed) {
+                            obj[tasks.task].timesCompleted++;
+                            obj[tasks.task].runningTotal++;
+                        } else {
+                            obj[tasks.task].runningTotal++;
+                        }
+
+                    } else {
+                        if (tasks.completed) {
+                            obj[tasks.task].timesCompleted++;
+                            obj[tasks.task].runningTotal++;
+                        } else {
+                            obj[tasks.task].runningTotal++;
+                        }
+
+                    }
+                })
+            })
+            console.log(obj)
+        }
+
+        //COUNT UP WHICH TASKS HAVE BEEN COMPLETED AND WHICH HAVEN'T https://jsfiddle.net/6toke15n/
+        //not all arrays will have the same Tasks meaning each task will have to be divided by a different amount
+        //loop through tasks in each daily log
+        // if obj has own property (taskName)
+        // if (task) then update counter for completed and update counter for average
+
         const createChartLabels = function(ary) {
             let aryOfFilteredDates = [],
                 aryOfPercentCompleted = [];
@@ -397,6 +440,7 @@ angular.module('chasingProgress')
                     todoData.daily = response.data;
                     todoData.daily.percentCompleted = percentCompleted(response.data.dailyTasks);
                     todoData.daily.chartLabels = createChartLabels(response.data.dailyLogs);
+                    todoData.daily.dailyLogAverage = findAverage(response.data.dailyLogs);
 
                     //***************GROCERY CALL**********
                     $http({
@@ -420,17 +464,17 @@ angular.module('chasingProgress')
             return dfd.promise;
         }
 
-            var _cachedPromise;
-            this.getTodoData = function() {
-                    if (_cachedPromise) {
-                        console.log("cached");
-                        return _cachedPromise
-                    } else {
-                        console.log("not cached");
-                        _cachedPromise = getTodoDataz();
-                        return _cachedPromise
-                    }
+        var _cachedPromise;
+        this.getTodoData = function() {
+            if (_cachedPromise) {
+                console.log("cached");
+                return _cachedPromise
+            } else {
+                console.log("not cached");
+                _cachedPromise = getTodoDataz();
+                return _cachedPromise
             }
+        }
 
 
     });

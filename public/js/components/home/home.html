@@ -72,18 +72,10 @@
                     <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
                     <div class="wysiwig">
                         <div text-angular ng-model="videoNotesInput"></div>
-                        <button class="snip1562" ng-click="addVideoNotes(embeddedVideo, videoNotesInput)">Add Video Notes</button>
                     </div>
                 </div>
             </script>
-            <div class="addNewVideo" ng-show="isAddingNewVideo">
-                <form class="" action="index.html" method="post">
-                    <input class="" type="text" ng-model="newVideo" placeholder="Video"><br>
-                    <button type="button" name="button" ng-click="addNewVideo(newVideo)">Add Video</button>
-                    <button type="button" name="button" ng-click="isAddingNewVideo = false">Cancel</button>
-                </form>
-            </div>
-            <button ng-click="isAddingNewVideo = true" type="button" name="button" ng-show="!isAddingNewVideo">Add new Video</button>
+            <button ng-click="managePage()" type="button" name="button">Manage Page</button>
         </div>
     </div>
 
@@ -98,6 +90,7 @@
                 <button ng-click="toggleManagePage('quotes')" type="button" class="btn btn-default">Quotes</button>
                 <button ng-click="toggleManagePage('videos')" type="button" class="btn btn-default">Videos</button>
                 <button ng-click="toggleManagePage('images')"type="button" class="btn btn-default">Images</button>
+                <button ng-click="managePage()" type="button" name="button" class="btn btn-default">Manage Page</button>
             </div>
         </div>
     </div>
@@ -164,7 +157,9 @@
         </div>
         <div class="row">
             <div class="col-md-3" ng-repeat="video in videosList">
-                <img class="img-fluid img-thumbnail video-thumbnail" src="{{video.thumbnail}}" alt="">
+                <a href="{{video.link}}" target="_blank">
+                    <img class="img-fluid img-thumbnail video-thumbnail" src="{{video.thumbnail}}" alt="">
+                </a>
                 <li>
                     <h4>{{video.videoTitle}}</h4></li>
                 <button ng-click="deleteVideo($index)" type="button" name="button">Delete</button>

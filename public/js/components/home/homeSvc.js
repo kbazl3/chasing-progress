@@ -7,7 +7,8 @@ angular.module("chasingProgress")
             ary.forEach(function(videoObj) {
                 var x = videoObj.video.indexOf("embed/");
                 let embedID = videoObj.video.slice(x + 6, x + 17)
-                videoObj.thumbnail = "https://img.youtube.com/vi/" + embedID + "/0.jpg"
+                videoObj.thumbnail = "https://img.youtube.com/vi/" + embedID + "/0.jpg";
+                videoObj.link = "https://www.youtube.com/embed/" + embedID;
             })
         }
 

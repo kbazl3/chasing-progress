@@ -7,12 +7,15 @@ angular.module('chasingProgress')
 
         $scope.isEditingQuote = false;
         $scope.isEditingVideo = false;
-        $scope.isManagingHomePage = true;
+        $scope.isManagingHomePage = false;
         $scope.manageImages = true;
         $scope.manageQuotes = true;
         $scope.manageVideos = true;
         let editedQuote;
 
+        $scope.managePage = function() {
+            $scope.isManagingHomePage = !$scope.isManagingHomePage;
+        }
 
         let d = new Date().getDate();
 
@@ -28,7 +31,7 @@ angular.module('chasingProgress')
         //write this so it only grabs 1 video instead of all
         homeSvc.getEmbeddedVideos()
             .then(function(response) {
-                // console.log(response.videosList[response.date]);
+                console.log(response.videosList[response.date].video);
                 $scope.video = $sce.trustAsHtml(response.videosList[response.date].video);
                 $scope.videosList = response.videosList
             })
