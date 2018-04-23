@@ -153,15 +153,15 @@ angular.module('chasingProgress')
             return Math.round((complete / ary.length) * 100);
         }
 
-        // const findAverage = function(ary) {
-        //     let sum = 0;
-        //     ary.forEach(function(number) {
-        //         sum += number.percentCompleted
-        //     })
-        //     return sum / ary.length;
-        // }
-
         const findAverage = function(ary) {
+            let sum = 0;
+            ary.forEach(function(number) {
+                sum += number.percentCompleted
+            })
+            return sum / ary.length;
+        }
+
+        const getDailyLogStats = function(ary) {
             let obj = {};
             ary.forEach(function(number) {
                 number.tasks.forEach(function(tasks) {
@@ -188,6 +188,7 @@ angular.module('chasingProgress')
                 })
             })
             console.log(obj)
+            return obj;
         }
 
         //COUNT UP WHICH TASKS HAVE BEEN COMPLETED AND WHICH HAVEN'T https://jsfiddle.net/6toke15n/

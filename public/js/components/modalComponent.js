@@ -81,7 +81,8 @@ angular.module('chasingProgress')
 
         homeSvc.getQuotes()
             .then(function(response) {
-                $scope.dailyQuote = response;
+                console.log(response);
+                $scope.dailyQuote = response.quotesList[response.date];
             })
 
         homeSvc.getEmbeddedVideos()

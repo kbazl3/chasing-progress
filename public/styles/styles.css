@@ -96,6 +96,15 @@ p,a,li,blockquote {
     height: 430px;
 }
 
+.parallax-section-image {
+    background-image: url("../images/footer_lodyas.png");
+    background-size: cover;
+    position: static;
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
 .parallax-section h2 {
     color: white;
     font-size: 6em;
@@ -120,13 +129,16 @@ p,a,li,blockquote {
     position: relative;
 }
 
-.quote-container {
+.get-motivated-image-container {
     width: 80%;
     margin: auto;
     text-align: center;
 }
 
 .quote-container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
     color: white;
 }
 

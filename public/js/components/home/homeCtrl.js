@@ -31,16 +31,15 @@ angular.module('chasingProgress')
         //write this so it only grabs 1 video instead of all
         homeSvc.getEmbeddedVideos()
             .then(function(response) {
-                console.log(response.videosList[response.date].video);
                 $scope.video = $sce.trustAsHtml(response.videosList[response.date].video);
                 $scope.videosList = response.videosList
             })
 
         homeSvc.getImages()
             .then(function(response) {
-                console.log(response);
                 // $scope.getMotivatedImage = response
                 $scope.imagesList = response;
+                $scope.dailyImage = response[6]
             })
 
         $scope.addNewQuote = function(quote, author) {
@@ -51,7 +50,6 @@ angular.module('chasingProgress')
         }
 
         $scope.deleteQuote = function(index) {
-            console.log($scope.quotesList[index]);
             homeSvc.deleteQuote($scope.quotesList[index])
                 .then(function(response) {
                     alertify.success('deleted')
@@ -66,7 +64,6 @@ angular.module('chasingProgress')
         }
 
         $scope.updateQuote = function(quote, author) {
-            console.log(editedQuote);
             homeSvc.updateQuote(quote, author, editedQuote)
                 .then(function(response) {
                     alertify.success('Updated')
@@ -119,7 +116,6 @@ angular.module('chasingProgress')
         }
 
         $scope.deleteVideo = function(index) {
-            console.log($scope.videosList[index]);
             homeSvc.deleteVideo($scope.videosList[index])
                 .then(function(response) {
                     alertify.success('deleted')
@@ -134,7 +130,6 @@ angular.module('chasingProgress')
         }
 
         $scope.updateVideo = function(video, title) {
-            console.log(editedVideo);
             homeSvc.updateVideo(video, title, editedVideo)
                 .then(function(response) {
                     alertify.success('Updated')
@@ -168,7 +163,6 @@ angular.module('chasingProgress')
         }
 
         $scope.updateImage = function(video, title) {
-            console.log(editedImage);
             homeSvc.updateImage(video, title, editedImage)
                 .then(function(response) {
                     alertify.success('Updated')
