@@ -5,127 +5,7 @@ angular.module('chasingProgress')
 
 
 
-        let peopleToContact = [{
-                person: "Obama",
-                picture: "../../images/mom.jpg"
-            },
-            {
-                person: "Mom",
-                picture: "../../images/mom.jpg"
-            },
-            {
-                person: "Dad",
-                picture: "../../images/dad.jpg"
-            },
-            {
-                person: "Breer",
-                picture: "../../images/breer.jpg"
-            },
-            {
-                person: "Jen",
-                picture: "../../images/jen.jpg"
-            },
-            {
-                person: "Shane",
-                picture: "../../images/shaneo.jpg"
-            },
-            {
-                person: "April",
-                picture: "http://www.freeiconspng.com/uploads/obama-face-png-3.png"
-            },
-            {
-                person: "Mason",
-                picture: "../../images/mason.jpeg"
-            },
-            {
-                person: "Tayia",
-                picture: "../../images/tayia.jpeg"
-            },
-            {
-                person: "Brandon",
-                picture: "../../images/brandon.jpg"
-            },
-            {
-                person: "Kurtis",
-                picture: "../../images/kurt.jpg"
-            },
-            {
-                person: "Zeke",
-                picture: "../../images/zeke.jpg"
-            },
-            {
-                person: "Matt Miya",
-                picture: "../../images/matt.jpg"
-            },
-            {
-                person: "Dan Lang",
-                picture: "../../images/dan.jpg"
-            },
-            {
-                person: "Zack Tuesch",
-                picture: "../../images/zack.jpg"
-            },
-            {
-                person: "Fred ",
-                picture: "../../images/fred.jpg"
-            },
-            {
-                person: "Drew Baby",
-                picture: "../../images/drew.png"
-            },
-            {
-                person: "Choice",
-                picture: "../../images/choice.png"
-            },
-            {
-                person: "Coleman",
-                picture: "../../images/coleman.jpg"
-            },
-            {
-                person: "Luis",
-                picture: "../../images/luis.jpg"
-            },
-            {
-                person: "Amar",
-                picture: "../../images/amar.jpg"
-            },
-            {
-                person: "Amanda G",
-                picture: "../../images/tayia.jpg"
-            },
-            {
-                person: "Skyler Brinley",
-                picture: "../../images/skyler.jpg"
-            },
-            {
-                person: "Maxson",
-                picture: "../../images/tayia.jpg"
-            },
-            {
-                person: "Dethrone",
-                picture: "../../images/dethrone.jpg"
-            },
-            {
-                person: "Danny Pobieglo",
-                picture: "../../images/danny.jpg"
-            },
-            {
-                person: "Ian",
-                picture: "../../images/tayia.jpg"
-            },
-            {
-                person: "Rod",
-                picture: "../../images/rod.jpg"
-            },
-            {
-                person: "Tyler Tuesch",
-                picture: "../../images/tayia.jpg"
-            },
-            {
-                person: "Ryan Hadley",
-                picture: "../../images/ryan hads.jpg"
-            },
-        ];
+
 
         // const sortTaskz = function(tasks) {
         //     let completed = [],
@@ -419,7 +299,6 @@ angular.module('chasingProgress')
         };
 
         getTodoDataz = function() {
-            todoData.contact = peopleToContact[new Date().getDate()];
             var dfd = $q.defer();
             //***************TODO LIST CALL**********
             $http({
@@ -457,12 +336,41 @@ angular.module('chasingProgress')
                         }).then(function(response) {
                             todoData.weekly.weeklyTasks = response.data.weeklyTasks;
                             todoData.weekly.percentCompleted = percentCompleted(response.data.weeklyTasks)
-                            dfd.resolve(todoData);
+
+                            //***************Contact CALL**********
+                            $http({
+                                method: 'GET',
+                                url: "/api/contact"
+                            }).then(function(response) {
+                                console.log(response.data, [new Date().getDate()]);
+                                todoData.dailyContact = response.data[new Date().getDate()]
+                                dfd.resolve(todoData);
+                            });
+
                         });
                     });
                 });
             });
             return dfd.promise;
+        }
+
+
+        //*************************  CONTACTS  ************************************************
+
+        this.addNewContact = function(name, image) {
+            console.log(name, image);
+
+              return $http({
+                method: 'POST',
+                url: '/api/contact',
+                data: {
+                    name: name,
+                    contactImage: image
+                }
+              }).then(function(response) {
+                  return response;
+              });
+
         }
 
         var _cachedPromise;

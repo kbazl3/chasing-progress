@@ -6,7 +6,8 @@ angular.module('chasingProgress')
 
         $scope.dailyData = todoResolve.daily;
         $scope.groceryList = todoResolve.grocery;
-        $scope.dailyContact = todoResolve.contact;
+        $scope.dailyContact = todoResolve.dailyContact;
+        console.log($scope.dailyContact);
         $scope.todoLists = todoResolve.todoLists;
         $scope.weeklyData = todoResolve.weekly;
         let editedDailyTask;
@@ -281,6 +282,16 @@ angular.module('chasingProgress')
 
         $scope.hoverOut = function(list, index) {
             $scope.icon[index] = false;
+        }
+
+        $scope.addNewContact = function() {
+            console.log($scope.newContact, $scope.contactImage);
+            todoSvc.addNewContact($scope.newContact, $scope.contactImage)
+                .then(function(response) {
+                    alertify.success('ADDED' + response)
+                    $scope.newContact = "";
+                    $scope.contactImage = "";
+                })
         }
 
 

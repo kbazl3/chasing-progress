@@ -18,7 +18,8 @@ const express = require("express"),
       embeddedVideosCtrl = require('./controllers/embeddedVideosCtrl'),
       imagesCtrl = require('./controllers/imagesCtrl'),
       researchTopicCtrl = require('./controllers/researchTopicCtrl'),
-      todoListCtrl = require('./controllers/todoListCtrl');
+      todoListCtrl = require('./controllers/todoListCtrl'),
+      contactCtrl = require('./controllers/contactsCtrl');
 
 app.use(bodyParser.json());
 // app.use(cors());
@@ -89,6 +90,11 @@ app.post('/api/todoList', todoListCtrl.addTodoList);
 app.put('/api/todoList/:id', todoListCtrl.updateTodoList);
 app.get('/api/todoList', todoListCtrl.getTodoLists);
 app.delete('/api/todoList/:id', todoListCtrl.deleteTodoList);
+
+app.post('/api/contact', contactCtrl.addContact);
+app.put('/api/contact/:id', contactCtrl.updateContact);
+app.get('/api/contact', contactCtrl.getContacts);
+app.delete('/api/contact/:id', contactCtrl.deleteContact);
 
 app.listen(port, () => {
     console.log("listening on ", + port);
