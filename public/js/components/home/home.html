@@ -100,6 +100,7 @@
                 <button ng-click="toggleManagePage('quotes')" type="button" class="btn btn-default">Quotes</button>
                 <button ng-click="toggleManagePage('videos')" type="button" class="btn btn-default">Videos</button>
                 <button ng-click="toggleManagePage('images')"type="button" class="btn btn-default">Images</button>
+                <button ng-click="toggleManagePage('contacts')"type="button" class="btn btn-default">Contacts</button>
                 <button ng-click="managePage()" type="button" name="button" class="btn btn-default">Manage Page</button>
             </div>
         </div>
@@ -127,7 +128,7 @@
                 </div>
                 <button type="button" name="button" ng-show="!isEditingQuote" ng-click="addNewQuote(newQuote, newQuoteAuthor)">Add</button>
                 <button type="button" name="button" ng-show="isEditingQuote" ng-click="updateQuote(newQuote, newQuoteAuthor)">Update</button>
-                <button type="button" name="button" ng-show="isEditingQuote" ng-click="isEditingQuote = false">Cancel</button>
+                <button type="button" name="button" ng-show="isEditingQuote" ng-click="cancelQuoteEdit()">Cancel</button>
             </div>
         </div>
 
@@ -162,7 +163,7 @@
                 </div>
                 <button type="button" name="button" ng-show="!isEditingVideo" ng-click="addNewVideo(newVideo, newVideoTitle)">Add</button>
                 <button type="button" name="button" ng-show="isEditingVideo" ng-click="updateVideo(newVideo, newVideoTitle)">Update</button>
-                <button type="button" name="button" ng-show="isEditingVideo" ng-click="isEditingVideo = false">Cancel</button>
+                <button type="button" name="button" ng-show="isEditingVideo" ng-click="cancelVideoUpdate()">Cancel</button>
             </div>
         </div>
         <div class="row">
@@ -198,7 +199,7 @@
                 </div>
                 <button type="button" name="button" ng-show="!isEditingImage" ng-click="addNewImage(newImage, newImageTitle)">Add</button>
                 <button type="button" name="button" ng-show="isEditingImage" ng-click="updateImage(newImage, newImageTitle)">Update</button>
-                <button type="button" name="button" ng-show="isEditingImage" ng-click="isEditingImage = false">Cancel</button>
+                <button type="button" name="button" ng-show="isEditingImage" ng-click="cancelImageEdit()">Cancel</button>
             </div>
         </div>
         <div class="row">
@@ -207,6 +208,42 @@
                 <button ng-click="deleteImage(image)" type="button" name="button">Delete</button>
                 <button ng-click="editImage($index)" type="button" name="button">Edit</button>
                 <br><br><br><br><br><br><br>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="well" uib-collapse="manageContacts">
+        <div class="addNewContact">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <h3 class="panel-title" ng-show="!isEditingContact">Add A New Contact</h3>
+                    <h3 class="panel-title" ng-show="isEditingContact">Edit Contact</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-person" aria-hidden="true"></span></span>
+                        <input placeholder="Name" class="form-control" type="text" ng-model="newContact">
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-person" aria-hidden="true"></span></span>
+                        <input placeholder="Paste image URL here" class="form-control" type="text" ng-model="newContactImage">
+                    </div>
+                </div>
+                <button type="button" name="button" ng-show="!isEditingContact" ng-click="addNewContact(newContact, newContactImage)">Add</button>
+                <button type="button" name="button" ng-show="isEditingContact" ng-click="updateContact(newContact, newContactImage)">Update</button>
+                <button type="button" name="button" ng-show="isEditingContact" ng-click="cancelContactEdit()">Cancel</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2" ng-repeat="contact in contactsList">
+                <h3>{{contact.name}}</h3>
+                <button ng-click="deleteContact(contact)" type="button" name="button">Delete</button>
+                <button ng-click="editContact($index)" type="button" name="button">Edit</button>
+                <br><br><br><br>
             </div>
         </div>
 

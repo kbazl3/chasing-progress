@@ -11,10 +11,35 @@ angular.module('chasingProgress')
         $scope.manageImages = true;
         $scope.manageQuotes = true;
         $scope.manageVideos = true;
+        $scope.manageContacts = true;
         let editedQuote;
 
         $scope.managePage = function() {
             $scope.isManagingHomePage = !$scope.isManagingHomePage;
+        }
+
+        $scope.toggleManagePage = function(string) {
+            if (string === "quotes") {
+                $scope.manageQuotes = false;
+                $scope.manageVideos = true;
+                $scope.manageImages = true;
+                $scope.manageContacts = true;
+            } else if (string === "videos") {
+                $scope.manageQuotes = true;
+                $scope.manageVideos = false;
+                $scope.manageImages = true;
+                $scope.manageContacts = true;
+            } else if (string === 'contacts') {
+                $scope.manageQuotes = true;
+                $scope.manageVideos = true;
+                $scope.manageImages = true;
+                $scope.manageContacts = false;
+            } else {
+                $scope.manageQuotes = true;
+                $scope.manageVideos = true;
+                $scope.manageImages = false;
+                $scope.manageContacts = true;
+            }
         }
 
         let d = new Date().getDate();
@@ -42,18 +67,25 @@ angular.module('chasingProgress')
                 $scope.dailyImage = response[6]
             })
 
-        $scope.addNewQuote = function(quote, author) {
-            homeSvc.addNewQuote(quote, author)
-                .then(function(response) {
-                    alertify.success(response)
-                })
-        }
+        homeSvc.getContacts()
+            .then(function(response) {
+                $scope.contactsList = response.data;
+            })
+
+
+
+        // ********************** Quote **********************
+        // *****************************************************
+
 
         $scope.deleteQuote = function(index) {
-            homeSvc.deleteQuote($scope.quotesList[index])
-                .then(function(response) {
-                    alertify.success('deleted')
-                })
+            alertify.confirm("Are you sure?", function() {
+                homeSvc.deleteQuote($scope.quotesList[index])
+                    .then(function(response) {
+                        alertify.success('deleted')
+                    })
+            })
+
         }
 
         $scope.editQuote = function(index) {
@@ -73,29 +105,6 @@ angular.module('chasingProgress')
                 })
         }
 
-
-        $scope.toggleManagePage = function(string) {
-            if (string === "quotes") {
-                $scope.manageQuotes = false;
-                $scope.manageVideos = true;
-                $scope.manageImages = true;
-            } else if (string === "videos") {
-                $scope.manageQuotes = true;
-                $scope.manageVideos = false;
-                $scope.manageImages = true;
-            } else {
-                $scope.manageQuotes = true;
-                $scope.manageVideos = true;
-                $scope.manageImages = false;
-            }
-        }
-
-
-        //get this shizzz outof here
-        $scope.toggleNewQuoteForm = function() {
-            $scope.isAddingNewQuote = true;
-        }
-
         $scope.addNewQuote = function(quote, author) {
             homeSvc.addNewQuote(quote, author)
                 .then(function(response) {
@@ -104,6 +113,16 @@ angular.module('chasingProgress')
                     $scope.newQuoteAuthor = "";
                 })
         }
+
+        $scope.cancelQuoteEdit = function() {
+            $scope.newQuote = "";
+            $scope.newQuoteAuthor = "";
+            $scope.isEditingQuote = false;
+            editedQuote = {};
+        }
+
+        // ********************** Video **********************
+        // *****************************************************
 
         let editedVideo;
 
@@ -116,10 +135,13 @@ angular.module('chasingProgress')
         }
 
         $scope.deleteVideo = function(index) {
-            homeSvc.deleteVideo($scope.videosList[index])
-                .then(function(response) {
-                    alertify.success('deleted')
-                })
+            alertify.confirm("Are you sure?", function() {
+                homeSvc.deleteVideo($scope.videosList[index])
+                    .then(function(response) {
+                        alertify.success('deleted')
+                    })
+            })
+
         }
 
         $scope.editVideo = function(index) {
@@ -139,6 +161,15 @@ angular.module('chasingProgress')
                 })
         }
 
+        $scope.cancelVideoUpdate = function() {
+            $scope.isEditingVideo = false;
+            $scope.newVideo = "";
+            $scope.newVideoTitle = "";
+            editedVideo = {};
+        }
+
+        // ********************** Image **********************
+        // *****************************************************
 
         $scope.addNewImage = function(video) {
             homeSvc.addNewImage(video)
@@ -149,10 +180,13 @@ angular.module('chasingProgress')
         }
 
         $scope.deleteImage = function(image) {
-            homeSvc.deleteImage(image)
-                .then(function(response) {
-                    alertify.success('deleted')
-                })
+            alertify.confirm('Are you sure you want to delete this?', function() {
+                homeSvc.deleteImage(image)
+                    .then(function(response) {
+                        alertify.success('deleted')
+                    })
+            })
+
         }
 
         $scope.editImage = function(index) {
@@ -171,6 +205,57 @@ angular.module('chasingProgress')
                 })
         }
 
+        $scope.cancelImageEdit = function() {
+            $scope.newImage = "";
+            $scope.isEditingImage = false;
+            editedImage = {};
+        }
+
+
+        // ********************** CONTACT **********************
+        // *****************************************************
+
+        let editedContact;
+        $scope.addNewContact = function(name, picture) {
+            homeSvc.addNewContact(name, picture)
+                .then(function(response) {
+                    console.log(response);
+                })
+        }
+
+        $scope.deleteContact = function(person) {
+            alertify.confirm("Are you sure?", function() {
+                homeSvc.deleteContact(person)
+                    .then(function(response) {
+                        alertify.success('deleted')
+                    })
+            })
+
+        }
+
+        $scope.editContact = function(index) {
+            editedContact = $scope.contactsList[index];
+            $scope.newContact = editedContact.name;
+            $scope.newContactImage = editedContact.contactImage;
+            $scope.isEditingContact = true;
+        }
+
+        $scope.updateContact = function(name, image) {
+            homeSvc.updateContact(name, image, editedContact)
+                .then(function(response) {
+                    alertify.success('UPDATED')
+                    $scope.newContact = "";
+                    $scope.newContactImage = "";
+                    $scope.isEditingContact = false;
+                })
+        }
+
+        $scope.cancelContactEdit = function() {
+            $scope.newContact = "";
+            $scope.newContactImage = "";
+            $scope.isEditingContact = false;
+            editedContact = {};
+        }
 
 
 

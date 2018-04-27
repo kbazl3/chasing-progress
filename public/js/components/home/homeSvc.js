@@ -191,6 +191,52 @@ angular.module("chasingProgress")
         }
 
 
+        this.getContacts = function() {
+            return $http({
+                method: 'GET',
+                url: '/api/contact'
+            }).then(function(response) {
+                console.log(response);
+                return response;
+            });
+        };
+
+        this.addNewContact = function(name, image){
+            return $http({
+                method: "POST",
+                url: '/api/contact',
+                data: {
+                    name: name,
+                    contactImage: image
+                }
+            }).then(function(response) {
+                return response;
+            })
+        }
+
+        this.deleteContact = function(person) {
+            return $http({
+                method: "DELETE",
+                url: '/api/contact/' + person._id
+            }).then(function(response) {
+                return response;
+            })
+        }
+
+        this.updateContact = function(name, image, contactObj) {
+            return $http({
+                method: "PUT",
+                url: "/api/contact/" + contactObj._id,
+                data: {
+                    name: name,
+                    contactImage: image
+                }
+            }).then(function(response) {
+                return response;
+            })
+        }
+
+
 
 
 
