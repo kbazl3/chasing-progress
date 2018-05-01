@@ -96,7 +96,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="btn-group" role="group" aria-label="...">
+            <div class="btn-group" id="manage-page-top" role="group" aria-label="...">
                 <button ng-click="toggleManagePage('quotes')" type="button" class="btn btn-default">Quotes</button>
                 <button ng-click="toggleManagePage('videos')" type="button" class="btn btn-default">Videos</button>
                 <button ng-click="toggleManagePage('images')"type="button" class="btn btn-default">Images</button>
@@ -107,7 +107,7 @@
     </div>
 
 
-    <div class="well" uib-collapse="manageQuotes">
+    <div uib-collapse="manageQuotes">
         <div class="addNewQuote">
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">
@@ -132,7 +132,7 @@
             </div>
         </div>
 
-        <ul ng-repeat="quote in quotesList">
+        <ul ng-repeat="quote in quotesList" class="well well-sm">
             <li>{{quote.quote}} — {{quote.author}}</li>
             <button ng-click="deleteQuote($index)" type="button" name="button">Delete</button>
             <button ng-click="editQuote($index)" type="button" name="button">Edit</button>
@@ -141,7 +141,7 @@
         </ul>
     </div>
 
-    <div class="well" uib-collapse="manageVideos">
+    <div uib-collapse="manageVideos">
         <div class="addNewVideo">
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">
@@ -167,15 +167,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3" ng-repeat="video in videosList">
+            <div class="col-md-3 well" ng-repeat="video in videosList">
                 <a href="{{video.link}}" target="_blank">
                     <img class="img-fluid img-thumbnail video-thumbnail" ng-src="{{video.thumbnail}}" alt="">
                 </a>
-                <li>
-                    <h4>{{video.videoTitle}}</h4></li>
+                <li><h4>{{video.videoTitle}}</h4></li>
                 <button ng-click="deleteVideo($index)" type="button" name="button">Delete</button>
                 <button ng-click="editVideo($index)" type="button" name="button">Edit</button>
                 <br>
+                <br>
+                <br>
+                
                 <hr>
             </div>
         </div>
@@ -250,4 +252,4 @@
     </div>
 
 </div>
-<footer-bottom></footer-bottom>
+<!-- <footer-bottom></footer-bottom> -->

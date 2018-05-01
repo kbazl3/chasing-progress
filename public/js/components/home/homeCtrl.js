@@ -2,14 +2,14 @@
 
 
 angular.module('chasingProgress')
-    .controller('homeCtrl', function($scope, $sce, homeSvc, $state, alertify) {
+    .controller('homeCtrl', function($scope, $sce, homeSvc, $state, alertify, $location, $anchorScroll) {
 
 
         $scope.isEditingQuote = false;
         $scope.isEditingVideo = false;
         $scope.isManagingHomePage = false;
         $scope.manageImages = true;
-        $scope.manageQuotes = true;
+        // $scope.manageQuotes = true;
         $scope.manageVideos = true;
         $scope.manageContacts = true;
         let editedQuote;
@@ -56,7 +56,7 @@ angular.module('chasingProgress')
         //write this so it only grabs 1 video instead of all
         homeSvc.getEmbeddedVideos()
             .then(function(response) {
-                $scope.video = $sce.trustAsHtml(response.videosList[response.date].video);
+                // $scope.video = $sce.trustAsHtml(response.videosList[response.date].video);
                 $scope.videosList = response.videosList
             })
 
@@ -93,6 +93,8 @@ angular.module('chasingProgress')
             $scope.newQuoteAuthor = $scope.quotesList[index].author;
             editedQuote = $scope.quotesList[index];
             $scope.isEditingQuote = true;
+            $location.hash('manage-page-top')
+            $anchorScroll();
         }
 
         $scope.updateQuote = function(quote, author) {
@@ -149,6 +151,8 @@ angular.module('chasingProgress')
             $scope.newVideoTitle = $scope.videosList[index].videoTitle;
             editedVideo = $scope.videosList[index];
             $scope.isEditingVideo = true;
+            $location.hash('manage-page-top')
+            $anchorScroll();
         }
 
         $scope.updateVideo = function(video, title) {
@@ -194,6 +198,8 @@ angular.module('chasingProgress')
             $scope.newImageTitle = $scope.videosList[index].videoTitle;
             editedImage = $scope.videosList[index];
             $scope.isEditingImage = true;
+            $location.hash('manage-page-top')
+            $anchorScroll();
         }
 
         $scope.updateImage = function(video, title) {
@@ -238,6 +244,8 @@ angular.module('chasingProgress')
             $scope.newContact = editedContact.name;
             $scope.newContactImage = editedContact.contactImage;
             $scope.isEditingContact = true;
+            $location.hash('manage-page-top')
+            $anchorScroll();
         }
 
         $scope.updateContact = function(name, image) {

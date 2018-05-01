@@ -47,6 +47,8 @@ angular.module("chasingProgress")
 
         $scope.cancelNoteEdit = function() {
             $scope.isEditingNote = false;
+            $scope.htmlVariable = "";
+            bookNoteIndex = {};
         }
 
 
