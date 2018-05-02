@@ -56,13 +56,12 @@ angular.module('chasingProgress')
         //write this so it only grabs 1 video instead of all
         homeSvc.getEmbeddedVideos()
             .then(function(response) {
-                // $scope.video = $sce.trustAsHtml(response.videosList[response.date].video);
+                $scope.video = $sce.trustAsHtml(response.videosList[response.date].video);
                 $scope.videosList = response.videosList
             })
 
         homeSvc.getImages()
             .then(function(response) {
-                // $scope.getMotivatedImage = response
                 $scope.imagesList = response;
                 $scope.dailyImage = response[6]
             })
