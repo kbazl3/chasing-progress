@@ -1,24 +1,24 @@
 var EmbeddedVideo = require('./../models/EmbeddedVideo');
 
 module.exports = {
-    addEmbeddedVideo: function(req, res) {
-        EmbeddedVideo.create(req.body, function(err, result) {
+    addEmbeddedVideo: (req, res)  => {
+        EmbeddedVideo.create(req.body, (err, result)  => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    getEmbeddedVideos: function(req, res) {
-        EmbeddedVideo.find(req.query, function(err, result) {
+    getEmbeddedVideos: (req, res)  => {
+        EmbeddedVideo.find(req.query, (err, result)  => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    deleteEmbeddedVideo: function(req, res) {
-        EmbeddedVideo.findByIdAndRemove(req.params.id, function(err, result) {
+    deleteEmbeddedVideo: (req, res)  => {
+        EmbeddedVideo.findByIdAndRemove(req.params.id, (err, result)  => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -26,13 +26,13 @@ module.exports = {
         });
     },
 
-    updateEmbeddedVideo: function(req, res) {
+    updateEmbeddedVideo: (req, res)  => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
         EmbeddedVideo.findOneAndUpdate({
             _id: req.params.id
-        }, req.body, function(err, productItem) {
+        }, req.body, (err, productItem)  => {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -40,7 +40,7 @@ module.exports = {
             }
         });
     },
-    test: function(req, res) {
+    test: (req, res)  => {
         return 'foo';
     }
 

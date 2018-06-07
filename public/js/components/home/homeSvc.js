@@ -6,7 +6,7 @@ angular.module("chasingProgress")
         const createVideoThumbnails = function(ary) {
             ary.forEach(function(videoObj) {
                 var x = videoObj.video.indexOf("embed/");
-                let embedID = videoObj.video.slice(x + 6, x + 17)
+                let embedID = videoObj.video.slice(x + 6, x + 17);
                 videoObj.thumbnail = "https://img.youtube.com/vi/" + embedID + "/0.jpg";
                 videoObj.link = "https://www.youtube.com/embed/" + embedID;
             })
@@ -86,12 +86,13 @@ angular.module("chasingProgress")
             });
         };
 
-        this.addNewVideo = function(video) {
+        this.addNewVideo = function(video, videoTitle) {
             return $http({
                 method: 'POST',
                 url: '/api/embeddedVideos',
                 data: {
-                    video: video
+                    video: video,
+                    videoTitle: videoTitle
                 }
             }).then(function(response) {
                 return response.data

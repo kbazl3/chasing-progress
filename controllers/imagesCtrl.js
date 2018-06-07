@@ -1,26 +1,16 @@
 var Images = require('./../models/Images');
 
 module.exports = {
-    addImage: function(req, res) {
-        Images.create(req.body, function(err, result) {
+    addImage: (req, res) => {
+        Images.create(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    getImages: function(req, res) {
-        Images.find({}, function(err, result) {
-            if (err) {
-                res.status(500).send(err);
-            }
-            res.status(200).send(result);
-        });
-    },
-
-
-    deleteImage: function(req, res) {
-        Images.findByIdAndRemove(req.params.id, function(err, result) {
+    getImages: (req, res) => {
+        Images.find({}, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -28,13 +18,23 @@ module.exports = {
         });
     },
 
-    addImageNote: function(req, res) {
+
+    deleteImage: (req, res) => {
+        Images.findByIdAndRemove(req.params.id, (err, result) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+            res.status(200).send(result);
+        });
+    },
+
+    addImageNote: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
         Images.findOneAndUpdate({
             _id: req.params.id
-        }, req.body, function(err, productItem) {
+        }, req.body, (err, productItem) => {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -42,7 +42,7 @@ module.exports = {
             }
         });
     },
-    test: function(req, res) {
+    test: (req, res) => {
         return 'foo';
     }
 

@@ -1,25 +1,25 @@
 var Contact = require('./../models/Contacts');
 
 module.exports = {
-    addContact: function(req, res) {
+    addContact: (req, res) => {
         console.log('hitting');
-        Contact.create(req.body, function(err, result) {
+        Contact.create(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    getContacts: function(req, res) {
-        Contact.find(req.query, function(err, result) {
+    getContacts: (req, res) => {
+        Contact.find(req.query, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    deleteContact: function(req, res) {
-        Contact.findByIdAndRemove(req.params.id, function(err, result) {
+    deleteContact: (req, res) => {
+        Contact.findByIdAndRemove(req.params.id, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -27,13 +27,13 @@ module.exports = {
         });
     },
 
-    updateContact: function(req, res) {
+    updateContact: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
         Contact.findOneAndUpdate({
             _id: req.params.id
-        }, req.body, function(err, productItem) {
+        }, req.body, (err, productItem) => {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -41,7 +41,7 @@ module.exports = {
             }
         });
     },
-    test: function(req, res) {
+    test: (req, res) => {
         return 'foo';
     }
 

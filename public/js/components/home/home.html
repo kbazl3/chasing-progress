@@ -84,9 +84,9 @@
     <div parallax-background parallax-ratio="-0.3" class="parallax-section-image">
 
 
-            <div class="get-motivated-image-container">
-                <img ng-src="{{dailyImage.image}}" alt="">
-            </div>
+        <div class="get-motivated-image-container">
+            <img ng-src="{{dailyImage.image}}" alt="">
+        </div>
 
 
     </div>
@@ -99,8 +99,8 @@
             <div class="btn-group" id="manage-page-top" role="group" aria-label="...">
                 <button ng-click="toggleManagePage('quotes')" type="button" class="btn btn-default">Quotes</button>
                 <button ng-click="toggleManagePage('videos')" type="button" class="btn btn-default">Videos</button>
-                <button ng-click="toggleManagePage('images')"type="button" class="btn btn-default">Images</button>
-                <button ng-click="toggleManagePage('contacts')"type="button" class="btn btn-default">Contacts</button>
+                <button ng-click="toggleManagePage('images')" type="button" class="btn btn-default">Images</button>
+                <button ng-click="toggleManagePage('contacts')" type="button" class="btn btn-default">Contacts</button>
                 <button ng-click="managePage()" type="button" name="button" class="btn btn-default">Manage Page</button>
             </div>
         </div>
@@ -171,13 +171,14 @@
                 <a href="{{video.link}}" target="_blank">
                     <img class="img-fluid img-thumbnail video-thumbnail" ng-src="{{video.thumbnail}}" alt="">
                 </a>
-                <li><h4>{{video.videoTitle}}</h4></li>
+                <li>
+                    <h4>{{video.videoTitle}}</h4></li>
                 <button ng-click="deleteVideo($index)" type="button" name="button">Delete</button>
                 <button ng-click="editVideo($index)" type="button" name="button">Edit</button>
                 <br>
                 <br>
                 <br>
-                
+
                 <hr>
             </div>
         </div>
@@ -211,6 +212,10 @@
                 <button ng-click="editImage($index)" type="button" name="button">Edit</button>
                 <br><br><br><br><br><br><br>
             </div>
+        </div>
+
+        <div class="dropzone">
+            <div class="info"></div>
         </div>
 
     </div>

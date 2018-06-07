@@ -2,8 +2,8 @@ var WeeklyLogs = require('./../models/WeeklyLogs');
 
 module.exports = {
 
-    addWeeklyLog: function(req, res) {
-        WeeklyLogs.create(req.body, function(err, result) {
+    addWeeklyLog: (req, res) => {
+        WeeklyLogs.create(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -11,8 +11,8 @@ module.exports = {
         });
     },
 
-    getWeeklyLogs: function(req, res) {
-        WeeklyLogs.find(req.query, function(err, result) {
+    getWeeklyLogs: (req, res) => {
+        WeeklyLogs.find(req.query, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -20,8 +20,8 @@ module.exports = {
         });
     },
 
-    deleteWeeklyLogs: function(req, res) {
-        WeeklyLogs.findByIdAndRemove(req.params.id, function(err, result) {
+    deleteWeeklyLogs: (req, res) => {
+        WeeklyLogs.findByIdAndRemove(req.params.id, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -29,13 +29,13 @@ module.exports = {
         });
     },
 
-    updateWeeklyLogs: function(req, res) {
+    updateWeeklyLogs: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
         WeeklyLogs.findOneAndUpdate({
             _id: req.params.id
-        }, req.body, function(err, productItem) {
+        }, req.body, (err, productItem) => {
             if (err) {
                 res.status(500).send(err);
             } else {

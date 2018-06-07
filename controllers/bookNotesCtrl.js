@@ -1,24 +1,24 @@
 var Booknotes = require('./../models/BookNotes');
 
 module.exports = {
-    addBook: function(req, res) {
-        Booknotes.create(req.body, function(err, result) {
+    addBook: (req, res) => {
+        Booknotes.create(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    getBooks: function(req, res) {
-        Booknotes.find(req.query, function(err, result) {
+    getBooks: (req, res) => {
+        Booknotes.find(req.query, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    deleteBook: function(req, res) {
-        Booknotes.findByIdAndRemove(req.params.id, function(err, result) {
+    deleteBook: (req, res) => {
+        Booknotes.findByIdAndRemove(req.params.id, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -26,7 +26,7 @@ module.exports = {
         });
     },
 
-    addBookNote: function(req, res) {
+    addBookNote: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
@@ -35,7 +35,7 @@ module.exports = {
         }
         Booknotes.findOneAndUpdate({
             _id: req.params.id
-        }, req.body, function(err, productItem) {
+        }, req.body, (err, productItem) => {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -43,13 +43,13 @@ module.exports = {
             }
         });
     },
-    test: function(req, res) {
+    test: (req, res) => {
         return 'foo';
     },
-    getOneBook: function(req, res, next) {
+    getOneBook: (req, res, next) => {
         Booknotes.findOne({
             _id: req.params.id
-        }, function(err, book) {
+        }, (err, book) => {
             if (err) {
                 res.status(500).send(err)
             } else {

@@ -1,26 +1,16 @@
 var Quotes = require('./../models/Quotes');
 
 module.exports = {
-    addQuote: function(req, res) {
-        Quotes.create(req.body, function(err, result) {
+    addQuote: (req, res) => {
+        Quotes.create(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    getQuotes: function(req, res) {
-        Quotes.find({}, function(err, result) {
-            if (err) {
-                res.status(500).send(err);
-            }
-            res.status(200).send(result);
-        });
-    },
-
-
-    deleteQuote: function(req, res) {
-        Quotes.findByIdAndRemove(req.params.id, function(err, result) {
+    getQuotes: (req, res) => {
+        Quotes.find({}, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -28,13 +18,23 @@ module.exports = {
         });
     },
 
-    addQuoteNote: function(req, res) {
+
+    deleteQuote: (req, res) => {
+        Quotes.findByIdAndRemove(req.params.id, (err, result) => {
+            if (err) {
+                res.status(500).send(err);
+            }
+            res.status(200).send(result);
+        });
+    },
+
+    addQuoteNote: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
         Quotes.findOneAndUpdate({
             _id: req.params.id
-        }, req.body, function(err, productItem) {
+        }, req.body, (err, productItem) => {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -42,7 +42,7 @@ module.exports = {
             }
         });
     },
-    test: function(req, res) {
+    test: (req, res) => {
         return 'foo';
     }
 

@@ -1,27 +1,27 @@
 var Todo = require('./../models/Todo');
 
 module.exports = {
-    addTodoList: function(req, res) {
-        Todo.create(req.body, function(err, result) {
+    addTodoList: (req, res) => {
+        Todo.create(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    getTodoLists: function(req, res) {
-        Todo.find(req.query, function(err, result) {
+    getTodoLists: (req, res) => {
+        Todo.find(req.query, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    deleteTodoList: function(req, res) {
+    deleteTodoList: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
-        Todo.findByIdAndRemove(req.params.id, function(err, result) {
+        Todo.findByIdAndRemove(req.params.id, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -29,7 +29,7 @@ module.exports = {
         });
     },
 
-    updateTodoList: function(req, res) {
+    updateTodoList: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
@@ -38,7 +38,7 @@ module.exports = {
         }
         Todo.findOneAndUpdate({
             _id: req.params.id
-        }, req.body, function(err, productItem) {
+        }, req.body, (err, productItem) => {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -46,7 +46,7 @@ module.exports = {
             }
         });
     },
-    test: function(req, res) {
+    test: (req, res) => {
         return 'foo';
     }
 

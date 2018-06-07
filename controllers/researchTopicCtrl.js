@@ -1,27 +1,27 @@
 var ResearchTopic = require('./../models/ResearchTopic');
 
 module.exports = {
-    addResearchTopic: function(req, res) {
-        ResearchTopic.create(req.body, function(err, result) {
+    addResearchTopic: (req, res) => {
+        ResearchTopic.create(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    getResearchTopics: function(req, res) {
-        ResearchTopic.find(req.query, function(err, result) {
+    getResearchTopics: (req, res) => {
+        ResearchTopic.find(req.query, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
             res.status(200).send(result);
         });
     },
-    deleteResearchTopic: function(req, res) {
+    deleteResearchTopic: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
-        ResearchTopic.findByIdAndRemove(req.params.id, function(err, result) {
+        ResearchTopic.findByIdAndRemove(req.params.id, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -29,13 +29,13 @@ module.exports = {
         });
     },
 
-    updateResearchTopic: function(req, res) {
+    updateResearchTopic: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
         ResearchTopic.findOneAndUpdate({
             _id: req.params.id
-        }, req.body, function(err, productItem) {
+        }, req.body, (err, productItem) => {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -43,7 +43,7 @@ module.exports = {
             }
         });
     },
-    test: function(req, res) {
+    test: (req, res) => {
         return 'foo';
     }
 

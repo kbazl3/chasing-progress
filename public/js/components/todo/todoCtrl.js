@@ -16,6 +16,7 @@ angular.module('chasingProgress')
         //*************************  DAILY TASKS  ************************************************
 
         $scope.isEditingDailyTask = false;
+        $scope.isAddingOrEditingDailyTask = false;
 
         $scope.addDailyTask = function(task) {
             todoSvc.addDailyTask(task)
@@ -48,6 +49,7 @@ angular.module('chasingProgress')
 
         $scope.editDailyTask = function(task, index) {
             $scope.isEditingDailyTask = true;
+            $scope.isAddingOrEditingDailyTask = true;;
             editedDailyTask = task;
             $scope.addDailyTaskInput = task.task
             $location.hash('dailyTaskInput')
@@ -67,6 +69,7 @@ angular.module('chasingProgress')
         $scope.cancelDailyTaskEdit = function() {
             $scope.addDailyTaskInput = "";
             $scope.isEditingDailyTask = false;
+            $scope.isAddingOrEditingDailyTask = false;
             editedDailyTask = {};
         }
 
@@ -293,7 +296,5 @@ angular.module('chasingProgress')
                     $scope.contactImage = "";
                 })
         }
-
-
 
     });

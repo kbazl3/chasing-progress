@@ -14,11 +14,11 @@ angular.module('chasingProgress')
         $scope.manageContacts = true;
         let editedQuote;
 
-        $scope.managePage = function() {
+        $scope.managePage = () => {
             $scope.isManagingHomePage = !$scope.isManagingHomePage;
         }
 
-        $scope.toggleManagePage = function(string) {
+        $scope.toggleManagePage = (string) => {
             if (string === "quotes") {
                 $scope.manageQuotes = false;
                 $scope.manageVideos = true;
@@ -77,17 +77,17 @@ angular.module('chasingProgress')
         // *****************************************************
 
 
-        $scope.deleteQuote = function(index) {
-            alertify.confirm("Are you sure?", function() {
+        $scope.deleteQuote = (index) => {
+            alertify.confirm("Are you sure?", () => {
                 homeSvc.deleteQuote($scope.quotesList[index])
-                    .then(function(response) {
+                    .then((response) => {
                         alertify.success('deleted')
                     })
             })
 
         }
 
-        $scope.editQuote = function(index) {
+        $scope.editQuote = (index) => {
             $scope.newQuote = $scope.quotesList[index].quote;
             $scope.newQuoteAuthor = $scope.quotesList[index].author;
             editedQuote = $scope.quotesList[index];
@@ -96,9 +96,9 @@ angular.module('chasingProgress')
             $anchorScroll();
         }
 
-        $scope.updateQuote = function(quote, author) {
+        $scope.updateQuote = (quote, author) => {
             homeSvc.updateQuote(quote, author, editedQuote)
-                .then(function(response) {
+                .then((response) => {
                     alertify.success('Updated')
                     $scope.isEditingQuote = false;
                     $scope.newQuote = "";
@@ -106,16 +106,16 @@ angular.module('chasingProgress')
                 })
         }
 
-        $scope.addNewQuote = function(quote, author) {
+        $scope.addNewQuote = (quote, author) => {
             homeSvc.addNewQuote(quote, author)
-                .then(function(response) {
+                .then((response) => {
                     alertify.success(response)
                     $scope.newQuote = "";
                     $scope.newQuoteAuthor = "";
                 })
         }
 
-        $scope.cancelQuoteEdit = function() {
+        $scope.cancelQuoteEdit = () => {
             $scope.newQuote = "";
             $scope.newQuoteAuthor = "";
             $scope.isEditingQuote = false;
@@ -127,25 +127,25 @@ angular.module('chasingProgress')
 
         let editedVideo;
 
-        $scope.addNewVideo = function(video) {
-            homeSvc.addNewVideo(video)
-                .then(function(response) {
+        $scope.addNewVideo = (video, videoTitle) => {
+            homeSvc.addNewVideo(video, videoTitle)
+                .then((response) => {
                     alertify.success(response)
                     $scope.newVideo = "";
                 })
         }
 
-        $scope.deleteVideo = function(index) {
-            alertify.confirm("Are you sure?", function() {
+        $scope.deleteVideo = (index) => {
+            alertify.confirm("Are you sure?", () => {
                 homeSvc.deleteVideo($scope.videosList[index])
-                    .then(function(response) {
+                    .then((response) => {
                         alertify.success('deleted')
                     })
             })
 
         }
 
-        $scope.editVideo = function(index) {
+        $scope.editVideo = (index) => {
             $scope.newVideo = $scope.videosList[index].video;
             $scope.newVideoTitle = $scope.videosList[index].videoTitle;
             editedVideo = $scope.videosList[index];
@@ -154,9 +154,9 @@ angular.module('chasingProgress')
             $anchorScroll();
         }
 
-        $scope.updateVideo = function(video, title) {
+        $scope.updateVideo = (video, title) => {
             homeSvc.updateVideo(video, title, editedVideo)
-                .then(function(response) {
+                .then((response) => {
                     alertify.success('Updated')
                     $scope.isEditingVideo = false;
                     $scope.newVideo = "";
@@ -164,7 +164,7 @@ angular.module('chasingProgress')
                 })
         }
 
-        $scope.cancelVideoUpdate = function() {
+        $scope.cancelVideoUpdate = () => {
             $scope.isEditingVideo = false;
             $scope.newVideo = "";
             $scope.newVideoTitle = "";
@@ -174,25 +174,25 @@ angular.module('chasingProgress')
         // ********************** Image **********************
         // *****************************************************
 
-        $scope.addNewImage = function(video) {
+        $scope.addNewImage = (video) => {
             homeSvc.addNewImage(video)
-                .then(function(response) {
+                .then((response) => {
                     alertify.success(response)
                     $scope.newImage = "";
                 })
         }
 
-        $scope.deleteImage = function(image) {
-            alertify.confirm('Are you sure you want to delete this?', function() {
+        $scope.deleteImage = (image) => {
+            alertify.confirm('Are you sure you want to delete this?', () => {
                 homeSvc.deleteImage(image)
-                    .then(function(response) {
+                    .then((response) => {
                         alertify.success('deleted')
                     })
             })
 
         }
 
-        $scope.editImage = function(index) {
+        $scope.editImage = (index) => {
             $scope.newImage = $scope.videosList[index].video;
             $scope.newImageTitle = $scope.videosList[index].videoTitle;
             editedImage = $scope.videosList[index];
@@ -201,16 +201,16 @@ angular.module('chasingProgress')
             $anchorScroll();
         }
 
-        $scope.updateImage = function(video, title) {
+        $scope.updateImage = (video, title) => {
             homeSvc.updateImage(video, title, editedImage)
-                .then(function(response) {
+                .then((response) => {
                     alertify.success('Updated')
                     $scope.isEditingImage = false;
                     $scope.newImage = "";
                 })
         }
 
-        $scope.cancelImageEdit = function() {
+        $scope.cancelImageEdit = () => {
             $scope.newImage = "";
             $scope.isEditingImage = false;
             editedImage = {};
@@ -221,24 +221,24 @@ angular.module('chasingProgress')
         // *****************************************************
 
         let editedContact;
-        $scope.addNewContact = function(name, picture) {
+        $scope.addNewContact = (name, picture) => {
             homeSvc.addNewContact(name, picture)
-                .then(function(response) {
+                .then((response) => {
                     console.log(response);
                 })
         }
 
-        $scope.deleteContact = function(person) {
-            alertify.confirm("Are you sure?", function() {
+        $scope.deleteContact = (person) => {
+            alertify.confirm("Are you sure?", () => {
                 homeSvc.deleteContact(person)
-                    .then(function(response) {
+                    .then((response) =>{
                         alertify.success('deleted')
                     })
             })
 
         }
 
-        $scope.editContact = function(index) {
+        $scope.editContact = (index) => {
             editedContact = $scope.contactsList[index];
             $scope.newContact = editedContact.name;
             $scope.newContactImage = editedContact.contactImage;
@@ -247,9 +247,9 @@ angular.module('chasingProgress')
             $anchorScroll();
         }
 
-        $scope.updateContact = function(name, image) {
+        $scope.updateContact = (name, image) => {
             homeSvc.updateContact(name, image, editedContact)
-                .then(function(response) {
+                .then((response) => {
                     alertify.success('UPDATED')
                     $scope.newContact = "";
                     $scope.newContactImage = "";
@@ -257,7 +257,7 @@ angular.module('chasingProgress')
                 })
         }
 
-        $scope.cancelContactEdit = function() {
+        $scope.cancelContactEdit = () => {
             $scope.newContact = "";
             $scope.newContactImage = "";
             $scope.isEditingContact = false;

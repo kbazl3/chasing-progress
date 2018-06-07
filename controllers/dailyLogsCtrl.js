@@ -2,8 +2,8 @@ var DailyLogs = require('./../models/DailyLogs');
 
 module.exports = {
 
-    addDailyLog: function(req, res) {
-        DailyLogs.create(req.body, function(err, result) {
+    addDailyLog: (req, res) => {
+        DailyLogs.create(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -11,8 +11,8 @@ module.exports = {
         });
     },
 
-    getDailyLogs: function(req, res) {
-        DailyLogs.find(req.query, function(err, result) {
+    getDailyLogs: (req, res) => {
+        DailyLogs.find(req.query, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -20,8 +20,8 @@ module.exports = {
         });
     },
 
-    deleteDailyLogs: function(req, res) {
-        DailyLogs.findByIdAndRemove(req.params.id, function(err, result) {
+    deleteDailyLogs: (req, res) => {
+        DailyLogs.findByIdAndRemove(req.params.id, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -29,13 +29,13 @@ module.exports = {
         });
     },
 
-    updateDailyLogs: function(req, res) {
+    updateDailyLogs: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
         DailyLogs.findOneAndUpdate({
             _id: req.params.id
-        }, req.body, function(err, productItem) {
+        }, req.body, (err, productItem) => {
             if (err) {
                 res.status(500).send(err);
             } else {

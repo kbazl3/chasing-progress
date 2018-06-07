@@ -3,8 +3,8 @@ var DailyTodo = require('./../models/DailyTodo'),
 
 module.exports = {
 
-    addDailyTask: function(req, res) {
-        DailyTodo.create(req.body, function(err, result) {
+    addDailyTask: (req, res) => {
+        DailyTodo.create(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -13,15 +13,15 @@ module.exports = {
     },
 
 
-    getDailyTasks: function(req, res, next) {
+    getDailyTasks: (req, res, next) => {
         DailyTodo.find()
-            .exec(function(err, result) {
+            .exec((err, result) => {
                 let dailyData = {}
                 if (err) {
-                    res.status(500 + "getPractice function error").json(err);
+                    res.status(500 + "getPractice function error").json(err) ;
                 } else {
                     dailyData.dailyTasks = result;
-                    DailyLogs.find(req.query, function(err, dailyLogs) {
+                    DailyLogs.find(req.query, (err, dailyLogs) => {
                         if (err) {
                             res.status(500).send(err);
                         }
@@ -33,8 +33,8 @@ module.exports = {
             })
     },
 
-    deleteDailyTask: function(req, res) {
-        DailyTodo.findByIdAndRemove(req.params.id, function(err, result) {
+    deleteDailyTask: (req, res) => {
+        DailyTodo.findByIdAndRemove(req.params.id, (err, result) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -42,13 +42,13 @@ module.exports = {
         });
     },
 
-    updateDailyTask: function(req, res) {
+    updateDailyTask: (req, res) => {
         if (!req.params.id) {
             return res.status(400).send('id query needed');
         }
         DailyTodo.findOneAndUpdate({
             _id: req.params.id
-        }, req.body, function(err, productItem) {
+        }, req.body, (err, productItem) => {
             if (err) {
                 res.status(500).send(err);
             } else {
