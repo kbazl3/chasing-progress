@@ -1,6 +1,6 @@
 <nav-bar></nav-bar>
 
-<div class="home-page" ng-show="!isManagingHomePage">
+<div id="chasing-progress" class="home-page" ng-show="!isManagingHomePage">
 
 
 
@@ -93,167 +93,170 @@
 </div>
 
 <div class="manage-home-page" ng-show="isManagingHomePage">
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="btn-group" id="manage-page-top" role="group" aria-label="...">
-                <button ng-click="toggleManagePage('quotes')" type="button" class="btn btn-default">Quotes</button>
-                <button ng-click="toggleManagePage('videos')" type="button" class="btn btn-default">Videos</button>
-                <button ng-click="toggleManagePage('images')" type="button" class="btn btn-default">Images</button>
-                <button ng-click="toggleManagePage('contacts')" type="button" class="btn btn-default">Contacts</button>
-                <button ng-click="managePage()" type="button" name="button" class="btn btn-default">Manage Page</button>
-            </div>
-        </div>
-    </div>
+    <div class="container">
 
 
-    <div uib-collapse="manageQuotes">
-        <div class="addNewQuote">
-            <div class="panel panel-default">
-                <div class="panel-heading clearfix">
-                    <h3 class="panel-title" ng-show="!isEditingQuote">Add A New Quote</h3>
-                    <h3 class="panel-title" ng-show="isEditingQuote">Edit Quote</h3>
-                </div>
 
-                <div class="panel-body">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
-                        <input placeholder="Quote" class="form-control" type="text" ng-model="newQuote">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
-                        <input placeholder="Author" class="form-control" type="text" ng-model="newQuoteAuthor">
-                    </div>
-                </div>
-                <button type="button" name="button" ng-show="!isEditingQuote" ng-click="addNewQuote(newQuote, newQuoteAuthor)">Add</button>
-                <button type="button" name="button" ng-show="isEditingQuote" ng-click="updateQuote(newQuote, newQuoteAuthor)">Update</button>
-                <button type="button" name="button" ng-show="isEditingQuote" ng-click="cancelQuoteEdit()">Cancel</button>
-            </div>
-        </div>
-
-        <ul ng-repeat="quote in quotesList" class="well well-sm">
-            <li>{{quote.quote}} — {{quote.author}}</li>
-            <button ng-click="deleteQuote($index)" type="button" name="button">Delete</button>
-            <button ng-click="editQuote($index)" type="button" name="button">Edit</button>
-            <br>
-            <hr>
-        </ul>
-    </div>
-
-    <div uib-collapse="manageVideos">
-        <div class="addNewVideo">
-            <div class="panel panel-default">
-                <div class="panel-heading clearfix">
-                    <h3 class="panel-title" ng-show="!isEditingVideo">Add A New Video</h3>
-                    <h3 class="panel-title" ng-show="isEditingVideo">Edit Video</h3>
-                </div>
-
-                <div class="panel-body">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span></span>
-                        <input placeholder="Paste Iframe Here" class="form-control" type="text" ng-model="newVideo">
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
-                        <input placeholder="Video Title" class="form-control" type="text" ng-model="newVideoTitle">
-                    </div>
-                </div>
-                <button type="button" name="button" ng-show="!isEditingVideo" ng-click="addNewVideo(newVideo, newVideoTitle)">Add</button>
-                <button type="button" name="button" ng-show="isEditingVideo" ng-click="updateVideo(newVideo, newVideoTitle)">Update</button>
-                <button type="button" name="button" ng-show="isEditingVideo" ng-click="cancelVideoUpdate()">Cancel</button>
-            </div>
-        </div>
         <div class="row">
-            <div class="col-md-3 well" ng-repeat="video in videosList">
-                <a href="{{video.link}}" target="_blank">
+            <div class="col-md-12">
+                <div class="btn-group" id="manage-page-top" role="group" aria-label="...">
+                    <button ng-click="toggleManagePage('quotes')" type="button" class="btn btn-default">Quotes</button>
+                    <button ng-click="toggleManagePage('videos')" type="button" class="btn btn-default">Videos</button>
+                    <button ng-click="toggleManagePage('images')" type="button" class="btn btn-default">Images</button>
+                    <button ng-click="toggleManagePage('contacts')" type="button" class="btn btn-default">Contacts</button>
+                    <button ng-click="managePage()" type="button" name="button" class="btn btn-default">Manage Page</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div uib-collapse="manageQuotes">
+            <div class="addNewQuote">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title" ng-show="!quotePanel">Add A New Quote</h3>
+                        <h3 class="panel-title" ng-show="quotePanel">Edit Quote</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
+                            <input placeholder="Quote" class="form-control" type="text" ng-model="newQuote">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
+                            <input placeholder="Author" class="form-control" type="text" ng-model="newQuoteAuthor">
+                        </div>
+                    </div>
+                    <button type="button" name="button" ng-show="!quotePanel" ng-click="addNewQuote(newQuote, newQuoteAuthor)">Add</button>
+                    <button type="button" name="button" ng-show="quotePanel" ng-click="updateQuote(newQuote, newQuoteAuthor)">Update</button>
+                    <button type="button" name="button" ng-show="quotePanel" ng-click="cancelQuoteEdit()">Cancel</button>
+                </div>
+            </div>
+
+            <h2>Quotes</h2>
+            <div class="quote-list-container row" ng-repeat="quote in quotesList">
+                <div class="col-md-11">
+                    <em>{{quote.quote}}</em> <span>— {{quote.author}}</span>
+                </div>
+                <div class="quote-crud-buttons col-md-1">
+                     <span ng-click="editQuote($index)" class="glyphicon glyphicon-pencil btn btn-default" aria-hidden="true"></span>
+                     <span ng-click="deleteQuote($index)" class="glyphicon glyphicon-trash btn btn-danger" aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+
+        <div uib-collapse="manageVideos">
+            <div class="addNewVideo">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title" ng-show="!isEditingVideo">Add A New Video</h3>
+                        <h3 class="panel-title" ng-show="isEditingVideo">Edit Video</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span></span>
+                            <input placeholder="Paste Iframe Here" class="form-control" type="text" ng-model="newVideo">
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
+                            <input placeholder="Video Title" class="form-control" type="text" ng-model="newVideoTitle">
+                        </div>
+                    </div>
+                    <button type="button" name="button" ng-show="!isEditingVideo" ng-click="addNewVideo(newVideo, newVideoTitle)">Add</button>
+                    <button type="button" name="button" ng-show="isEditingVideo" ng-click="updateVideo(newVideo, newVideoTitle)">Update</button>
+                    <button type="button" name="button" ng-show="isEditingVideo" ng-click="cancelVideoUpdate()">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 well" ng-repeat="video in videosList">
+                    <a href="{{video.link}}" target="_blank">
                     <img class="img-fluid img-thumbnail video-thumbnail" ng-src="{{video.thumbnail}}" alt="">
                 </a>
-                <li>
-                    <h4>{{video.videoTitle}}</h4></li>
-                <button ng-click="deleteVideo($index)" type="button" name="button">Delete</button>
-                <button ng-click="editVideo($index)" type="button" name="button">Edit</button>
-                <br>
-                <br>
-                <br>
+                    <li>
+                        <h4>{{video.videoTitle}}</h4></li>
+                    <button ng-click="deleteVideo($index)" type="button" name="button">Delete</button>
+                    <button ng-click="editVideo($index)" type="button" name="button">Edit</button>
+                    <br>
+                    <br>
+                    <br>
 
-                <hr>
+                    <hr>
+                </div>
             </div>
+
         </div>
 
-    </div>
 
-
-    <div class="well" uib-collapse="manageImages">
-        <div class="addNewImage">
-            <div class="panel panel-default">
-                <div class="panel-heading clearfix">
-                    <h3 class="panel-title" ng-show="!isEditingImage">Add A New Image</h3>
-                    <h3 class="panel-title" ng-show="isEditingImage">Edit Image</h3>
-                </div>
-
-                <div class="panel-body">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
-                        <input placeholder="Paste image URL here" class="form-control" type="text" ng-model="newImage">
+        <div class="well" uib-collapse="manageImages">
+            <div class="addNewImage">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title" ng-show="!isEditingImage">Add A New Image</h3>
+                        <h3 class="panel-title" ng-show="isEditingImage">Edit Image</h3>
                     </div>
-                </div>
-                <button type="button" name="button" ng-show="!isEditingImage" ng-click="addNewImage(newImage, newImageTitle)">Add</button>
-                <button type="button" name="button" ng-show="isEditingImage" ng-click="updateImage(newImage, newImageTitle)">Update</button>
-                <button type="button" name="button" ng-show="isEditingImage" ng-click="cancelImageEdit()">Cancel</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3" ng-repeat="image in imagesList">
-                <img class="img-fluid img-thumbnail thumbnail" ng-src="{{image.image}}" alt="">
-                <button ng-click="deleteImage(image)" type="button" name="button">Delete</button>
-                <button ng-click="editImage($index)" type="button" name="button">Edit</button>
-                <br><br><br><br><br><br><br>
-            </div>
-        </div>
 
-        <div class="dropzone">
-            <div class="info"></div>
-        </div>
-
-    </div>
-
-    <div class="well" uib-collapse="manageContacts">
-        <div class="addNewContact">
-            <div class="panel panel-default">
-                <div class="panel-heading clearfix">
-                    <h3 class="panel-title" ng-show="!isEditingContact">Add A New Contact</h3>
-                    <h3 class="panel-title" ng-show="isEditingContact">Edit Contact</h3>
-                </div>
-
-                <div class="panel-body">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-person" aria-hidden="true"></span></span>
-                        <input placeholder="Name" class="form-control" type="text" ng-model="newContact">
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
+                            <input placeholder="Paste image URL here" class="form-control" type="text" ng-model="newImage">
+                        </div>
                     </div>
+                    <button type="button" name="button" ng-show="!isEditingImage" ng-click="addNewImage(newImage, newImageTitle)">Add</button>
+                    <button type="button" name="button" ng-show="isEditingImage" ng-click="updateImage(newImage, newImageTitle)">Update</button>
+                    <button type="button" name="button" ng-show="isEditingImage" ng-click="cancelImageEdit()">Cancel</button>
                 </div>
-                <div class="panel-body">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-person" aria-hidden="true"></span></span>
-                        <input placeholder="Paste image URL here" class="form-control" type="text" ng-model="newContactImage">
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" ng-repeat="image in imagesList">
+                    <img class="img-fluid img-thumbnail thumbnail" ng-src="{{image.image}}" alt="">
+                    <button ng-click="deleteImage(image)" type="button" name="button">Delete</button>
+                    <button ng-click="editImage($index)" type="button" name="button">Edit</button>
+                    <br><br><br><br><br><br><br>
                 </div>
-                <button type="button" name="button" ng-show="!isEditingContact" ng-click="addNewContact(newContact, newContactImage)">Add</button>
-                <button type="button" name="button" ng-show="isEditingContact" ng-click="updateContact(newContact, newContactImage)">Update</button>
-                <button type="button" name="button" ng-show="isEditingContact" ng-click="cancelContactEdit()">Cancel</button>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2" ng-repeat="contact in contactsList">
-                <h3>{{contact.name}}</h3>
-                <button ng-click="deleteContact(contact)" type="button" name="button">Delete</button>
-                <button ng-click="editContact($index)" type="button" name="button">Edit</button>
-                <br><br><br><br>
-            </div>
+
         </div>
 
+        <div class="well" uib-collapse="manageContacts">
+            <div class="addNewContact">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title" ng-show="!isEditingContact">Add A New Contact</h3>
+                        <h3 class="panel-title" ng-show="isEditingContact">Edit Contact</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-person" aria-hidden="true"></span></span>
+                            <input placeholder="Name" class="form-control" type="text" ng-model="newContact">
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-person" aria-hidden="true"></span></span>
+                            <input placeholder="Paste image URL here" class="form-control" type="text" ng-model="newContactImage">
+                        </div>
+                    </div>
+                    <button type="button" name="button" ng-show="!isEditingContact" ng-click="addNewContact(newContact, newContactImage)">Add</button>
+                    <button type="button" name="button" ng-show="isEditingContact" ng-click="updateContact(newContact, newContactImage)">Update</button>
+                    <button type="button" name="button" ng-show="isEditingContact" ng-click="cancelContactEdit()">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2" ng-repeat="contact in contactsList">
+                    <h3>{{contact.name}}</h3>
+                    <button ng-click="deleteContact(contact)" type="button" name="button">Delete</button>
+                    <button ng-click="editContact($index)" type="button" name="button">Edit</button>
+                    <br><br><br><br>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 </div>

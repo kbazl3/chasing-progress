@@ -5,7 +5,7 @@ angular.module('chasingProgress')
     .controller('homeCtrl', function($scope, $sce, homeSvc, $state, alertify, $location, $anchorScroll) {
 
 
-        $scope.isEditingQuote = false;
+        $scope.quotePanel = false;
         $scope.isEditingVideo = false;
         $scope.isManagingHomePage = false;
         $scope.manageImages = true;
@@ -16,6 +16,8 @@ angular.module('chasingProgress')
 
         $scope.managePage = () => {
             $scope.isManagingHomePage = !$scope.isManagingHomePage;
+            $location.hash('chasing-progress')
+            $anchorScroll();
         }
 
         $scope.toggleManagePage = (string) => {
@@ -91,7 +93,7 @@ angular.module('chasingProgress')
             $scope.newQuote = $scope.quotesList[index].quote;
             $scope.newQuoteAuthor = $scope.quotesList[index].author;
             editedQuote = $scope.quotesList[index];
-            $scope.isEditingQuote = true;
+            $scope.quotePanel = true;
             $location.hash('manage-page-top')
             $anchorScroll();
         }
@@ -100,7 +102,7 @@ angular.module('chasingProgress')
             homeSvc.updateQuote(quote, author, editedQuote)
                 .then((response) => {
                     alertify.success('Updated')
-                    $scope.isEditingQuote = false;
+                    $scope.quotePanel = false;
                     $scope.newQuote = "";
                     $scope.newQuoteAuthor = "";
                 })
@@ -118,7 +120,7 @@ angular.module('chasingProgress')
         $scope.cancelQuoteEdit = () => {
             $scope.newQuote = "";
             $scope.newQuoteAuthor = "";
-            $scope.isEditingQuote = false;
+            $scope.quotePanel = false;
             editedQuote = {};
         }
 
