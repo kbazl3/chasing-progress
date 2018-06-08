@@ -175,6 +175,46 @@ p,a,li,blockquote {
     margin-top: 20px;
 }
 
+.video-card {
+    background-color: #e7e9e6;
+    height: 250px;
+    border: 1px solid white;
+    margin: 10px 0 10px 0;
+    position: relative;
+}
+
+.video-crud-buttons {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.img-card {
+    height: 450px;
+}
+
+.img-crud-buttons {
+    position: absolute;
+    right: 15px;
+}
+
+.contact-card {
+    background-color: #e7e9e6;
+    opacity: .9;
+    height: 120px;
+    text-align: center;
+    margin: 10px;
+    border-radius: 3px;
+    position: relative;
+    padding-top: 10px;
+}
+
+.contact-crud-buttons {
+    right: 0px;
+    bottom: 0px;
+    position: absolute;
+}
+
 .parallax-section .video {
     width: 36.7%;
     margin: 40px auto 0 auto;
@@ -187,10 +227,9 @@ p,a,li,blockquote {
     background-repeat: no-repeat;
 }
 
-.thumbnail {
-    width: 240px;
-    height: 180px;
-}
+
+
+
 
 .manage-home-page {
     background-image: url("/images/Abstract-Polygon-Background-blue-green.jpg");
@@ -206,7 +245,10 @@ p,a,li,blockquote {
 /* *********** TODO *********** */
 
 .todoContainer {
-    background-image: url("/images/asanoha.png");
+    background-image: url("/images/trianglify.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .addTodo {
@@ -218,14 +260,27 @@ p,a,li,blockquote {
     margin-top: 20px;
 }
 
-.well .checkbox {
-    margin-bottom: 25px;
+.checkbox {
     font-size: 1.4em;
-    border: 1px solid black;
-    padding: 25px;
-    border: 1px dashed #ddd;
-    box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+    border-radius: 3px;
+    padding: 15px;
+    background-color: #f4f4f1;
+    margin-bottom: 15px;
 }
+
+.checkbox:hover {
+    background-color: white;
+}
+
+.daily-list-container {
+    margin-right: 1.5%;
+}
+
+.daily-list-container h2 {
+    font-size: 2.3em;
+}
+
+
 
 .navbar-inverse {
     margin-bottom: 20px;
@@ -249,6 +304,11 @@ p,a,li,blockquote {
 
 .tabbable {
     height: 100vh;
+    background-color: #f4f4f1;
+}
+
+.daily-task-crud-buttons {
+    float: right;
 }
 
 .snip1562 {
@@ -437,9 +497,26 @@ p,a,li,blockquote {
         height: 300px;
     }
     .todoContainer .tabbable li {
-        font-size: 2em;
+        font-size: 1.5em;
     }
     .nav-tabs li {
         font-size: 100px;
+    }
+    .video-card {
+        width: 400px;
+        height: 400px;
+        margin: auto;
+    }
+
+    .img-card {
+        height: 450px;
+        width: 450px;
+        margin: auto;
+    }
+    .motivational-img {
+        height: 450px;
+        width: 450px;
+        top: 0px;
+        position: absolute;
     }
 }

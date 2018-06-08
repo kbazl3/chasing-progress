@@ -135,7 +135,6 @@
                 </div>
             </div>
 
-            <h2>Quotes</h2>
             <div class="quote-list-container row" ng-repeat="quote in quotesList">
                 <div class="col-md-11">
                     <em>{{quote.quote}}</em> <span>— {{quote.author}}</span>
@@ -172,20 +171,20 @@
                     <button type="button" name="button" ng-show="isEditingVideo" ng-click="cancelVideoUpdate()">Cancel</button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3 well" ng-repeat="video in videosList">
-                    <a href="{{video.link}}" target="_blank">
-                    <img class="img-fluid img-thumbnail video-thumbnail" ng-src="{{video.thumbnail}}" alt="">
-                </a>
-                    <li>
-                        <h4>{{video.videoTitle}}</h4></li>
-                    <button ng-click="deleteVideo($index)" type="button" name="button">Delete</button>
-                    <button ng-click="editVideo($index)" type="button" name="button">Edit</button>
-                    <br>
-                    <br>
-                    <br>
 
-                    <hr>
+
+            <div class="row">
+                <div class="col-md-2" ng-repeat="video in videosList">
+                    <div class="video-card">
+                        <a href="{{video.link}}" target="_blank">
+                            <img class="img-fluid img-thumbnail" ng-src="{{video.thumbnail}}" alt="">
+                        </a>
+                        <h5 class="text-center">{{video.videoTitle}}</h5>
+                        <div class="video-crud-buttons">
+                            <span ng-click="editVideo($index)" class="glyphicon glyphicon-pencil btn btn-default" aria-hidden="true"></span>
+                            <span ng-click="deleteVideo($index)" class="glyphicon glyphicon-trash btn btn-danger" aria-hidden="true"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -211,18 +210,20 @@
                     <button type="button" name="button" ng-show="isEditingImage" ng-click="cancelImageEdit()">Cancel</button>
                 </div>
             </div>
+
             <div class="row">
-                <div class="col-md-3" ng-repeat="image in imagesList">
-                    <img class="img-fluid img-thumbnail thumbnail" ng-src="{{image.image}}" alt="">
-                    <button ng-click="deleteImage(image)" type="button" name="button">Delete</button>
-                    <button ng-click="editImage($index)" type="button" name="button">Edit</button>
-                    <br><br><br><br><br><br><br>
+                <div class="col-md-3 img-card" ng-repeat="image in imagesList">
+                    <img class="img-fluid img-thumbnail motivational-img" ng-src="{{image.image}}" alt="">
+                    <div class="img-crud-buttons">
+                        <span class="glyphicon glyphicon-trash btn btn-danger" ng-click="deleteImage(image)"></span>
+                        <span class="glyphicon glyphicon-pencil btn btn-default" aria-hidden="true" ng-click="editImage($index)"></span>
+                    </div>
                 </div>
             </div>
 
         </div>
 
-        <div class="well" uib-collapse="manageContacts">
+        <div uib-collapse="manageContacts">
             <div class="addNewContact">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
@@ -249,10 +250,13 @@
             </div>
             <div class="row">
                 <div class="col-md-2" ng-repeat="contact in contactsList">
-                    <h3>{{contact.name}}</h3>
-                    <button ng-click="deleteContact(contact)" type="button" name="button">Delete</button>
-                    <button ng-click="editContact($index)" type="button" name="button">Edit</button>
-                    <br><br><br><br>
+                    <div class="contact-card">
+                        <h3>{{contact.name}}</h3>
+                        <div class="contact-crud-buttons">
+                            <button class="glyphicon glyphicon-trash btn btn-danger" ng-click="deleteContact(contact)" type="button" name="button"></button>
+                            <button class="glyphicon glyphicon-pencil btn btn-default" ng-click="editContact($index)" type="button" name="button"></button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
