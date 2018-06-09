@@ -17,6 +17,12 @@ angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', '
                 }
             })
 
+            .state('getMotivated', {
+                url: '/getMotivated',
+                templateUrl: '/js/components/getMotivated/getMotivated.html',
+                controller: 'getMotivatedCtrl'
+            })
+
             .state('todo', {
                 url: '/todo',
                 templateUrl: '/js/components/todo/todo.html',

@@ -56,6 +56,7 @@
             <div ng-bind-html="video" class="video">
                 $sce.trustAsHtml()
             </div>
+            <br>
             <button class="btn" ng-click="$ctrl.open2()">Add video notes</button>
             <script type="text/ng-template" id="myModalContent2.html">
                 <div class="modal-header">
@@ -140,8 +141,8 @@
                     <em>{{quote.quote}}</em> <span>— {{quote.author}}</span>
                 </div>
                 <div class="quote-crud-buttons col-md-1">
-                     <span ng-click="editQuote($index)" class="glyphicon glyphicon-pencil btn btn-default" aria-hidden="true"></span>
-                     <span ng-click="deleteQuote($index)" class="glyphicon glyphicon-trash btn btn-danger" aria-hidden="true"></span>
+                    <span ng-click="editQuote($index)" class="glyphicon glyphicon-pencil btn btn-default" aria-hidden="true"></span>
+                    <span ng-click="deleteQuote($index)" class="glyphicon glyphicon-trash btn btn-danger" aria-hidden="true"></span>
                 </div>
             </div>
         </div>

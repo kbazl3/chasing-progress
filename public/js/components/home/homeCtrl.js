@@ -65,7 +65,7 @@ angular.module('chasingProgress')
         homeSvc.getImages()
             .then(function(response) {
                 $scope.imagesList = response;
-                $scope.dailyImage = response[6]
+                $scope.dailyImage = response[d]
             })
 
         homeSvc.getContacts()
