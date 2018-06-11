@@ -50,16 +50,19 @@ table {
 
 #splash {
     overflow: hidden;
-    background-color: #425565;
+    background-color: white;
     background: url('../js/components/home/tesseract/bg.jpg');
     background-size: cover;
     background-position: center;
+    position: relative;
+    z-index: 300;
 }
 
 #logo-wrap {
 	margin-top: 50px;
 	text-align: center;
 	position: relative;
+
 }
 
 #logo-canvas {
@@ -68,6 +71,7 @@ table {
     pointer-events: none;
     z-index: 0;
     position: absolute;
+    z-index: 400;
 }
 
 #logo-img {
@@ -79,22 +83,28 @@ table {
 
 /* ---- reset ---- */
 
-body {
-  margin: 0;
-  font: normal 75% Arial, Helvetica, sans-serif;
-}
-
-canvas {
+/* canvas {
   display: block;
   vertical-align: bottom;
-}
+} */
 /* ---- particles.js container ---- */
 
 #particleJs {
   position: absolute;
   width: 100%;
   height: 100%;
+  top: 50px;
   background-color: #2E3F59;
+  z-index: 100;
+}
+
+.particles-message {
+    z-index: 200;
+    width: 100%;
+    height: 0;
+    position: relative;
+    background-color: white;
+    margin: 300px auto 0 auto;
 }
 
 /* particleJs STYLING ^^ ************************** */
@@ -550,4 +560,146 @@ p,a,li,blockquote {
         top: 0px;
         position: absolute;
     }
+}
+
+
+
+
+
+
+/* Tesseract STYLING */
+
+.block {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 30% auto;
+}
+
+.shape {
+  width: 100px;
+  height: 100px;
+}
+
+.cube {
+  position: relative;
+  transition:transform .5s;
+  transform-style: preserve-3d;
+}
+
+.cube.outer {
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  animation: spin 4s infinite cubic-bezier(.67,.03,.31,.98);
+}
+
+.cube.outer > .cube {
+  width: 100px;
+  height: 100px;
+  transform: translateX(50px) translateY(50px);
+  animation: spin-inner 4s infinite cubic-bezier(.67,.03,.31,.98);
+}
+
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /*backface-visibility: hidden;*/
+
+  font-size: 30px;
+  line-height: 100px;
+  text-align: center;
+  opacity: .9;
+  transition: all .2s linear;
+  border: 1px solid white;
+
+  background: rgba(101, 184, 219, 0.5);
+  box-shadow: inset 0 0 100% 0 rgba(1, 84, 119, .5);
+  box-sizing: border-box;
+}
+
+.outer > .cube .side {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.side.left {
+  transform: translateX(-50px) rotateY(-90deg);
+}
+
+.cube.outer > .side.left {
+  transform: translateX(-100px) rotateY(-90deg);
+}
+
+.side.right {
+  transform: translateX(50px) rotateY(90deg);
+}
+
+.cube.outer > .side.right {
+  transform: translateX(100px) rotateY(90deg);
+}
+
+.side.top {
+  transform: translateY(-50px) rotateX(90deg);
+}
+
+.cube.outer > .side.top {
+  transform: translateY(-100px) rotateX(90deg);
+}
+
+.side.bottom {
+  transform: translateY(50px) rotateX(-90deg);
+}
+
+.cube.outer > .side.bottom {
+  transform: translateY(100px) rotateX(-90deg);
+}
+
+.side.front {
+  transform: translateZ(50px);
+}
+
+.cube.outer > .side.front {
+  transform: translateZ(100px);
+}
+
+.side.back {
+  transform: translateZ(-50px) rotateX(180deg);
+}
+
+.cube.outer > .side.back {
+  transform: translateZ(-100px) rotateX(180deg);
+}
+
+
+
+
+@keyframes spin {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  33.333% {
+    transform: rotateX(-35deg) rotateY(-45deg);
+  }
+  66.666% {
+    transform: rotateX(-35deg) rotateY(45deg);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes spin-inner {
+  0% {
+    transform: translateX(50px) translateY(50px) rotateY(0deg) rotateX(90deg);
+  }
+  33.333% {
+    transform: translateX(50px) translateY(50px) rotateY(90deg) rotateX(90deg);
+  }
+  66.666% {
+    transform: translateX(50px) translateY(50px) rotateY(-90deg) rotateX(90deg);
+  }
+  100% {
+    transform: translateX(50px) translateY(50px) rotateY(0deg) rotateX(90deg);
+  }
 }
