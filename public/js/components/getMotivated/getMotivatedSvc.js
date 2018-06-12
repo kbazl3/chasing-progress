@@ -1,5 +1,5 @@
 angular.module("chasingProgress")
-    .service("homeSvc", function($http) {
+    .service("getMotivatedSvc", function($http) {
 
         let d = new Date().getDate();
 

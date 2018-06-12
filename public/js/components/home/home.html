@@ -1,268 +1,44 @@
 <nav-bar></nav-bar>
 
-<div id="chasing-progress" class="home-page" ng-show="!isManagingHomePage">
+<div>
+    <div class="particles-container" ng-controller="getMotivatedCtrl">
+        <div particles-drv ng-show="showParticles">
 
 
 
-    <div parallax-background parallax-ratio="-0.3" class="parallax-section">
-        <h2 class="align-center">Chasing Progress</h2>
-
-        <!-- <div id="splash">
-        <div id="logo-wrap" class="header">
-            <canvas id="logo-canvas"></canvas>
-
-            <img id="logo-img" src="./js/components/home/tesseract/logowhite.png">
         </div>
-    </div> -->
-    </div>
 
 
-    <div class="homepage-background"></div>
 
-
-    <div parallax-background parallax-ratio="-0.3" class="parallax-section">
-
-        <div ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo">
-            <div class="quote-container" ng-click="$ctrl.open()">
-                <p class="text-align quote"><i>"{{dailyQuote.quote}}"</i></p>
-                <p class="indent">- {{dailyQuote.author}}</p>
+            <div class="testy">
+                <span class="">Chasing Progress</span>
             </div>
-            <script type="text/ng-template" id="myModalContent.html">
-                <div class="modal-header">
-                    <h3 class="modal-title text-align quote" id="modal-title"><i>"{{dailyQuote.quote}}"</i></h3>
-                    <h4 class="indent" id="modal-title">- {{dailyQuote.author}}</h4>
-                </div>
-                <div class="modal-body" id="modal-body">
-                    <ul ng-repeat="quoteNote in dailyQuote.notes">
-                        <li ng-bind-html="quoteNote.note">{{quoteNote.note}}</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-                    <div class="wysiwig">
-                        <div text-angular ng-model="htmlVariable"></div>
-                        <button class="snip1562" ng-click="addQuoteNotes(dailyQuote, htmlVariable)">Add Quote Notes</button>
+
+            <div class="block">
+                <div class="shape">
+                    <div class="cube outer">
+                        <div class="side left"></div>
+                        <div class="side right"></div>
+                        <div class="side top"></div>
+                        <div class="side bottom"></div>
+                        <div class="side front"></div>
+                        <div class="side back"></div>
+
+
+                        <div class="cube">
+                            <div class="side left"></div>
+                            <div class="side right"></div>
+                            <div class="side top"></div>
+                            <div class="side bottom"></div>
+                            <div class="side front"></div>
+                            <div class="side back"></div>
+                        </div>
+
                     </div>
                 </div>
-            </script>
-        </div>
-    </div>
-
-    <div class="homepage-background"></div>
-
-    <div parallax-background parallax-ratio="-0.3" class="parallax-section">
-
-        <div ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo">
-            <div ng-bind-html="video" class="video">
-                $sce.trustAsHtml()
             </div>
-            <br>
-            <button class="btn" ng-click="$ctrl.open2()">Add video notes</button>
-            <script type="text/ng-template" id="myModalContent2.html">
-                <div class="modal-header">
-                    <div ng-bind-html="video" class="video">
-                        $sce.trustAsHtml()
-                    </div>
-                </div>
-                <div class="modal-body" id="modal-body">
-                    <ul ng-repeat="videoNote in embeddedVideo.notes">
-                        <li ng-bind-html="videoNote.note">{{videoNote.note}}</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-                    <div class="wysiwig">
-                        <div text-angular ng-model="videoNotesInput"></div>
-                    </div>
-                </div>
-            </script>
-            <button ng-click="managePage()" type="button" name="button">Manage Page</button>
-        </div>
-    </div>
 
-    <div class="homepage-background"></div>
-
-    <div parallax-background parallax-ratio="-0.3" class="parallax-section-image">
-
-
-        <div class="get-motivated-image-container">
-            <img ng-src="{{dailyImage.image}}" alt="">
-        </div>
 
 
     </div>
 </div>
-
-<div class="manage-home-page" ng-show="isManagingHomePage">
-    <div class="container">
-
-
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="btn-group" id="manage-page-top" role="group" aria-label="...">
-                    <button ng-click="toggleManagePage('quotes')" type="button" class="btn btn-default">Quotes</button>
-                    <button ng-click="toggleManagePage('videos')" type="button" class="btn btn-default">Videos</button>
-                    <button ng-click="toggleManagePage('images')" type="button" class="btn btn-default">Images</button>
-                    <button ng-click="toggleManagePage('contacts')" type="button" class="btn btn-default">Contacts</button>
-                    <button ng-click="managePage()" type="button" name="button" class="btn btn-default">Manage Page</button>
-                </div>
-            </div>
-        </div>
-
-
-        <div uib-collapse="manageQuotes">
-            <div class="addNewQuote">
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
-                        <h3 class="panel-title" ng-show="!quotePanel">Add A New Quote</h3>
-                        <h3 class="panel-title" ng-show="quotePanel">Edit Quote</h3>
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
-                            <input placeholder="Quote" class="form-control" type="text" ng-model="newQuote">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
-                            <input placeholder="Author" class="form-control" type="text" ng-model="newQuoteAuthor">
-                        </div>
-                    </div>
-                    <button type="button" name="button" ng-show="!quotePanel" ng-click="addNewQuote(newQuote, newQuoteAuthor)">Add</button>
-                    <button type="button" name="button" ng-show="quotePanel" ng-click="updateQuote(newQuote, newQuoteAuthor)">Update</button>
-                    <button type="button" name="button" ng-show="quotePanel" ng-click="cancelQuoteEdit()">Cancel</button>
-                </div>
-            </div>
-
-            <div class="quote-list-container row" ng-repeat="quote in quotesList">
-                <div class="col-md-11">
-                    <em>{{quote.quote}}</em> <span>— {{quote.author}}</span>
-                </div>
-                <div class="quote-crud-buttons col-md-1">
-                    <span ng-click="editQuote($index)" class="glyphicon glyphicon-pencil btn btn-default" aria-hidden="true"></span>
-                    <span ng-click="deleteQuote($index)" class="glyphicon glyphicon-trash btn btn-danger" aria-hidden="true"></span>
-                </div>
-            </div>
-        </div>
-
-        <div uib-collapse="manageVideos">
-            <div class="addNewVideo">
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
-                        <h3 class="panel-title" ng-show="!isEditingVideo">Add A New Video</h3>
-                        <h3 class="panel-title" ng-show="isEditingVideo">Edit Video</h3>
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span></span>
-                            <input placeholder="Paste Iframe Here" class="form-control" type="text" ng-model="newVideo">
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
-                            <input placeholder="Video Title" class="form-control" type="text" ng-model="newVideoTitle">
-                        </div>
-                    </div>
-                    <button type="button" name="button" ng-show="!isEditingVideo" ng-click="addNewVideo(newVideo, newVideoTitle)">Add</button>
-                    <button type="button" name="button" ng-show="isEditingVideo" ng-click="updateVideo(newVideo, newVideoTitle)">Update</button>
-                    <button type="button" name="button" ng-show="isEditingVideo" ng-click="cancelVideoUpdate()">Cancel</button>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-md-2" ng-repeat="video in videosList">
-                    <div class="video-card">
-                        <a href="{{video.link}}" target="_blank">
-                            <img class="img-fluid img-thumbnail" ng-src="{{video.thumbnail}}" alt="">
-                        </a>
-                        <h5 class="text-center">{{video.videoTitle}}</h5>
-                        <div class="video-crud-buttons">
-                            <span ng-click="editVideo($index)" class="glyphicon glyphicon-pencil btn btn-default" aria-hidden="true"></span>
-                            <span ng-click="deleteVideo($index)" class="glyphicon glyphicon-trash btn btn-danger" aria-hidden="true"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="well" uib-collapse="manageImages">
-            <div class="addNewImage">
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
-                        <h3 class="panel-title" ng-show="!isEditingImage">Add A New Image</h3>
-                        <h3 class="panel-title" ng-show="isEditingImage">Edit Image</h3>
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></span>
-                            <input placeholder="Paste image URL here" class="form-control" type="text" ng-model="newImage">
-                        </div>
-                    </div>
-                    <button type="button" name="button" ng-show="!isEditingImage" ng-click="addNewImage(newImage, newImageTitle)">Add</button>
-                    <button type="button" name="button" ng-show="isEditingImage" ng-click="updateImage(newImage, newImageTitle)">Update</button>
-                    <button type="button" name="button" ng-show="isEditingImage" ng-click="cancelImageEdit()">Cancel</button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3 img-card" ng-repeat="image in imagesList">
-                    <img class="img-fluid img-thumbnail motivational-img" ng-src="{{image.image}}" alt="">
-                    <div class="img-crud-buttons">
-                        <span class="glyphicon glyphicon-trash btn btn-danger" ng-click="deleteImage(image)"></span>
-                        <span class="glyphicon glyphicon-pencil btn btn-default" aria-hidden="true" ng-click="editImage($index)"></span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div uib-collapse="manageContacts">
-            <div class="addNewContact">
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
-                        <h3 class="panel-title" ng-show="!isEditingContact">Add A New Contact</h3>
-                        <h3 class="panel-title" ng-show="isEditingContact">Edit Contact</h3>
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-person" aria-hidden="true"></span></span>
-                            <input placeholder="Name" class="form-control" type="text" ng-model="newContact">
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-person" aria-hidden="true"></span></span>
-                            <input placeholder="Paste image URL here" class="form-control" type="text" ng-model="newContactImage">
-                        </div>
-                    </div>
-                    <button type="button" name="button" ng-show="!isEditingContact" ng-click="addNewContact(newContact, newContactImage)">Add</button>
-                    <button type="button" name="button" ng-show="isEditingContact" ng-click="updateContact(newContact, newContactImage)">Update</button>
-                    <button type="button" name="button" ng-show="isEditingContact" ng-click="cancelContactEdit()">Cancel</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2" ng-repeat="contact in contactsList">
-                    <div class="contact-card">
-                        <h3>{{contact.name}}</h3>
-                        <div class="contact-crud-buttons">
-                            <button class="glyphicon glyphicon-trash btn btn-danger" ng-click="deleteContact(contact)" type="button" name="button"></button>
-                            <button class="glyphicon glyphicon-pencil btn btn-default" ng-click="editContact($index)" type="button" name="button"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
-<!-- <footer-bottom></footer-bottom> -->

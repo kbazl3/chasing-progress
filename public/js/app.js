@@ -9,18 +9,19 @@ angular.module('chasingProgress', ['ui.router','angular-parallax','ngAnimate', '
             .state('home', {
                 url: '/',
                 templateUrl: '/js/components/home/home.html',
-                controller: 'homeCtrl',
-                resolve: {
-                    homeResolve: function(homeSvc) {
-                        return homeSvc.getQuotes()
-                    }
-                }
+                controller: 'homeCtrl'
+
             })
 
             .state('getMotivated', {
                 url: '/getMotivated',
                 templateUrl: '/js/components/getMotivated/getMotivated.html',
-                controller: 'getMotivatedCtrl'
+                controller: 'getMotivatedCtrl',
+                resolve: {
+                    homeResolve: function(getMotivatedSvc) {
+                        return getMotivatedSvc.getQuotes()
+                    }
+                }
             })
 
             .state('todo', {
