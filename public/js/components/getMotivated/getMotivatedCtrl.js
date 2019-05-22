@@ -50,7 +50,7 @@ angular.module('chasingProgress')
         //documents in collection aren't always guarenteed to be the same index every time
         getMotivatedSvc.getQuotes()
             .then(function(response) {
-                console.log("hitting", response);
+
                 $scope.dailyQuote = response.quotesList[d];
                 $scope.quotesList = response.quotesList;
             })
@@ -226,7 +226,6 @@ angular.module('chasingProgress')
         $scope.addNewContact = (name, picture) => {
             getMotivatedSvc.addNewContact(name, picture)
                 .then((response) => {
-                    console.log(response);
                 })
         }
 

@@ -12,7 +12,6 @@ angular.module("chasingProgress")
             }
             bookSvc.newBook(bookObj)
                 .then(function(response) {
-                    console.log(response);
                     alertify.success("Added " + response.data.title);
                     $scope.bookTitle = "";
                     $scope.coverImage = "";

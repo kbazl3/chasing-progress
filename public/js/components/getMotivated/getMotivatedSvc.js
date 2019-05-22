@@ -197,7 +197,6 @@ angular.module("chasingProgress")
                 method: 'GET',
                 url: '/api/contact'
             }).then(function(response) {
-                console.log(response);
                 return response;
             });
         };

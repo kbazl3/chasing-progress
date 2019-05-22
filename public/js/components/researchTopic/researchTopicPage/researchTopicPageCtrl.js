@@ -1,8 +1,8 @@
 angular.module("chasingProgress")
     .controller("researchTopicPageCtrl", function($scope, $stateParams, researchTopicResolve, researchTopicSvc, alertify, $location, $anchorScroll) {
 
-        $scope.isEditingNote = false;
-        let researchTopicIndex;
+        $scope.isEditingNote = false; //initally set the edit buttons to false so that they don't show up
+        let researchTopicIndex; //initiliaze variable to keep track of the research topic
 
         $scope.researchTopic = researchTopicResolve.data[$stateParams.researchTopicId];
 
@@ -44,6 +44,7 @@ angular.module("chasingProgress")
                 .then(function(response) {
                     alertify.success("updated");
                     $scope.htmlVariable = "";
+                    $scope.isEditingNote = false;
                 })
         }
 });

@@ -46,7 +46,6 @@ angular.module("chasingProgress")
         };
 
         this.deleteBookNote = function(index, book) {
-            console.log(index, book);
             book.notes.splice(index, 1);
             return $http({
                     method: "PUT",
@@ -54,7 +53,6 @@ angular.module("chasingProgress")
                     data: book
                 })
                 .then(function(response) {
-                    console.log(response);
                     return response;
                 });
         }
@@ -66,7 +64,6 @@ angular.module("chasingProgress")
                     data: book
                 })
                 .then(function(response) {
-                    console.log(response);
                     return response;
                 });
         }

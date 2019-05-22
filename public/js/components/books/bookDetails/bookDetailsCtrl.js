@@ -1,6 +1,5 @@
 angular.module("chasingProgress")
     .controller("bookDetailsCtrl", function($scope, $stateParams, booksResolve, bookSvc, alertify, $location, $anchorScroll) {
-        console.log(booksResolve.data[$stateParams.bookId]);
 
         $scope.chosenBook = booksResolve.data[$stateParams.bookId];
 
