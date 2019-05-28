@@ -77,7 +77,7 @@
 
                         <div class="wysiwig" id="wysiwig">
                             <div text-angular ng-model="$parent.userInput[$index]"></div>
-                            <button ng-show="!isEditingTask" class="snip1562" ng-click="addTaskToList($parent.userInput[$index], todoList, $index)">Add New Task To {{todoList.listName}} list</button>
+                            <button ng-show="!isEditingTask" class="snip1562" ng-click="addTaskToList($parent.userInput[$index], todoList, $index)">Add New Task</button>
                             <button ng-show="isEditingTask" class="snip1562" ng-click="updateTask($parent.userInput[$index], $index, todoList)">Update Task</button>
                             <button ng-show="isEditingTask" ng-click="cancelTaskEdit($index)">Cancel Task Edit</button>
                         </div>

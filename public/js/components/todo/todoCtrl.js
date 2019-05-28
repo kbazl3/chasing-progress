@@ -21,7 +21,7 @@ angular.module('chasingProgress')
         $scope.addDailyTask = function(task) {
             todoSvc.addDailyTask(task)
                 .then(function(response) {
-                    alertify.success("Added " + response.data.task + " to Daily Tasks");
+                    alertify.success("Success");
                     todoResolve.daily.dailyTasks.push(response.data);
                 });
             $scope.addDailyTaskInput = "";
@@ -31,7 +31,7 @@ angular.module('chasingProgress')
             alertify.confirm("You are about to delete the " + dailyTask.task + " daily task. Sure you wanna do this?", function() {
                 todoSvc.deleteDailyTask(dailyTask._id)
                     .then(function(response) {
-                        alertify.success("Deleted " + response.data.task + " from Daily Tasks");
+                        alertify.success("Deleted");
                         todoResolve.daily.dailyTasks.splice(index, 1);
                     });
             }, function() {
@@ -151,17 +151,17 @@ angular.module('chasingProgress')
         $scope.addWeeklyTask = function(task) {
             todoSvc.addWeeklyTask(task)
                 .then(function(response) {
-                    alertify.success("Added " + response.data.task + " to Weekly Tasks");
+                    alertify.success("Added");
                     todoResolve.weekly.weeklyTasks.push(response.data);
                 });
             $scope.addWeeklyTaskInput = "";
         };
 
         $scope.deleteWeeklyTask = function(weeklyTask, index) {
-            alertify.confirm("You are about to delete the " + weeklyTask.task + " weekly task. Sure you wanna do this?", function() {
+            alertify.confirm("You are about to delete the. Sure you wanna do this?", function() {
                 todoSvc.deleteWeeklyTask(weeklyTask._id)
                     .then(function(response) {
-                        alertify.success("Deleted " + response.data.task + " from Weekly Tasks");
+                        alertify.success("Deleted");
                         todoResolve.weekly.weeklyTasks.splice(index, 1);
                     });
             }, function() {
@@ -215,10 +215,10 @@ angular.module('chasingProgress')
         }
 
         $scope.deleteList = function(list, index) {
-            alertify.confirm("You are about to delete the " + list.listName + " list. Sure you wanna do this?", function() {
+            alertify.confirm("You are about to delete this list and all of the tasks associated with it. Sure you wanna do this?", function() {
                 todoSvc.deleteList(list)
                     .then(function(response) {
-                        alertify.success("Deleted " + response.data.task + " from your todo lists");
+                        alertify.success("Deleted");
                         todoResolve.todoLists.splice(index, 1);
                     });
             }, function() {
@@ -229,7 +229,7 @@ angular.module('chasingProgress')
         $scope.addTaskToList = function(task, list, index) {
             todoSvc.addTaskToList(task, list)
                 .then(function(response) {
-                    alertify.success("Added " + task + " to " + list.listName + " list");
+                    alertify.success("Added task to " + list.listName + " list");
                     $scope.userInput[index] = "";
                 })
         }
@@ -238,12 +238,11 @@ angular.module('chasingProgress')
             todoSvc.toggleCompletedTodoTask(index, list)
                 .then(function(response) {
                     console.log(response);
-                    alertify.success("Completed " + list.tasks[index].taskName);
                 })
         }
 
         $scope.deleteTask = function(index, list) {
-            alertify.confirm("You are about to delete the " + list.tasks[index].taskName + " task from your " + list.listName + " list. Sure you wanna do this?", function() {
+            alertify.confirm("You are about to delete this task. Sure you wanna do this?", function() {
                 todoSvc.deleteTask(index, list)
                     .then(function(response) {
                         alertify.success("Deleted ");

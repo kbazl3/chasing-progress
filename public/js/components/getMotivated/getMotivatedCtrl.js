@@ -268,3 +268,19 @@ angular.module('chasingProgress')
 
 
     });
+
+
+
+    const birthDate = new Date(1989, 8, 22).getTime() / 1000; 
+    const expectedDeathDate = new Date(2069, 8, 22).getTime() / 1000;
+    const daysLived = new Date().getTime() / 1000;
+    const epoch = new Date('Jan 1, 70 00:00:00.000 GMT').getTime() / 1000
+
+    console.log(expectedDeathDate - daysLived);
+    console.log(expectedDeathDate - (daysLived - birthDate));
+
+    //get my birth date and convert it to days assign it to "birthDate"
+    // add 29200 days to birthdate and assign it to "expectedDeathDate"
+    //  call new Date() and assign to "daysLived"
+    // 18250 days or 50 years.  subtract a day each 
+    
