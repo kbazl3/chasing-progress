@@ -226,14 +226,17 @@ angular.module('chasingProgress')
         $scope.addNewContact = (name, picture) => {
             getMotivatedSvc.addNewContact(name, picture)
                 .then((response) => {
+                    alertify.success('ADDED ' + response.data.name);
+                    $scope.contactsList.push(response.data);
                 })
         }
 
-        $scope.deleteContact = (person) => {
+        $scope.deleteContact = (person, index) => {
             alertify.confirm("Are you sure?", () => {
                 getMotivatedSvc.deleteContact(person)
                     .then((response) =>{
-                        alertify.success('deleted')
+                        alertify.success('DELETED')
+                        $scope.contactsList.splice(index, 1)
                     })
             })
 

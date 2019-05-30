@@ -238,11 +238,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2" ng-repeat="contact in contactsList">
+                <div class="col-md-2 animate-repeat" ng-repeat="contact in contactsList">
                     <div class="contact-card">
                         <h3>{{contact.name}}</h3>
                         <div class="contact-crud-buttons">
-                            <button class="glyphicon glyphicon-trash btn btn-danger" ng-click="deleteContact(contact)" type="button" name="button"></button>
+                            <button class="glyphicon glyphicon-trash btn btn-danger" ng-click="deleteContact(contact, $index)" type="button" name="button"></button>
                             <button class="glyphicon glyphicon-pencil btn btn-default" ng-click="editContact($index)" type="button" name="button"></button>
                         </div>
                     </div>
