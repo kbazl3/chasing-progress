@@ -7,7 +7,7 @@ angular.module('chasingProgress')
 
         $scope.quotePanel = false;
         $scope.isEditingVideo = false;
-        $scope.isManagingHomePage = false;
+        $scope.isManagingHomePage = true;
         $scope.manageImages = true;
         // $scope.manageQuotes = true;
         $scope.manageVideos = true;
@@ -58,6 +58,7 @@ angular.module('chasingProgress')
         //write this so it only grabs 1 video instead of all
         getMotivatedSvc.getEmbeddedVideos()
             .then(function(response) {
+                console.log("videos", response)
                 $scope.video = $sce.trustAsHtml(response.videosList[response.date].video);
                 $scope.videosList = response.videosList
             })
@@ -80,10 +81,12 @@ angular.module('chasingProgress')
 
 
         $scope.deleteQuote = (index) => {
+            console.log($scope.quotesList[index])
             alertify.confirm("Are you sure?", () => {
                 getMotivatedSvc.deleteQuote($scope.quotesList[index])
                     .then((response) => {
                         alertify.success('deleted')
+                        $scope.quotesList.splice(index, 1);
                     })
             })
 
@@ -101,7 +104,7 @@ angular.module('chasingProgress')
         $scope.updateQuote = (quote, author) => {
             getMotivatedSvc.updateQuote(quote, author, editedQuote)
                 .then((response) => {
-                    alertify.success('Updated')
+                    alertify.success('ADDED')
                     $scope.quotePanel = false;
                     $scope.newQuote = "";
                     $scope.newQuoteAuthor = "";
@@ -111,9 +114,11 @@ angular.module('chasingProgress')
         $scope.addNewQuote = (quote, author) => {
             getMotivatedSvc.addNewQuote(quote, author)
                 .then((response) => {
-                    alertify.success(response)
+                    alertify.success("ADDED")
                     $scope.newQuote = "";
                     $scope.newQuoteAuthor = "";
+                    console.log(response)
+                    $scope.quotesList.push(response)
                 })
         }
 
@@ -132,8 +137,10 @@ angular.module('chasingProgress')
         $scope.addNewVideo = (video, videoTitle) => {
             getMotivatedSvc.addNewVideo(video, videoTitle)
                 .then((response) => {
-                    alertify.success(response)
+                    alertify.success("ADDED")
                     $scope.newVideo = "";
+                    $scope.newVideoTitle = "";
+                    $scope.videosList.push(response);
                 })
         }
 
@@ -142,6 +149,7 @@ angular.module('chasingProgress')
                 getMotivatedSvc.deleteVideo($scope.videosList[index])
                     .then((response) => {
                         alertify.success('deleted')
+                        $scope.videosList.splice(index, 1);
                     })
             })
 

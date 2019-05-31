@@ -124,7 +124,7 @@
                 </div>
             </div>
 
-            <div class="quote-list-container row" ng-repeat="quote in quotesList">
+            <div class="quote-list-container row animate-repeat" ng-repeat="quote in quotesList">
                 <div class="col-md-11">
                     <em>{{quote.quote}}</em> <span>— {{quote.author}}</span>
                 </div>
@@ -163,7 +163,7 @@
 
 
             <div class="row">
-                <div class="col-md-2" ng-repeat="video in videosList">
+                <div class="col-md-2 animate-repeat" ng-repeat="video in videosList">
                     <div class="video-card">
                         <a href="{{video.link}}" target="_blank">
                             <img class="img-fluid img-thumbnail" ng-src="{{video.thumbnail}}" alt="">
