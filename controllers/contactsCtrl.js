@@ -2,7 +2,6 @@ var Contact = require('./../models/Contacts');
 
 module.exports = {
     addContact: (req, res) => {
-        console.log('hitting');
         Contact.create(req.body, (err, result) => {
             if (err) {
                 res.status(500).send(err);

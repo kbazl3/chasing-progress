@@ -201,10 +201,10 @@
             </div>
 
             <div class="row">
-                <div class="col-md-3 img-card" ng-repeat="image in imagesList">
+                <div class="col-md-3 img-card animate-repeat" ng-repeat="image in imagesList">
                     <img class="img-fluid img-thumbnail motivational-img" ng-src="{{image.image}}" alt="">
                     <div class="img-crud-buttons">
-                        <span class="glyphicon glyphicon-trash btn btn-danger" ng-click="deleteImage(image)"></span>
+                        <span class="glyphicon glyphicon-trash btn btn-danger" ng-click="deleteImage(image, $index)"></span>
                         <span class="glyphicon glyphicon-pencil btn btn-default" aria-hidden="true" ng-click="editImage($index)"></span>
                     </div>
                 </div>

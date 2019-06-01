@@ -59,7 +59,7 @@ angular.module('chasingProgress')
         getMotivatedSvc.getEmbeddedVideos()
             .then(function(response) {
                 console.log("videos", response)
-                $scope.video = $sce.trustAsHtml(response.videosList[response.date].video);
+                $scope.video = $sce.trustAsHtml(response.videosList[25].video);
                 $scope.videosList = response.videosList
             })
 
@@ -132,6 +132,14 @@ angular.module('chasingProgress')
         // ********************** Video **********************
         // *****************************************************
 
+        const createVideoThumbnails = function(videoObj) {
+            var x = videoObj.video.indexOf("embed/");
+            let embedID = videoObj.video.slice(x + 6, x + 17);
+            videoObj.thumbnail = "https://img.youtube.com/vi/" + embedID + "/0.jpg";
+            videoObj.link = "https://www.youtube.com/embed/" + embedID;
+            return videoObj;
+        }
+
         let editedVideo;
 
         $scope.addNewVideo = (video, videoTitle) => {
@@ -140,6 +148,7 @@ angular.module('chasingProgress')
                     alertify.success("ADDED")
                     $scope.newVideo = "";
                     $scope.newVideoTitle = "";
+                    response = createVideoThumbnails(response);
                     $scope.videosList.push(response);
                 })
         }
@@ -187,16 +196,20 @@ angular.module('chasingProgress')
         $scope.addNewImage = (video) => {
             getMotivatedSvc.addNewImage(video)
                 .then((response) => {
-                    alertify.success(response)
+                    console.log(response);
+                    alertify.success('ADDED')
                     $scope.newImage = "";
+                    $scope.imagesList.push(response)
                 })
         }
 
-        $scope.deleteImage = (image) => {
+        $scope.deleteImage = (image, index) => {
             alertify.confirm('Are you sure you want to delete this?', () => {
                 getMotivatedSvc.deleteImage(image)
                     .then((response) => {
                         alertify.success('deleted')
+                        $scope.imagesList.splice(index, 1);
+                        image
                     })
             })
 
@@ -236,6 +249,8 @@ angular.module('chasingProgress')
                 .then((response) => {
                     alertify.success('ADDED ' + response.data.name);
                     $scope.contactsList.push(response.data);
+                    $scope.newContact = "";
+                    $scope.newContactImage = "";
                 })
         }
 
@@ -287,8 +302,8 @@ angular.module('chasingProgress')
     const daysLived = new Date().getTime() / 1000;
     const epoch = new Date('Jan 1, 70 00:00:00.000 GMT').getTime() / 1000
 
-    console.log(expectedDeathDate - daysLived);
-    console.log(expectedDeathDate - (daysLived - birthDate));
+    // console.log(expectedDeathDate - daysLived);
+    // console.log(expectedDeathDate - (daysLived - birthDate));
 
     //get my birth date and convert it to days assign it to "birthDate"
     // add 29200 days to birthdate and assign it to "expectedDeathDate"
