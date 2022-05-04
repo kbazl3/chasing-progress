@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "alertify": "^0.3.0",
-    "angular": "^1.6.4",
+    "angular": "^1.8.3",
     "angular-animate": "^1.6.6",
     "angular-chart.js": "^1.1.1",
     "angular-parallax-npm": "0.0.4",
